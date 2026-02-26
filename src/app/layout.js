@@ -1,35 +1,37 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import Navbar from "../components/Navbar"; // <-- Yahan Navbar import kiya
+import Navbar from "../components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata = {
-  title: "NCE Chandi | Government Engineering College", // <-- Updated Title
-  description: "Official Website of Nalanda College of Engineering", // <-- Updated Description
+  title: "Nalanda College of Engineering, Chandi | NCE",
+  description:
+    "Official Website of Nalanda College of Engineering, Chandi — A premier Government Engineering College under Dept. of Science & Technology, Govt. of Bihar. AICTE Approved.",
+  keywords: "NCE Chandi, Nalanda College of Engineering, Government Engineering Bihar, AICTE",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 text-gray-900`}
+        className={`${
+          geistSans.variable
+        } ${playfair.variable} font-sans antialiased bg-white text-slate-900 min-h-screen`}
       >
-        {/* Navbar sabse upar rahega */}
         <Navbar />
-        
-        {/* Baaki pages ka content yahan aayega */}
-        <main className="min-h-screen">
-          {children}
-        </main>
+        <main className="min-h-screen">{children}</main>
       </body>
     </html>
   );

@@ -1,1 +1,48 @@
 @import "tailwindcss";
+
+/* Custom font utilities */
+.font-playfair {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+.font-sans-custom {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Ken Burns slow zoom */
+@keyframes kenBurns {
+  0%   { transform: scale(1.0) translate(0%, 0%); }
+  50%  { transform: scale(1.08) translate(-1.5%, -1%); }
+  100% { transform: scale(1.0) translate(0%, 0%); }
+}
+.ken-burns {
+  animation: kenBurns 22s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Infinite marquee scroll */
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marqueeScroll 28s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Ticker scroll */
+@keyframes tickerScroll {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.ticker-scroll {
+  animation: tickerScroll 30s linear infinite;
+  white-space: nowrap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+* { box-sizing: border-box; }
