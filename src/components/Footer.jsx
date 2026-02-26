@@ -101,6 +101,7 @@ export default function Footer() {
               <Link className="hover:text-white transition-colors" href="/about">About</Link>
               <Link className="hover:text-white transition-colors" href="/vision">Vision & Mission</Link>
               <Link className="hover:text-white transition-colors" href="/administration">Administration</Link>
+              <Link className="hover:text-white transition-colors" href="/faculty">Faculty</Link>
               <Link className="hover:text-white transition-colors" href="/principal">Principal's Desk</Link>
               <Link className="hover:text-white transition-colors" href="/iqac">IQAC</Link>
               <Link className="hover:text-white transition-colors" href="/nirf">NIRF Data</Link>

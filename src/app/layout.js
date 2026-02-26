@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${
           geistSans.variable
-        } ${playfair.variable} font-sans antialiased bg-white text-slate-900 min-h-screen`}
+        } ${playfair.variable} font-sans antialiased bg-transparent text-slate-900 min-h-screen`}
       >
         <Navbar />
         <main className="min-h-screen">{children}</main>

@@ -1,5 +1,28 @@
 @import "tailwindcss";
 
+:root {
+  /* Brand palette (existing colors used across the site) */
+  --nce-navy-950: 0 26 51;  /* #001a33 */
+  --nce-navy-900: 0 51 102; /* #003366 */
+  --nce-ink-950: 0 17 34;   /* #001122 */
+  --nce-gold-500: 201 168 76; /* #c9a84c */
+  --nce-gold-400: 232 200 106; /* #e8c86a */
+}
+
+/* Moonlight background (subtle, premium, site-wide) */
+body {
+  background-color: #fff;
+  background-image:
+    radial-gradient(1200px circle at 14% -10%, rgb(var(--nce-navy-900) / 0.12), transparent 58%),
+    radial-gradient(900px circle at 86% 112%, rgb(var(--nce-gold-500) / 0.10), transparent 55%),
+    radial-gradient(700px circle at 110% 20%, rgb(var(--nce-navy-950) / 0.08), transparent 50%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: rgb(var(--nce-gold-500) / 0.22);
+}
+
 /* Custom font utilities */
 .font-playfair {
   font-family: var(--font-playfair), Georgia, serif;

@@ -1,23 +1,20 @@
 import PageShell from "@/components/PageShell";
+import FacultyPeople from "@/components/FacultyPeople";
+import { principal, facultyDepartments } from "@/lib/facultyPeople";
 
 export default function FacultyPage() {
   return (
     <PageShell
       accentLabel="People"
       title="Faculty"
-      subtitle="Faculty directory structure — departments, qualifications, and contact (to be filled)."
+      subtitle="Principal, Heads of Department, and Assistant Professors — a clean directory with smooth animations."
       breadcrumbs={[{ label: "Home", href: "/" }, { label: "Faculty" }]}
-      sections={[
-        {
-          title: "Faculty Directory",
-          note: "Next step: add a real list per department (name, designation, qualification, email).",
-          cards: [
-            { title: "Department-wise Faculty", kicker: "Directory", text: "CSE / AI & ML / Civil / Mechanical / Aeronautical / EEE." },
-            { title: "Research Profiles", kicker: "Profiles", text: "Publications, projects, and Google Scholar links." },
-            { title: "Contact", kicker: "Office", text: "Official contact for faculty coordination.", href: "/contact" },
-          ],
-        },
+      quickLinks={[
+        { label: "Departments", href: "/departments" },
+        { label: "Contact Office", href: "/contact" },
       ]}
-    />
+    >
+      <FacultyPeople principal={principal} departments={facultyDepartments} />
+    </PageShell>
   );
 }

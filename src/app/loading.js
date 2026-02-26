@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Loading() {
   return (
-    <div className="min-h-[70vh] bg-white">
+    <div className="min-h-[70vh] bg-transparent">
       <div className="relative overflow-hidden">
         <div className="bg-gradient-to-br from-[#001a33] via-[#003366] to-[#001122]">
           <div className="relative container mx-auto px-6 py-16 md:py-20">
@@ -76,10 +76,10 @@ export default function Loading() {
 
       {/* White body spacing to match site */}
       <div className="container mx-auto px-6 py-10">
-        <div className="h-10 w-64 rounded-xl bg-slate-100" />
-        <div className="mt-4 h-4 w-full max-w-3xl rounded-lg bg-slate-100" />
-        <div className="mt-2 h-4 w-11/12 max-w-3xl rounded-lg bg-slate-100" />
-        <div className="mt-2 h-4 w-10/12 max-w-3xl rounded-lg bg-slate-100" />
+        <div className="h-10 w-64 rounded-xl bg-white/60 border border-slate-200/70 backdrop-blur" />
+        <div className="mt-4 h-4 w-full max-w-3xl rounded-lg bg-white/60 border border-slate-200/70 backdrop-blur" />
+        <div className="mt-2 h-4 w-11/12 max-w-3xl rounded-lg bg-white/60 border border-slate-200/70 backdrop-blur" />
+        <div className="mt-2 h-4 w-10/12 max-w-3xl rounded-lg bg-white/60 border border-slate-200/70 backdrop-blur" />
       </div>
     </div>
   );

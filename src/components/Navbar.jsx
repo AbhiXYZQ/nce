@@ -24,6 +24,7 @@ const NAV_ITEMS = [
       { label: "About NCE", href: "/about", icon: Info },
       { label: "Vision & Mission", href: "/vision", icon: Award },
       { label: "Administration", href: "/administration", icon: Users },
+      { label: "Faculty", href: "/faculty", icon: Users },
       { label: "Principal's Desk", href: "/principal", icon: UserCircle },
       { label: "IQAC", href: "/iqac", icon: FileText },
       { label: "NIRF Data", href: "/nirf", icon: Newspaper },
