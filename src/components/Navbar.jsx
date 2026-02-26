@@ -329,9 +329,9 @@ export default function Navbar() {
               <Phone size={11} className="text-[#c9a84c]" />
               06111-295xxx
             </a>
-            <a href="mailto:principal@ncechandi.ac.in" className="hidden md:flex items-center gap-1.5 hover:text-[#c9a84c] transition-colors text-[11px] font-bold tracking-wider uppercase">
+            <a href="mailto:example@ncechandi.ac.in" className="hidden md:flex items-center gap-1.5 hover:text-[#c9a84c] transition-colors text-[11px] font-bold tracking-wider uppercase">
               <Mail size={11} className="text-[#c9a84c]" />
-              principal@ncechandi.ac.in
+              example@ncechandi.ac.in
             </a>
             {/* Mobile: just phone */}
             <a href="tel:06111295" className="sm:hidden flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-slate-300 uppercase">
