@@ -2,12 +2,14 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu, X, Phone, Mail, ChevronDown, LogIn,
   Globe, Facebook, Youtube, Twitter, Linkedin,
   GraduationCap, BookOpen, Building2, Users,
   FlaskConical, Cpu, Zap, Wrench, Brain,
+  Plane,
   Info, Calendar, FileText, Award, Newspaper,
   HelpCircle, MessageSquare, UserCircle, Briefcase,
 } from "lucide-react";
@@ -44,12 +46,10 @@ const NAV_ITEMS = [
     children: [
       { label: "CSE", href: "/departments/cse", icon: Cpu },
       { label: "AI & ML", href: "/departments/aiml", icon: Brain },
-      { label: "Electrical Engg.", href: "/departments/ee", icon: Zap },
-      { label: "Mechanical Engg.", href: "/departments/me", icon: Wrench },
-      { label: "Civil Engg.", href: "/departments/ce", icon: Building2 },
-      { label: "ECE", href: "/departments/ece", icon: FlaskConical },
-      { label: "IT", href: "/departments/it", icon: Cpu },
-      { label: "Architecture", href: "/departments/arch", icon: Building2 },
+      { label: "Civil Engineering", href: "/departments/ce", icon: Building2 },
+      { label: "Mechanical Engineering", href: "/departments/me", icon: Wrench },
+      { label: "Aeronautical Engineering", href: "/departments/aero", icon: Plane },
+      { label: "Electrical & Electronics Engineering", href: "/departments/eee", icon: Zap },
     ],
   },
   { label: "T&P Cell", href: "/placement", isHighlight: true },
@@ -114,24 +114,32 @@ const overlayVariants = {
 
 // ─── DESKTOP NAV LINK (with animated underline) ───────────────────────────────
 
-function DesktopNavLink({ href, label }) {
+function DesktopNavLink({ href, label, active }) {
   return (
     <Link
       href={href}
-      className="relative group h-12 flex items-center px-3 lg:px-4 text-[12px] lg:text-[13px] font-semibold uppercase tracking-wider text-white/90 hover:text-white transition-colors"
+      className={`relative group h-12 flex items-center px-3 lg:px-4 rounded-md text-[12px] lg:text-[13px] font-semibold uppercase tracking-wider transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c9a84c]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#003366] ${
+        active ? "text-[#c9a84c]" : "text-white/90 hover:text-white"
+      } hover:bg-white/10`}
     >
       {label}
       {/* Animated underline from center */}
-      <span className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#c9a84c] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-center" />
+      <span
+        className={`absolute bottom-0 left-2 right-2 h-[3px] bg-[#c9a84c] transition-transform duration-300 ease-out origin-center ${
+          active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+        }`}
+      />
     </Link>
   );
 }
 
 // ─── DESKTOP DROPDOWN ─────────────────────────────────────────────────────────
 
-function DesktopDropdown({ label, children }) {
+function DesktopDropdown({ label, children, pathname }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
+
+  const isActive = children?.some((c) => pathname === c.href || pathname?.startsWith(`${c.href}/`));
 
   useEffect(() => {
     function handler(e) {
@@ -147,13 +155,21 @@ function DesktopDropdown({ label, children }) {
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
         onClick={() => setOpen((v) => !v)}
-        className="relative group h-12 flex items-center gap-1 px-3 lg:px-4 text-[12px] lg:text-[13px] font-semibold uppercase tracking-wider text-white/90 hover:text-white transition-colors"
+        className={`relative group h-12 flex items-center gap-1 px-3 lg:px-4 rounded-md text-[12px] lg:text-[13px] font-semibold uppercase tracking-wider transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c9a84c]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#003366] ${
+          isActive ? "text-[#c9a84c]" : "text-white/90 hover:text-white"
+        } hover:bg-white/10`}
+        aria-haspopup="menu"
+        aria-expanded={open}
       >
         {label}
         <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
           <ChevronDown size={13} className="opacity-70" />
         </motion.span>
-        <span className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#c9a84c] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-center" />
+        <span
+          className={`absolute bottom-0 left-2 right-2 h-[3px] bg-[#c9a84c] transition-transform duration-300 ease-out origin-center ${
+            isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+          }`}
+        />
       </button>
 
       <AnimatePresence>
@@ -170,16 +186,28 @@ function DesktopDropdown({ label, children }) {
           >
             {children.map((item) => {
               const Icon = item.icon;
+              const childActive = pathname === item.href || pathname?.startsWith(`${item.href}/`);
               return (
                 <Link
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 hover:text-[#003366] transition-colors text-[13px] font-medium border-b border-slate-50 last:border-0 group"
+                  className={`flex items-center gap-3 px-4 py-3 transition-colors text-[13px] font-medium border-b border-slate-50 last:border-0 group ${
+                    childActive
+                      ? "bg-slate-50 text-[#003366]"
+                      : "text-slate-700 hover:bg-slate-50 hover:text-[#003366]"
+                  }`}
                 >
                   {Icon && (
-                    <span className="w-7 h-7 flex items-center justify-center rounded-lg bg-slate-100 group-hover:bg-[#003366]/10 transition-colors shrink-0">
-                      <Icon size={14} className="text-slate-500 group-hover:text-[#003366]" />
+                    <span
+                      className={`w-7 h-7 flex items-center justify-center rounded-lg transition-colors shrink-0 ${
+                        childActive ? "bg-[#003366]/10" : "bg-slate-100 group-hover:bg-[#003366]/10"
+                      }`}
+                    >
+                      <Icon
+                        size={14}
+                        className={`${childActive ? "text-[#003366]" : "text-slate-500 group-hover:text-[#003366]"}`}
+                      />
                     </span>
                   )}
                   {item.label}
@@ -196,9 +224,13 @@ function DesktopDropdown({ label, children }) {
 
 // ─── MOBILE ACCORDION ITEM ────────────────────────────────────────────────────
 
-function MobileAccordionItem({ item, onClose }) {
+function MobileAccordionItem({ item, onClose, pathname }) {
   const [open, setOpen] = useState(false);
   const hasChildren = item.children && item.children.length > 0;
+
+  const isActive = hasChildren
+    ? item.children.some((c) => pathname === c.href || pathname?.startsWith(`${c.href}/`))
+    : pathname === item.href || pathname?.startsWith(`${item.href}/`);
 
   if (!hasChildren) {
     return (
@@ -208,7 +240,9 @@ function MobileAccordionItem({ item, onClose }) {
         className={`flex items-center justify-between py-3.5 px-5 border-b border-white/10 text-sm font-semibold tracking-wide transition-colors ${
           item.isHighlight
             ? "bg-gradient-to-r from-red-600 to-red-700 text-white"
-            : "text-white/90 hover:text-white hover:bg-white/10"
+            : isActive
+              ? "text-white bg-white/10"
+              : "text-white/90 hover:text-white hover:bg-white/10"
         }`}
       >
         {item.label}
@@ -221,7 +255,10 @@ function MobileAccordionItem({ item, onClose }) {
     <div className="border-b border-white/10">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between py-3.5 px-5 text-sm font-semibold text-white/90 hover:text-white hover:bg-white/10 transition-colors tracking-wide"
+        className={`w-full flex items-center justify-between py-3.5 px-5 text-sm font-semibold transition-colors tracking-wide ${
+          isActive ? "text-white bg-white/10" : "text-white/90 hover:text-white hover:bg-white/10"
+        }`}
+        aria-expanded={open}
       >
         {item.label}
         <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
@@ -241,12 +278,15 @@ function MobileAccordionItem({ item, onClose }) {
             <div className="py-2 px-2">
               {item.children.map((child) => {
                 const Icon = child.icon;
+                const childActive = pathname === child.href || pathname?.startsWith(`${child.href}/`);
                 return (
                   <Link
                     key={child.href}
                     href={child.href}
                     onClick={onClose}
-                    className="flex items-center gap-3 py-2.5 px-4 rounded-lg text-white/75 hover:text-white hover:bg-white/10 transition-colors text-sm font-medium"
+                    className={`flex items-center gap-3 py-2.5 px-4 rounded-lg transition-colors text-sm font-medium ${
+                      childActive ? "text-white bg-white/10" : "text-white/75 hover:text-white hover:bg-white/10"
+                    }`}
                   >
                     {Icon && <Icon size={14} className="opacity-60 shrink-0" />}
                     {child.label}
@@ -266,6 +306,7 @@ function MobileAccordionItem({ item, onClose }) {
 export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [lang, setLang] = useState("EN");
+  const pathname = usePathname();
 
   // Prevent body scroll when drawer is open
   useEffect(() => {
@@ -274,7 +315,9 @@ export default function Navbar() {
   }, [drawerOpen]);
 
   return (
-    <header className="w-full font-sans">
+    <div className="w-full font-sans">
+
+    <header className="w-full">
 
       {/* ───── LAYER 1: TOP UTILITY STRIP ───── */}
       <div className="bg-[#0f172a] text-slate-300 py-1.5 border-b border-white/5">
@@ -379,56 +422,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ───── LAYER 3: MAIN NAV (STICKY) ───── */}
-      <nav className="sticky top-0 z-50 bg-[#003366] border-b-[3px] border-[#c9a84c] shadow-lg shadow-blue-900/30">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-12">
-
-            {/* Desktop Links */}
-            <div className="hidden md:flex items-center w-full justify-center gap-0">
-              {NAV_ITEMS.map((item) => {
-                if (item.isHighlight) {
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="relative flex items-center gap-1.5 h-12 px-4 text-[12px] lg:text-[13px] font-bold uppercase tracking-wider text-white overflow-hidden group"
-                    >
-                      {/* Red gradient bg with shine sweep */}
-                      <span className="absolute inset-0 bg-gradient-to-r from-[#b91c1c] to-[#dc2626]" />
-                      {/* Shine sweep on hover */}
-                      <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
-                      <Briefcase size={13} className="relative z-10" />
-                      <span className="relative z-10">{item.label}</span>
-                    </Link>
-                  );
-                }
-                if (item.children) {
-                  return (
-                    <DesktopDropdown key={item.label} label={item.label} children={item.children} />
-                  );
-                }
-                return <DesktopNavLink key={item.href} href={item.href} label={item.label} />;
-              })}
-            </div>
-
-            {/* Mobile: Logo text + Hamburger */}
-            <div className="md:hidden flex items-center justify-between w-full">
-              <Link href="/" className="text-[#c9a84c] font-extrabold text-sm tracking-widest uppercase font-playfair">
-                NCE Chandi
-              </Link>
-              <button
-                onClick={() => setDrawerOpen(true)}
-                className="relative w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
-                aria-label="Open menu"
-              >
-                <Menu size={20} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       {/* ───── MOBILE DRAWER ───── */}
       <AnimatePresence>
         {drawerOpen && (
@@ -473,7 +466,12 @@ export default function Navbar() {
               {/* Drawer nav items */}
               <div className="flex-1 overflow-y-auto overscroll-contain">
                 {NAV_ITEMS.map((item) => (
-                  <MobileAccordionItem key={item.label} item={item} onClose={() => setDrawerOpen(false)} />
+                  <MobileAccordionItem
+                    key={item.label}
+                    item={item}
+                    onClose={() => setDrawerOpen(false)}
+                    pathname={pathname}
+                  />
                 ))}
               </div>
 
@@ -502,25 +500,85 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* ───── NEWS TICKER ───── */}
-      <div className="bg-[#fefce8] border-b border-yellow-200 flex items-center overflow-hidden h-8">
-        <div className="shrink-0 bg-[#d32f2f] text-white text-[10px] font-extrabold px-3 py-1 uppercase tracking-widest h-full flex items-center shadow-sm z-10">
-          NEWS
-        </div>
-        <div className="flex-1 overflow-hidden relative">
-          <div className="marquee-track inline-flex items-center gap-0">
-            {[...TICKER_NEWS, ...TICKER_NEWS].map((news, i) => (
-              <span
-                key={i}
-                className="inline-flex items-center text-[#003366] text-[11px] md:text-[12px] font-semibold whitespace-nowrap px-10"
-              >
-                {news}
-              </span>
-            ))}
+    </header>
+
+    {/* ───── MAIN NAV (ONLY THIS IS STICKY) ───── */}
+    <nav className="sticky top-0 z-50 bg-[#003366]/95 backdrop-blur-md border-b-[3px] border-[#c9a84c] shadow-lg shadow-blue-900/30">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-12">
+
+          {/* Desktop Links */}
+          <div className="hidden md:flex items-center w-full justify-center gap-0">
+            {NAV_ITEMS.map((item) => {
+              if (item.isHighlight) {
+                const active = pathname === item.href || pathname?.startsWith(`${item.href}/`);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`relative flex items-center gap-1.5 h-12 px-4 text-[12px] lg:text-[13px] font-bold uppercase tracking-wider text-white overflow-hidden group ${
+                      active ? "ring-1 ring-white/25" : ""
+                    }`}
+                  >
+                    <span className="absolute inset-0 bg-gradient-to-r from-[#b91c1c] to-[#dc2626]" />
+                    <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+                    <Briefcase size={13} className="relative z-10" />
+                    <span className="relative z-10">{item.label}</span>
+                  </Link>
+                );
+              }
+              if (item.children) {
+                return (
+                  <DesktopDropdown key={item.label} label={item.label} children={item.children} pathname={pathname} />
+                );
+              }
+              return (
+                <DesktopNavLink
+                  key={item.href}
+                  href={item.href}
+                  label={item.label}
+                  active={pathname === item.href || pathname?.startsWith(`${item.href}/`)}
+                />
+              );
+            })}
+          </div>
+
+          {/* Mobile: Logo text + Hamburger */}
+          <div className="md:hidden flex items-center justify-between w-full">
+            <Link href="/" className="text-[#c9a84c] font-extrabold text-sm tracking-widest uppercase font-playfair">
+              NCE Chandi
+            </Link>
+            <button
+              onClick={() => setDrawerOpen(true)}
+              className="relative w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
+              aria-label="Open menu"
+            >
+              <Menu size={20} />
+            </button>
           </div>
         </div>
       </div>
+    </nav>
 
-    </header>
+    {/* ───── NEWS TICKER (SCROLLS NORMALLY) ───── */}
+    <div className="bg-[#fefce8] border-b border-yellow-200 flex items-center overflow-hidden h-8">
+      <div className="shrink-0 bg-[#d32f2f] text-white text-[10px] font-extrabold px-3 py-1 uppercase tracking-widest h-full flex items-center shadow-sm z-10">
+        NEWS
+      </div>
+      <div className="flex-1 overflow-hidden relative">
+        <div className="marquee-track inline-flex items-center gap-0">
+          {[...TICKER_NEWS, ...TICKER_NEWS].map((news, i) => (
+            <span
+              key={i}
+              className="inline-flex items-center text-[#003366] text-[11px] md:text-[12px] font-semibold whitespace-nowrap px-10"
+            >
+              {news}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    </div>
   );
 }

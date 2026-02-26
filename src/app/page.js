@@ -36,6 +36,7 @@ import {
   TrendingUp,
   Award as AwardIcon,
   Shield,
+  Plane,
   Microscope,
   Library,
   Dumbbell,
@@ -91,7 +92,7 @@ const heroContent = {
   cta2: { label: "Explore Programs", href: "/academics" },
   stats: [
     { value: "3000+", label: "Alumni" },
-    { value: "8", label: "Programs" },
+    { value: "6", label: "Programs" },
     { value: "200+", label: "Recruiters" },
     { value: "15+", label: "Years" },
   ],
@@ -100,7 +101,7 @@ const heroContent = {
 const statsData = [
   { icon: GraduationCap, value: 3000, suffix: "+", label: "Alumni Worldwide" },
   { icon: Users, value: 150, suffix: "+", label: "Expert Faculty" },
-  { icon: BookOpen, value: 8, suffix: "", label: "B.Tech Programs" },
+  { icon: BookOpen, value: 6, suffix: "", label: "B.Tech Programs" },
   { icon: Trophy, value: 50, suffix: "+", label: "Awards & Rankings" },
   { icon: Briefcase, value: 200, suffix: "+", label: "Placement Partners" },
   { icon: Award, value: 15, suffix: "+", label: "Years of Excellence" },
@@ -111,6 +112,7 @@ const departments = [
     icon: Cpu,
     name: "Computer Science & Engineering",
     short: "CSE",
+    slug: "cse",
     seats: 120,
     accent: "#2563eb",
     highlight: false,
@@ -119,7 +121,8 @@ const departments = [
   {
     icon: Brain,
     name: "AI & Machine Learning",
-    short: "AI/ML",
+    short: "AI & ML",
+    slug: "aiml",
     seats: 60,
     accent: "#7c3aed",
     highlight: true,
@@ -127,58 +130,44 @@ const departments = [
     tag: "New · Flagship",
   },
   {
-    icon: Zap,
-    name: "Electrical Engineering",
-    short: "EE",
-    seats: 60,
-    accent: "#d97706",
-    highlight: false,
-    desc: "Power Systems, Control & Electronics.",
-  },
-  {
-    icon: Wrench,
-    name: "Mechanical Engineering",
-    short: "ME",
-    seats: 60,
-    accent: "#64748b",
-    highlight: false,
-    desc: "Thermodynamics, Manufacturing & Design.",
-  },
-  {
     icon: Building2,
     name: "Civil Engineering",
     short: "CE",
+    slug: "ce",
     seats: 60,
     accent: "#16a34a",
     highlight: false,
     desc: "Structural, Geo-technical & Environmental.",
   },
   {
-    icon: FlaskConical,
-    name: "Electronics & Communication",
-    short: "ECE",
+    icon: Wrench,
+    name: "Mechanical Engineering",
+    short: "ME",
+    slug: "me",
     seats: 60,
-    accent: "#db2777",
+    accent: "#64748b",
     highlight: false,
-    desc: "VLSI, Signal Processing & Communication.",
+    desc: "Thermodynamics, Manufacturing & Design.",
   },
   {
-    icon: Layers,
-    name: "Information Technology",
-    short: "IT",
+    icon: Plane,
+    name: "Aeronautical Engineering",
+    short: "AERO",
+    slug: "aero",
     seats: 60,
-    accent: "#0891b2",
+    accent: "#0ea5e9",
     highlight: false,
-    desc: "Cloud, Networks & Full-Stack Development.",
+    desc: "Aerodynamics, Propulsion & Aircraft Structures.",
   },
   {
-    icon: Building2,
-    name: "Architecture",
-    short: "ARCH",
-    seats: 40,
-    accent: "#be185d",
+    icon: Zap,
+    name: "Electrical & Electronics Engineering",
+    short: "EEE",
+    slug: "eee",
+    seats: 60,
+    accent: "#d97706",
     highlight: false,
-    desc: "Design, Sustainable & Urban Architecture.",
+    desc: "Power Systems, Control & Electronics.",
   },
 ];
 
@@ -583,7 +572,7 @@ function DepartmentsSection() {
             Academic Departments
           </h2>
           <p className="text-slate-500 mt-3 text-sm md:text-base max-w-xl mx-auto">
-            Eight AICTE-approved B.Tech programs designed to produce industry-ready engineers.
+            Six AICTE-approved B.Tech programs designed to produce industry-ready engineers.
           </p>
         </motion.div>
 
@@ -593,14 +582,14 @@ function DepartmentsSection() {
             const isHovered = hoveredIdx === i;
             return (
               <motion.div
-                key={dept.short}
+                key={dept.slug}
                 variants={fadeUp}
                 onMouseEnter={() => setHoveredIdx(i)}
                 onMouseLeave={() => setHoveredIdx(null)}
                 className="relative"
               >
                 <Link
-                  href={`/departments/${dept.short.toLowerCase()}`}
+                  href={`/departments/${dept.slug}`}
                   className={`group relative block rounded-2xl border-2 overflow-hidden transition-all duration-300 ${
                     dept.highlight
                       ? "border-violet-300 bg-gradient-to-br from-violet-50 to-purple-50"
