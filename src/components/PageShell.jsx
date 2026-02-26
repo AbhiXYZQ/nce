@@ -73,6 +73,7 @@ export default function PageShell({
   quickLinks,
   sections,
   accentLabel = "Explore",
+  children,
 }) {
   const normalizedSections = useMemo(() => sections?.filter(Boolean) ?? [], [sections]);
 
@@ -136,6 +137,16 @@ export default function PageShell({
                 </p>
                 <h3 className="text-base font-bold text-slate-900">{card.title}</h3>
                 {card.text && <p className="text-sm text-slate-500 mt-2 leading-relaxed">{card.text}</p>}
+                {!!card.points?.length && (
+                  <ul className="mt-3 space-y-1.5 text-sm text-slate-600">
+                    {card.points.map((p) => (
+                      <li key={p} className="flex items-start gap-2">
+                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#c9a84c] shrink-0" />
+                        <span className="leading-snug">{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 {card.href && (
                   <Link
                     href={card.href}
@@ -155,6 +166,8 @@ export default function PageShell({
           )}
         </Section>
       ))}
+
+      {children}
 
       {/* Footer CTA */}
       <section className="py-14 bg-slate-50 border-t border-slate-100">

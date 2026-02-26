@@ -1,37 +1,35 @@
 import PageShell from "@/components/PageShell";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { DEPARTMENTS, SLUG_ALIASES } from "@/lib/departments";
 
-const DEPARTMENTS = {
-  cse: {
-    title: "Computer Science & Engineering (CSE)",
-    subtitle: "Algorithms, systems, software engineering, and modern computing foundations.",
-  },
-  aiml: {
-    title: "AI & Machine Learning (AI & ML)",
-    subtitle: "Deep learning, computer vision, NLP, and data-driven engineering.",
-  },
-  ce: {
-    title: "Civil Engineering", 
-    subtitle: "Structures, geo-technical, transportation, and environmental engineering.",
-  },
-  me: {
-    title: "Mechanical Engineering",
-    subtitle: "Thermal, manufacturing, design, and applied mechanics.",
-  },
-  aero: {
-    title: "Aeronautical Engineering",
-    subtitle: "Aerodynamics, propulsion, aircraft structures, and flight technologies.",
-  },
-  eee: {
-    title: "Electrical & Electronics Engineering (EEE)",
-    subtitle: "Power systems, control, machines, and core electronics.",
-  },
-};
+export function generateMetadata({ params }) {
+  const rawSlug = params?.slug;
+  const slug = SLUG_ALIASES[rawSlug] ?? rawSlug;
+  const dept = DEPARTMENTS[slug];
+  if (!dept) return {};
+  return {
+    title: `${dept.title} | NCE Chandi`,
+    description: dept.subtitle,
+  };
+}
 
 export default function DepartmentPage({ params }) {
-  const slug = params?.slug;
+  const rawSlug = params?.slug;
+  const slug = SLUG_ALIASES[rawSlug] ?? rawSlug;
+
+  if (rawSlug !== slug) {
+    redirect(`/departments/${slug}`);
+  }
+
   const dept = DEPARTMENTS[slug];
   if (!dept) return notFound();
+
+  const labs = Array.isArray(dept.labs) ? dept.labs : [];
+  const labObjects = labs.map((lab) =>
+    typeof lab === "string" ? { name: lab, desc: "", equipment: [] } : lab
+  );
+
+  const downloads = Array.isArray(dept.downloads) ? dept.downloads : [];
 
   return (
     <PageShell
@@ -40,7 +38,7 @@ export default function DepartmentPage({ params }) {
       subtitle={dept.subtitle}
       breadcrumbs={[
         { label: "Home", href: "/" },
-        { label: "Departments", href: "/" },
+        { label: "Departments", href: "/departments" },
         { label: dept.title },
       ]}
       quickLinks={[
@@ -56,35 +54,123 @@ export default function DepartmentPage({ params }) {
             {
               title: "About the Department",
               kicker: "Overview",
-              text: "Add the official department description, vision/mission, and academic focus areas.",
+              text: dept.about ?? "To be updated.",
             },
             {
-              title: "HOD Message",
+              title: "Program Snapshot",
+              kicker: dept.program?.name ?? "Program",
+              points: [
+                `Duration: ${dept.program?.duration ?? "To be updated"}`,
+                `Intake: ${dept.program?.intake ?? "To be updated"}`,
+              ],
+            },
+            {
+              title: "HOD",
               kicker: "Leadership",
-              text: "Add Head of Department details and a short message.",
+              points: [
+                `Name: ${dept.hod?.name ?? "To be updated"}`,
+                `Email: ${dept.hod?.email ?? "To be updated"}`,
+              ],
             },
             {
-              title: "Intake & Program",
-              kicker: "Academics",
-              text: "Add approved intake, program structure, and any specialisations.",
+              title: "Vision",
+              kicker: "Vision",
+              text: dept.vision ?? "To be updated.",
+            },
+            {
+              title: "Mission",
+              kicker: "Mission",
+              points: dept.mission ?? ["To be updated."],
+            },
+          ],
+        },
+        {
+          title: "Outcomes (OBE)",
+          cards: [
+            { title: "PEO", kicker: "PEO", points: dept.peos ?? ["To be updated."] },
+            { title: "PO", kicker: "PO", points: dept.pos ?? ["To be updated."] },
+            { title: "PSO", kicker: "PSO", points: dept.psos ?? ["To be updated."] },
+          ],
+        },
+        {
+          title: "Key Strengths",
+          cards: [
+            {
+              title: "Key Focus Areas",
+              kicker: "Highlights",
+              points: dept.highlights ?? [],
+            },
+            {
+              title: "Student Activities",
+              kicker: "Students",
+              points: dept.activities ?? ["To be updated."],
+            },
+            {
+              title: "Faculty & Leadership",
+              kicker: "People",
+              text: "Faculty list and profiles.",
+              href: "/faculty",
             },
           ],
         },
         {
           title: "Labs & Facilities",
-          note: "Add lab names, equipment highlights, and photos.",
           cards: [
-            { title: "Core Laboratories", kicker: "Labs", text: "List of major labs and their use-cases." },
-            { title: "Projects", kicker: "Projects", text: "Student projects, capstones, and outcomes." },
-            { title: "Industry Connect", kicker: "Industry", text: "MoUs, guest lectures, workshops, and internships." },
+            ...labObjects.map((lab) => ({
+              title: lab.name,
+              kicker: "Lab",
+              text: lab.desc || "To be updated.",
+              points: (lab.equipment || []).length ? lab.equipment : undefined,
+            })),
+            {
+              title: "Projects & Innovation",
+              kicker: "Projects",
+              text: "Mini projects, capstones, competitions, and student achievements.",
+              href: "/clubs",
+            },
+            {
+              title: "Industry Connect",
+              kicker: "Industry",
+              text: "MoUs, guest lectures, workshops, internships, and training programs.",
+              href: "/placement",
+            },
           ],
         },
         {
-          title: "Faculty & Activities",
+          title: "Downloads",
+          cards:
+            downloads.length > 0
+              ? downloads.map((d) => ({
+                  title: d.label,
+                  kicker: "Download",
+                  text: "Open the related page.",
+                  href: d.href,
+                }))
+              : [
+                  {
+                    title: "Department Documents",
+                    kicker: "Docs",
+                    text: "To be updated.",
+                    href: "/syllabus",
+                  },
+                ],
+        },
+        {
+          title: "Careers & Opportunities",
           cards: [
-            { title: "Faculty Directory", kicker: "People", text: "Add faculty list and profiles.", href: "/faculty" },
-            { title: "Student Activities", kicker: "Clubs", text: "Department clubs, events, and achievements.", href: "/clubs" },
-            { title: "Downloads", kicker: "Docs", text: "Syllabus, lab manuals, and important documents.", href: "/syllabus" },
+            { title: "Career Paths", kicker: "Careers", points: dept.careers ?? [] },
+            {
+              title: "Training & Placement",
+              kicker: "T&P",
+              text: "Placement preparation, recruiters, and campus drives.",
+              href: "/placement",
+            },
+            {
+              title: "Higher Studies",
+              kicker: "Next",
+              text: "Guidance for GATE and higher studies.",
+              href: "/academics",
+            },
           ],
         },
       ]}
@@ -95,3 +181,4 @@ export default function DepartmentPage({ params }) {
 export function generateStaticParams() {
   return Object.keys(DEPARTMENTS).map((slug) => ({ slug }));
 }
+

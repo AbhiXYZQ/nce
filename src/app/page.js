@@ -85,7 +85,7 @@ const GOLD = "#c9a84c";
 const RED = "#d32f2f";
 
 const heroContent = {
-  eyebrow: "Nalanda College of Engineering, Chandi",
+  eyebrow: "Under Construction 😊, NCE Chandi",
   headline: ["Forging Engineers,", "Shaping the Future."],
   sub: "Government Engineering College · AICTE Approved · Dept. of Science & Technology, Govt. of Bihar",
   cta1: { label: "Apply for Admission 2026", href: "/admission" },
@@ -113,7 +113,7 @@ const departments = [
     name: "Computer Science & Engineering",
     short: "CSE",
     slug: "cse",
-    seats: 120,
+    seats: 60,
     accent: "#2563eb",
     highlight: false,
     desc: "Algorithms, Systems & Software Engineering.",
@@ -210,7 +210,7 @@ const campusGrid = [
   { label: "Sports Complex", icon: Dumbbell, accent: "#15803d", span: "", desc: "Cricket, Football, Badminton courts & fully equipped Gymnasium", stat: "5 Arenas" },
   { label: "Student Hostel", icon: HomeIcon, accent: "#b45309", span: "col-span-2", desc: "1000+ capacity — secured campus, Wi-Fi, dining hall & 24×7 staff", stat: "1000+ Beds" },
   { label: "Research Labs", icon: Microscope, accent: "#0f766e", span: "", desc: "40+ specialised laboratories across all engineering departments", stat: "40+ Labs" },
-  { label: "Auditorium", icon: Music2, accent: "#be123c", span: "", desc: "1200-seat state-of-the-art multipurpose convention facility", stat: "1200 Seats" },
+  // { label: "Auditorium", icon: Music2, accent: "#be123c", span: "", desc: "1200-seat state-of-the-art multipurpose convention facility", stat: "1200 Seats" },
 ];
 
 // ─── ANIMATED COUNTER ────────────────────────────────────────────────────────
@@ -888,104 +888,6 @@ function QuickLinksBar() {
   );
 }
 
-// ─── FOOTER ───────────────────────────────────────────────────────────────────
-
-function Footer() {
-  return (
-    <footer className="bg-[#000d1a] text-slate-400">
-      <div className="container mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-        <div>
-          <h3 className="font-playfair text-white font-bold text-xl mb-3">NCE Chandi</h3>
-          <p className="text-sm leading-relaxed mb-5 text-slate-500">
-            Nalanda College of Engineering — A premier Government Engineering Institute under Dept. of
-            Science & Technology, Govt. of Bihar. Est. 2008.
-          </p>
-          <div className="flex gap-3">
-            {[Facebook, Youtube, Twitter, Linkedin].map((Icon, i) => (
-              <a
-                key={i}
-                href="#"
-                className="w-8 h-8 flex items-center justify-center bg-white/5 hover:bg-[#c9a84c] hover:text-[#001122] text-slate-400 rounded-lg transition-all"
-              >
-                <Icon size={14} />
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <h4 className="text-white font-semibold mb-4 text-xs uppercase tracking-widest">Quick Links</h4>
-          <ul className="space-y-2 text-sm">
-            {["About NCE", "Admission", "Academics", "Departments", "Faculty", "Research", "Student Corner", "Alumni"].map((l) => (
-              <li key={l}>
-                <Link
-                  href={`/${l.toLowerCase().replace(/ /g, "-")}`}
-                  className="hover:text-[#c9a84c] transition-colors flex items-center gap-1.5 group"
-                >
-                  <ArrowRight size={10} className="opacity-40 group-hover:opacity-100 transition-opacity shrink-0" />
-                  {l}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-white font-semibold mb-4 text-xs uppercase tracking-widest">Compliance</h4>
-          <ul className="space-y-2 text-sm">
-            {["Anti-Ragging Policy", "Grievance Redressal", "POSH Committee", "IQAC", "NIRF Data", "RTI", "Tenders", "Privacy Policy"].map((l) => (
-              <li key={l}>
-                <Link
-                  href="#"
-                  className="hover:text-[#c9a84c] transition-colors flex items-center gap-1.5 group"
-                >
-                  <ArrowRight size={10} className="opacity-40 group-hover:opacity-100 shrink-0" />
-                  {l}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-white font-semibold mb-4 text-xs uppercase tracking-widest">Contact Us</h4>
-          <ul className="space-y-3.5 text-sm">
-            <li className="flex items-start gap-2.5">
-              <MapPin size={14} className="text-[#c9a84c] mt-0.5 shrink-0" />
-              <span className="text-slate-500 leading-snug">NCE Campus, Chandi, Nalanda – 801503, Bihar, India</span>
-            </li>
-            <li className="flex items-center gap-2.5">
-              <Phone size={14} className="text-[#c9a84c] shrink-0" />
-              <a href="tel:06111295" className="hover:text-[#c9a84c] transition-colors text-slate-500">06111 – 295xxx</a>
-            </li>
-            <li className="flex items-center gap-2.5">
-              <Mail size={14} className="text-[#c9a84c] shrink-0" />
-              <a href="mailto:principal@ncechandi.ac.in" className="hover:text-[#c9a84c] transition-colors text-slate-500 text-xs">
-                principal@ncechandi.ac.in
-              </a>
-            </li>
-            <li className="flex items-center gap-2.5">
-              <Globe size={14} className="text-[#c9a84c] shrink-0" />
-              <a href="https://ncechandi.ac.in" target="_blank" rel="noopener noreferrer" className="hover:text-[#c9a84c] transition-colors text-slate-500">
-                ncechandi.ac.in
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="border-t border-white/5 py-5">
-        <div className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-slate-600">
-          <span>© {new Date().getFullYear()} Nalanda College of Engineering, Chandi. All Rights Reserved.</span>
-          <span>
-            Designed by <span className="text-[#c9a84c] font-semibold">NCE Tech Team</span>
-          </span>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 // ─── PAGE ─────────────────────────────────────────────────────────────────────
 
 export default function Home() {
@@ -999,7 +901,6 @@ export default function Home() {
       <PlacementSection />
       <CampusGrid />
       <ImportantLinks />
-      <Footer />
     </div>
   );
 }
