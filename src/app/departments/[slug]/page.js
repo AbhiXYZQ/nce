@@ -2,8 +2,9 @@ import PageShell from "@/components/PageShell";
 import { notFound, redirect } from "next/navigation";
 import { DEPARTMENTS, SLUG_ALIASES } from "@/lib/departments";
 
-export function generateMetadata({ params }) {
-  const rawSlug = params?.slug;
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  const rawSlug = resolvedParams?.slug;
   const slug = SLUG_ALIASES[rawSlug] ?? rawSlug;
   const dept = DEPARTMENTS[slug];
   if (!dept) return {};
@@ -13,8 +14,9 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function DepartmentPage({ params }) {
-  const rawSlug = params?.slug;
+export default async function DepartmentPage({ params }) {
+  const resolvedParams = await params;
+  const rawSlug = resolvedParams?.slug;
   const slug = SLUG_ALIASES[rawSlug] ?? rawSlug;
 
   if (rawSlug !== slug) {

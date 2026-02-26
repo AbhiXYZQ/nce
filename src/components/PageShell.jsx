@@ -109,7 +109,7 @@ export default function PageShell({
                 <motion.div variants={fadeUp} className="mt-7 flex flex-wrap items-center gap-2">
                   {quickLinks.map((l) => (
                     <Link
-                      key={l.href}
+                      key={`${l.href}-${l.label}`}
                       href={l.href}
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white/90 hover:text-white transition-all text-sm font-semibold"
                     >

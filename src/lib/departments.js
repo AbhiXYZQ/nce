@@ -252,9 +252,32 @@ export const SLUG_ALIASES = {
   "ai_ml": "aiml",
   "ai&ml": "aiml",
   "aiandml": "aiml",
+  "ai-ml-engineering": "aiml",
+  "artificial-intelligence": "aiml",
+  "artificial-intelligence-and-ml": "aiml",
+  "artificial-intelligence-and-machine-learning": "aiml",
+
+  cse: "cse",
+  "computer-science": "cse",
+  "computer-science-engineering": "cse",
+  "computer-science-and-engineering": "cse",
+
   aeronautical: "aero",
+  "aeronautical-engineering": "aero",
+  aeroengineering: "aero",
+
   mechanical: "me",
+  machenical: "me",
+  "mechanical-engineering": "me",
+  mechanicalengineering: "me",
+  mech: "me",
+
   civil: "ce",
+  "civil-engineering": "ce",
+
   "electrical-and-electronics": "eee",
   "electrical-electronics": "eee",
+  electrical: "eee",
+  "electrical-engineering": "eee",
+  "eee-department": "eee",
 };
