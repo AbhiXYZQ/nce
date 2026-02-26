@@ -280,4 +280,4 @@ export const SLUG_ALIASES = {
   electrical: "eee",
   "electrical-engineering": "eee",
   "eee-department": "eee",
-};
+};      
