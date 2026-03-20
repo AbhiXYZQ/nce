@@ -5,7 +5,7 @@ export default function AcademicsPage() {
     <PageShell
       accentLabel="Academics"
       title="Programs Offered"
-      subtitle="B.Tech programs, academic regulations, and learning resources to support student success."
+      subtitle="B.Tech and M.Tech programs, academic regulations, and learning resources to support student success."
       breadcrumbs={[{ label: "Home", href: "/" }, { label: "Academics" }, { label: "Programs Offered" }]}
       quickLinks={[
         { label: "Academic Calendar", href: "/calendar" },
@@ -17,7 +17,7 @@ export default function AcademicsPage() {
         {
           title: "Programs",
           cards: [
-            { title: "B.Tech Departments", kicker: "Programs", text: "Explore academic departments and intake details.", href: "/" },
+            { title: "UG & PG Programs", kicker: "Programs", text: "Explore academic departments and intake details.", href: "/" },
             { title: "Regulations", kicker: "Rules", text: "Academic regulations, attendance, evaluation, and grading." },
             { title: "Learning Resources", kicker: "Resources", text: "Library, e-resources, labs, and mentoring." },
           ],

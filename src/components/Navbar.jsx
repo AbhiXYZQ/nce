@@ -27,7 +27,6 @@ const NAV_ITEMS = [
       { label: "Faculty", href: "/faculty", icon: Users },
       { label: "Principal's Desk", href: "/principal", icon: UserCircle },
       { label: "IQAC", href: "/iqac", icon: FileText },
-      { label: "NIRF Data", href: "/nirf", icon: Newspaper },
     ],
   },
   {
@@ -51,6 +50,8 @@ const NAV_ITEMS = [
       { label: "Mechanical Engineering", href: "/departments/me", icon: Wrench },
       { label: "Aeronautical Engineering", href: "/departments/aero", icon: Plane },
       { label: "Electrical & Electronics Engineering", href: "/departments/eee", icon: Zap },
+      { label: "M.Tech CSE", href: "/departments/mtech-cse", icon: Cpu },
+      { label: "M.Tech Power Systems", href: "/departments/mtech-ps", icon: Zap },
     ],
   },
   { label: "T&P Cell", href: "/placement", isHighlight: true },
@@ -119,16 +120,14 @@ function DesktopNavLink({ href, label, active }) {
   return (
     <Link
       href={href}
-      className={`relative group h-12 flex items-center px-3 lg:px-4 rounded-md text-[12px] lg:text-[13px] font-semibold uppercase tracking-wider transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c9a84c]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#003366] ${
-        active ? "text-[#c9a84c]" : "text-white/90 hover:text-white"
-      } hover:bg-white/10`}
+      className={`relative group h-12 flex items-center px-3 lg:px-4 rounded-md text-[12px] lg:text-[13px] font-semibold uppercase tracking-wider transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c9a84c]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#003366] ${active ? "text-[#c9a84c]" : "text-white/90 hover:text-white"
+        } hover:bg-white/10`}
     >
       {label}
       {/* Animated underline from center */}
       <span
-        className={`absolute bottom-0 left-2 right-2 h-[3px] bg-[#c9a84c] transition-transform duration-300 ease-out origin-center ${
-          active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-        }`}
+        className={`absolute bottom-0 left-2 right-2 h-[3px] bg-[#c9a84c] transition-transform duration-300 ease-out origin-center ${active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+          }`}
       />
     </Link>
   );
@@ -156,9 +155,8 @@ function DesktopDropdown({ label, children, pathname }) {
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
         onClick={() => setOpen((v) => !v)}
-        className={`relative group h-12 flex items-center gap-1 px-3 lg:px-4 rounded-md text-[12px] lg:text-[13px] font-semibold uppercase tracking-wider transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c9a84c]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#003366] ${
-          isActive ? "text-[#c9a84c]" : "text-white/90 hover:text-white"
-        } hover:bg-white/10`}
+        className={`relative group h-12 flex items-center gap-1 px-3 lg:px-4 rounded-md text-[12px] lg:text-[13px] font-semibold uppercase tracking-wider transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c9a84c]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#003366] ${isActive ? "text-[#c9a84c]" : "text-white/90 hover:text-white"
+          } hover:bg-white/10`}
         aria-haspopup="menu"
         aria-expanded={open}
       >
@@ -167,9 +165,8 @@ function DesktopDropdown({ label, children, pathname }) {
           <ChevronDown size={13} className="opacity-70" />
         </motion.span>
         <span
-          className={`absolute bottom-0 left-2 right-2 h-[3px] bg-[#c9a84c] transition-transform duration-300 ease-out origin-center ${
-            isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-          }`}
+          className={`absolute bottom-0 left-2 right-2 h-[3px] bg-[#c9a84c] transition-transform duration-300 ease-out origin-center ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+            }`}
         />
       </button>
 
@@ -193,17 +190,15 @@ function DesktopDropdown({ label, children, pathname }) {
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 transition-colors text-[13px] font-medium border-b border-slate-50 last:border-0 group ${
-                    childActive
+                  className={`flex items-center gap-3 px-4 py-3 transition-colors text-[13px] font-medium border-b border-slate-50 last:border-0 group ${childActive
                       ? "bg-slate-50 text-[#003366]"
                       : "text-slate-700 hover:bg-slate-50 hover:text-[#003366]"
-                  }`}
+                    }`}
                 >
                   {Icon && (
                     <span
-                      className={`w-7 h-7 flex items-center justify-center rounded-lg transition-colors shrink-0 ${
-                        childActive ? "bg-[#003366]/10" : "bg-slate-100 group-hover:bg-[#003366]/10"
-                      }`}
+                      className={`w-7 h-7 flex items-center justify-center rounded-lg transition-colors shrink-0 ${childActive ? "bg-[#003366]/10" : "bg-slate-100 group-hover:bg-[#003366]/10"
+                        }`}
                     >
                       <Icon
                         size={14}
@@ -238,13 +233,12 @@ function MobileAccordionItem({ item, onClose, pathname }) {
       <Link
         href={item.href}
         onClick={onClose}
-        className={`flex items-center justify-between py-3.5 px-5 border-b border-white/10 text-sm font-semibold tracking-wide transition-colors ${
-          item.isHighlight
+        className={`flex items-center justify-between py-3.5 px-5 border-b border-white/10 text-sm font-semibold tracking-wide transition-colors ${item.isHighlight
             ? "bg-gradient-to-r from-red-600 to-red-700 text-white"
             : isActive
               ? "text-white bg-white/10"
               : "text-white/90 hover:text-white hover:bg-white/10"
-        }`}
+          }`}
       >
         {item.label}
         {item.isHighlight && <Briefcase size={14} className="opacity-80" />}
@@ -256,9 +250,8 @@ function MobileAccordionItem({ item, onClose, pathname }) {
     <div className="border-b border-white/10">
       <button
         onClick={() => setOpen((v) => !v)}
-        className={`w-full flex items-center justify-between py-3.5 px-5 text-sm font-semibold transition-colors tracking-wide ${
-          isActive ? "text-white bg-white/10" : "text-white/90 hover:text-white hover:bg-white/10"
-        }`}
+        className={`w-full flex items-center justify-between py-3.5 px-5 text-sm font-semibold transition-colors tracking-wide ${isActive ? "text-white bg-white/10" : "text-white/90 hover:text-white hover:bg-white/10"
+          }`}
         aria-expanded={open}
       >
         {item.label}
@@ -285,9 +278,8 @@ function MobileAccordionItem({ item, onClose, pathname }) {
                     key={child.href}
                     href={child.href}
                     onClick={onClose}
-                    className={`flex items-center gap-3 py-2.5 px-4 rounded-lg transition-colors text-sm font-medium ${
-                      childActive ? "text-white bg-white/10" : "text-white/75 hover:text-white hover:bg-white/10"
-                    }`}
+                    className={`flex items-center gap-3 py-2.5 px-4 rounded-lg transition-colors text-sm font-medium ${childActive ? "text-white bg-white/10" : "text-white/75 hover:text-white hover:bg-white/10"
+                      }`}
                   >
                     {Icon && <Icon size={14} className="opacity-60 shrink-0" />}
                     {child.label}
@@ -318,267 +310,266 @@ export default function Navbar() {
   return (
     <div className="w-full font-sans">
 
-    <header className="w-full">
+      <header className="w-full">
 
-      {/* ───── LAYER 1: TOP UTILITY STRIP ───── */}
-      <div className="bg-[#0f172a] text-slate-300 py-1.5 border-b border-white/5">
-        <div className="container mx-auto px-4 flex justify-between items-center">
+        {/* ───── LAYER 1: TOP UTILITY STRIP ───── */}
+        <div className="bg-[#0f172a] text-slate-300 py-1.5 border-b border-white/5">
+          <div className="container mx-auto px-4 flex justify-between items-center">
 
-          {/* Left: Contact info */}
-          <div className="flex items-center gap-4">
-            <a href="tel:06111295" className="hidden sm:flex items-center gap-1.5 hover:text-[#c9a84c] transition-colors text-[11px] font-bold tracking-wider uppercase">
-              <Phone size={11} className="text-[#c9a84c]" />
-              06111-295xxx
-            </a>
-            <a href="mailto:example@ncechandi.ac.in" className="hidden md:flex items-center gap-1.5 hover:text-[#c9a84c] transition-colors text-[11px] font-bold tracking-wider uppercase">
-              <Mail size={11} className="text-[#c9a84c]" />
-              example@ncechandi.ac.in
-            </a>
-            {/* Mobile: just phone */}
-            <a href="tel:06111295" className="sm:hidden flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-slate-300 uppercase">
-              <Phone size={11} className="text-[#c9a84c]" /> 06111-295xxx
-            </a>
-          </div>
-
-          {/* Right: Controls */}
-          <div className="flex items-center gap-2 md:gap-3">
-            {/* Social links */}
-            <div className="hidden lg:flex items-center gap-1.5">
-              {[Facebook, Youtube, Twitter, Linkedin].map((Icon, i) => (
-                <a key={i} href="#" className="w-5 h-5 flex items-center justify-center text-slate-400 hover:text-[#c9a84c] transition-colors">
-                  <Icon size={12} />
-                </a>
-              ))}
+            {/* Left: Contact info */}
+            <div className="flex items-center gap-4">
+              <a href="tel:06111295" className="hidden sm:flex items-center gap-1.5 hover:text-[#c9a84c] transition-colors text-[11px] font-bold tracking-wider uppercase">
+                <Phone size={11} className="text-[#c9a84c]" />
+                06111-295xxx
+              </a>
+              <a href="mailto:example@ncechandi.ac.in" className="hidden md:flex items-center gap-1.5 hover:text-[#c9a84c] transition-colors text-[11px] font-bold tracking-wider uppercase">
+                <Mail size={11} className="text-[#c9a84c]" />
+                example@ncechandi.ac.in
+              </a>
+              {/* Mobile: just phone */}
+              <a href="tel:06111295" className="sm:hidden flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-slate-300 uppercase">
+                <Phone size={11} className="text-[#c9a84c]" /> 06111-295xxx
+              </a>
             </div>
 
-            {/* Divider */}
-            <div className="hidden lg:block w-px h-3 bg-white/20" />
-
-            {/* Language toggle */}
-            <button
-              onClick={() => setLang((l) => (l === "EN" ? "HI" : "EN"))}
-              className="flex items-center gap-1 bg-white/5 hover:bg-white/10 border border-white/10 px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase text-slate-300 hover:text-white transition-all"
-            >
-              <Globe size={10} className="text-[#c9a84c]" />
-              {lang}
-            </button>
-
-            {/* Faculty Login */}
-            <Link
-              href="/login"
-              className="flex items-center gap-1.5 bg-gradient-to-r from-[#003366] to-[#004488] hover:from-[#004488] hover:to-[#0055aa] text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full transition-all shadow-sm hover:shadow-blue-900/30"
-            >
-              <LogIn size={11} />
-              Faculty Login
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* ───── LAYER 2: BRANDING HEADER ───── */}
-      <div className="bg-white border-b border-slate-100 shadow-sm py-2 md:py-3">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-row items-center justify-between gap-2 md:gap-6 flex-nowrap">
-
-            {/* LEFT LOGO */}
-            <div className="flex-shrink-0">
-              <Image
-                src="/images/nce-logo.png"
-                alt="NCE Logo"
-                width={96} height={96}
-                className="w-14 h-14 md:w-24 md:h-24 object-contain"
-                priority
-                unoptimized
-              />
-            </div>
-
-            {/* CENTER TEXT */}
-            <div className="flex-1 min-w-0 text-center px-1 md:px-2">
-              <h1 className="font-playfair text-[15px] sm:text-xl md:text-[28px] lg:text-[32px] font-extrabold text-[#003366] uppercase leading-tight tracking-tight">
-                Nalanda College of Engineering
-              </h1>
-              <h2 className="font-playfair text-[12px] sm:text-base md:text-xl lg:text-2xl font-bold text-[#d32f2f] mt-0.5 md:mt-1 leading-tight">
-                नालंदा अभियंत्रण महाविद्यालय, चंडी
-              </h2>
-              <p className="hidden md:block text-[11px] lg:text-sm text-slate-500 font-medium mt-1 tracking-wide">
-                Department of Science &amp; Technology, Govt. of Bihar &nbsp;|&nbsp; AICTE Approved
-              </p>
-              {/* Mobile subtitle */}
-              <p className="md:hidden text-[9px] text-slate-500 font-medium mt-0.5 tracking-wide leading-tight">
-                Dept. of Science &amp; Technology, Govt. of Bihar
-              </p>
-            </div>
-
-            {/* RIGHT LOGO */}
-            <div className="flex-shrink-0">
-              <Image
-                src="/images/bihar-logo.png"
-                alt="Bihar Govt Logo"
-                width={88} height={88}
-                className="w-12 h-12 md:w-[88px] md:h-[88px] object-contain"
-                unoptimized
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ───── MOBILE DRAWER ───── */}
-      <AnimatePresence>
-        {drawerOpen && (
-          <>
-            {/* Overlay */}
-            <motion.div
-              variants={overlayVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
-              onClick={() => setDrawerOpen(false)}
-            />
-
-            {/* Drawer panel */}
-            <motion.div
-              variants={drawerVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="fixed top-0 right-0 h-full w-[82vw] max-w-[340px] z-[70] flex flex-col shadow-2xl"
-              style={{
-                background: "linear-gradient(160deg, rgba(0,25,60,0.97) 0%, rgba(0,12,30,0.98) 100%)",
-                backdropFilter: "blur(24px)",
-                borderLeft: "1px solid rgba(255,255,255,0.08)",
-              }}
-            >
-              {/* Drawer header */}
-              <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
-                <div>
-                  <p className="font-playfair text-white font-bold text-base">NCE Chandi</p>
-                  <p className="text-slate-400 text-[10px] tracking-wider">Navigation Menu</p>
-                </div>
-                <button
-                  onClick={() => setDrawerOpen(false)}
-                  className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-                >
-                  <X size={16} />
-                </button>
-              </div>
-
-              {/* Drawer nav items */}
-              <div className="flex-1 overflow-y-auto overscroll-contain">
-                {NAV_ITEMS.map((item) => (
-                  <MobileAccordionItem
-                    key={item.label}
-                    item={item}
-                    onClose={() => setDrawerOpen(false)}
-                    pathname={pathname}
-                  />
+            {/* Right: Controls */}
+            <div className="flex items-center gap-2 md:gap-3">
+              {/* Social links */}
+              <div className="hidden lg:flex items-center gap-1.5">
+                {[Facebook, Youtube, Twitter, Linkedin].map((Icon, i) => (
+                  <a key={i} href="#" className="w-5 h-5 flex items-center justify-center text-slate-400 hover:text-[#c9a84c] transition-colors">
+                    <Icon size={12} />
+                  </a>
                 ))}
               </div>
 
-              {/* Drawer footer */}
-              <div className="px-5 py-4 border-t border-white/10">
-                <Link
-                  href="/login"
-                  onClick={() => setDrawerOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-[#003366] to-[#004a8f] hover:from-[#004a8f] hover:to-[#0060b8] text-white font-bold text-sm py-3 rounded-xl transition-all"
-                >
-                  <LogIn size={15} /> Faculty Login
-                </Link>
-                <div className="flex items-center justify-center gap-4 mt-4">
-                  {[Facebook, Youtube, Twitter, Linkedin].map((Icon, i) => (
-                    <a key={i} href="#" className="text-slate-500 hover:text-[#c9a84c] transition-colors">
-                      <Icon size={16} />
-                    </a>
-                  ))}
-                </div>
-                <p className="text-center text-[10px] text-slate-600 mt-3 tracking-wider">
-                  © 2026 NCE Chandi. All Rights Reserved.
+              {/* Divider */}
+              <div className="hidden lg:block w-px h-3 bg-white/20" />
+
+              {/* Language toggle */}
+              <button
+                onClick={() => setLang((l) => (l === "EN" ? "HI" : "EN"))}
+                className="flex items-center gap-1 bg-white/5 hover:bg-white/10 border border-white/10 px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase text-slate-300 hover:text-white transition-all"
+              >
+                <Globe size={10} className="text-[#c9a84c]" />
+                {lang}
+              </button>
+
+              {/* Faculty Login */}
+              <Link
+                href="/login"
+                className="flex items-center gap-1.5 bg-gradient-to-r from-[#003366] to-[#004488] hover:from-[#004488] hover:to-[#0055aa] text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full transition-all shadow-sm hover:shadow-blue-900/30"
+              >
+                <LogIn size={11} />
+                Faculty Login
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* ───── LAYER 2: BRANDING HEADER ───── */}
+        <div className="bg-white border-b border-slate-100 shadow-sm py-2 md:py-3">
+          <div className="max-w-6xl mx-auto px-4 md:px-1">
+            <div className="flex flex-row items-center justify-between gap-2 md:gap-6 flex-nowrap">
+
+              {/* LEFT LOGO */}
+              <div className="flex-shrink-0">
+                <Image
+                  src="/images/nce-logo.png"
+                  alt="NCE Logo"
+                  width={96} height={96}
+                  className="w-14 h-14 md:w-24 md:h-24 object-contain"
+                  priority
+                  unoptimized
+                />
+              </div>
+
+              {/* CENTER TEXT */}
+              <div className="flex-1 min-w-0 text-center px-1 md:px-2">
+                <h1 className="font-playfair text-[15px] sm:text-xl md:text-[28px] lg:text-[32px] font-extrabold text-[#003366] uppercase leading-tight tracking-tight">
+                  Nalanda College of Engineering
+                </h1>
+                <h2 className="font-playfair text-[12px] sm:text-base md:text-xl lg:text-2xl font-bold text-[#d32f2f] mt-0.5 md:mt-1 leading-tight">
+                  नालंदा अभियंत्रण महाविद्यालय, चंडी
+                </h2>
+                <p className="hidden md:block text-[11px] lg:text-sm text-slate-500 font-medium mt-1 tracking-wide">
+                  Department of Science &amp; Technology, Govt. of Bihar &nbsp;|&nbsp; AICTE Approved
+                </p>
+                {/* Mobile subtitle */}
+                <p className="md:hidden text-[9px] text-slate-500 font-medium mt-0.5 tracking-wide leading-tight">
+                  Dept. of Science &amp; Technology, Govt. of Bihar
                 </p>
               </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
 
-    </header>
+              {/* RIGHT LOGO */}
+              <div className="flex-shrink-0">
+                <Image
+                  src="/images/bihar-logo.png"
+                  alt="Bihar Govt Logo"
+                  width={88} height={88}
+                  className="w-12 h-12 md:w-[88px] md:h-[88px] object-contain"
+                  unoptimized
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
-    {/* ───── MAIN NAV (ONLY THIS IS STICKY) ───── */}
-    <nav className="sticky top-0 z-50 bg-[#003366]/95 backdrop-blur-md border-b-[3px] border-[#c9a84c] shadow-lg shadow-blue-900/30">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-12">
+        {/* ───── MOBILE DRAWER ───── */}
+        <AnimatePresence>
+          {drawerOpen && (
+            <>
+              {/* Overlay */}
+              <motion.div
+                variants={overlayVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
+                onClick={() => setDrawerOpen(false)}
+              />
 
-          {/* Desktop Links */}
-          <div className="hidden md:flex items-center w-full justify-center gap-0">
-            {NAV_ITEMS.map((item) => {
-              if (item.isHighlight) {
-                const active = pathname === item.href || pathname?.startsWith(`${item.href}/`);
-                return (
+              {/* Drawer panel */}
+              <motion.div
+                variants={drawerVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="fixed top-0 right-0 h-full w-[82vw] max-w-[340px] z-[70] flex flex-col shadow-2xl"
+                style={{
+                  background: "linear-gradient(160deg, rgba(0,25,60,0.97) 0%, rgba(0,12,30,0.98) 100%)",
+                  backdropFilter: "blur(24px)",
+                  borderLeft: "1px solid rgba(255,255,255,0.08)",
+                }}
+              >
+                {/* Drawer header */}
+                <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
+                  <div>
+                    <p className="font-playfair text-white font-bold text-base">NCE Chandi</p>
+                    <p className="text-slate-400 text-[10px] tracking-wider">Navigation Menu</p>
+                  </div>
+                  <button
+                    onClick={() => setDrawerOpen(false)}
+                    className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                  >
+                    <X size={16} />
+                  </button>
+                </div>
+
+                {/* Drawer nav items */}
+                <div className="flex-1 overflow-y-auto overscroll-contain">
+                  {NAV_ITEMS.map((item) => (
+                    <MobileAccordionItem
+                      key={item.label}
+                      item={item}
+                      onClose={() => setDrawerOpen(false)}
+                      pathname={pathname}
+                    />
+                  ))}
+                </div>
+
+                {/* Drawer footer */}
+                <div className="px-5 py-4 border-t border-white/10">
                   <Link
+                    href="/login"
+                    onClick={() => setDrawerOpen(false)}
+                    className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-[#003366] to-[#004a8f] hover:from-[#004a8f] hover:to-[#0060b8] text-white font-bold text-sm py-3 rounded-xl transition-all"
+                  >
+                    <LogIn size={15} /> Faculty Login
+                  </Link>
+                  <div className="flex items-center justify-center gap-4 mt-4">
+                    {[Facebook, Youtube, Twitter, Linkedin].map((Icon, i) => (
+                      <a key={i} href="#" className="text-slate-500 hover:text-[#c9a84c] transition-colors">
+                        <Icon size={16} />
+                      </a>
+                    ))}
+                  </div>
+                  <p className="text-center text-[10px] text-slate-600 mt-3 tracking-wider">
+                    © 2026 NCE Chandi. All Rights Reserved.
+                  </p>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+
+      </header>
+
+      {/* ───── MAIN NAV (ONLY THIS IS STICKY) ───── */}
+      <nav className="sticky top-0 z-50 bg-[#003366]/95 backdrop-blur-md border-b-[3px] border-[#c9a84c] shadow-lg shadow-blue-900/30">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-12">
+
+            {/* Desktop Links */}
+            <div className="hidden md:flex items-center w-full justify-center gap-0">
+              {NAV_ITEMS.map((item) => {
+                if (item.isHighlight) {
+                  const active = pathname === item.href || pathname?.startsWith(`${item.href}/`);
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`relative flex items-center gap-1.5 h-12 px-4 text-[12px] lg:text-[13px] font-bold uppercase tracking-wider text-white overflow-hidden group ${active ? "ring-1 ring-white/25" : ""
+                        }`}
+                    >
+                      <span className="absolute inset-0 bg-gradient-to-r from-[#b91c1c] to-[#dc2626]" />
+                      <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+                      <Briefcase size={13} className="relative z-10" />
+                      <span className="relative z-10">{item.label}</span>
+                    </Link>
+                  );
+                }
+                if (item.children) {
+                  return (
+                    <DesktopDropdown key={item.label} label={item.label} children={item.children} pathname={pathname} />
+                  );
+                }
+                return (
+                  <DesktopNavLink
                     key={item.href}
                     href={item.href}
-                    className={`relative flex items-center gap-1.5 h-12 px-4 text-[12px] lg:text-[13px] font-bold uppercase tracking-wider text-white overflow-hidden group ${
-                      active ? "ring-1 ring-white/25" : ""
-                    }`}
-                  >
-                    <span className="absolute inset-0 bg-gradient-to-r from-[#b91c1c] to-[#dc2626]" />
-                    <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
-                    <Briefcase size={13} className="relative z-10" />
-                    <span className="relative z-10">{item.label}</span>
-                  </Link>
+                    label={item.label}
+                    active={pathname === item.href || pathname?.startsWith(`${item.href}/`)}
+                  />
                 );
-              }
-              if (item.children) {
-                return (
-                  <DesktopDropdown key={item.label} label={item.label} children={item.children} pathname={pathname} />
-                );
-              }
-              return (
-                <DesktopNavLink
-                  key={item.href}
-                  href={item.href}
-                  label={item.label}
-                  active={pathname === item.href || pathname?.startsWith(`${item.href}/`)}
-                />
-              );
-            })}
-          </div>
+              })}
+            </div>
 
-          {/* Mobile: Logo text + Hamburger */}
-          <div className="md:hidden flex items-center justify-between w-full">
-            <Link href="/" className="text-[#c9a84c] font-extrabold text-sm tracking-widest uppercase font-playfair">
-              NCE Chandi
-            </Link>
-            <button
-              onClick={() => setDrawerOpen(true)}
-              className="relative w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
-              aria-label="Open menu"
-            >
-              <Menu size={20} />
-            </button>
+            {/* Mobile: Logo text + Hamburger */}
+            <div className="md:hidden flex items-center justify-between w-full">
+              <Link href="/" className="text-[#c9a84c] font-extrabold text-sm tracking-widest uppercase font-playfair">
+                NCE Chandi
+              </Link>
+              <button
+                onClick={() => setDrawerOpen(true)}
+                className="relative w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
+                aria-label="Open menu"
+              >
+                <Menu size={20} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* ───── NEWS TICKER (SCROLLS NORMALLY) ───── */}
+      <div className="bg-[#fefce8] border-b border-yellow-200 flex items-center overflow-hidden h-8">
+        <div className="shrink-0 bg-[#d32f2f] text-white text-[10px] font-extrabold px-3 py-1 uppercase tracking-widest h-full flex items-center shadow-sm z-10">
+          NEWS
+        </div>
+        <div className="flex-1 overflow-hidden relative">
+          <div className="marquee-track inline-flex items-center gap-0">
+            {[...TICKER_NEWS, ...TICKER_NEWS].map((news, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center text-[#003366] text-[11px] md:text-[12px] font-semibold whitespace-nowrap px-10"
+              >
+                {news}
+              </span>
+            ))}
           </div>
         </div>
       </div>
-    </nav>
-
-    {/* ───── NEWS TICKER (SCROLLS NORMALLY) ───── */}
-    <div className="bg-[#fefce8] border-b border-yellow-200 flex items-center overflow-hidden h-8">
-      <div className="shrink-0 bg-[#d32f2f] text-white text-[10px] font-extrabold px-3 py-1 uppercase tracking-widest h-full flex items-center shadow-sm z-10">
-        NEWS
-      </div>
-      <div className="flex-1 overflow-hidden relative">
-        <div className="marquee-track inline-flex items-center gap-0">
-          {[...TICKER_NEWS, ...TICKER_NEWS].map((news, i) => (
-            <span
-              key={i}
-              className="inline-flex items-center text-[#003366] text-[11px] md:text-[12px] font-semibold whitespace-nowrap px-10"
-            >
-              {news}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
 
     </div>
   );

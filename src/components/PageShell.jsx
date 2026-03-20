@@ -128,12 +128,12 @@ export default function PageShell({
       </motion.header>
 
       {/* Sections */}
-      {normalizedSections.map((sec) => (
-        <Section key={sec.title} title={sec.title}>
+      {normalizedSections.map((sec, idx) => (
+        <Section key={`${sec.title}-${idx}`} title={sec.title}>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-            {(sec.cards ?? []).map((card) => (
+            {(sec.cards ?? []).map((card, cIdx) => (
               <div
-                key={card.title}
+                key={`${card.title}-${cIdx}`}
                 className="rounded-2xl border border-slate-200/70 bg-white/75 backdrop-blur p-6 hover:shadow-lg transition-shadow"
               >
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#c9a84c] mb-2">
@@ -143,8 +143,8 @@ export default function PageShell({
                 {card.text && <p className="text-sm text-slate-500 mt-2 leading-relaxed">{card.text}</p>}
                 {!!card.points?.length && (
                   <ul className="mt-3 space-y-1.5 text-sm text-slate-600">
-                    {card.points.map((p) => (
-                      <li key={p} className="flex items-start gap-2">
+                    {card.points.map((p, pIdx) => (
+                      <li key={`${p}-${pIdx}`} className="flex items-start gap-2">
                         <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#c9a84c] shrink-0" />
                         <span className="leading-snug">{p}</span>
                       </li>

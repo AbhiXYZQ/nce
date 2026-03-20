@@ -210,7 +210,7 @@ export const DEPARTMENTS = {
     short: "EEE",
     title: "Electrical & Electronics Engineering (EEE)",
     subtitle: "Power systems, control, machines, and core electronics.",
-    program: { name: "B.Tech", duration: "4 Years", intake: "To be updated" },
+    program: { name: "B.Tech", duration: "4 Years", intake: "60" },
     hod: { name: "To be updated", email: "To be updated" },
     about:
       "The Department of Electrical & Electronics Engineering covers core electrical engineering with exposure to machines, power systems, and control. Replace this placeholder with the official department profile.",
@@ -242,6 +242,48 @@ export const DEPARTMENTS = {
       "Automation / Control (entry-level)",
       "Higher Studies / GATE",
     ],
+  },
+  "mtech-cse": {
+    slug: "mtech-cse",
+    short: "M.Tech CSE",
+    title: "M.Tech in Computer Science & Engineering",
+    subtitle: "Advanced research in computing, algorithms, and high-performance systems.",
+    program: { name: "M.Tech", duration: "2 Years", intake: "30" },
+    hod: { name: "To be updated", email: "To be updated" },
+    about: "The M.Tech program in Computer Science & Engineering at NCE Chandi is designed to provide advanced technical knowledge and research capabilities to students. It focuses on specialized areas like Machine Learning, Data Science, and Advanced Systems.",
+    vision: "To be updated.",
+    mission: ["To be updated."],
+    peos: ["To be updated."],
+    pos: ["To be updated."],
+    psos: ["To be updated."],
+    highlights: ["Advanced Algorithms", "Machine Learning Research", "High Performance Computing", "Dissertation & Projects"],
+    labs: [
+      { name: "PG Research Lab", desc: "Dedicated research facility for M.Tech students.", equipment: ["High-end workstations", "Cloud compute access"] },
+    ],
+    activities: ["Research Seminars", "Journal Publications", "Workshops"],
+    downloads: [{ label: "Syllabus", href: "/syllabus" }],
+    careers: ["Research Engineer", "Data Scientist", "System Architect", "Higher Studies (Ph.D)"],
+  },
+  "mtech-ps": {
+    slug: "mtech-ps",
+    short: "M.Tech PS",
+    title: "M.Tech in Power Systems",
+    subtitle: "In-depth study of electrical power systems, smart grids, and renewable energy integration.",
+    program: { name: "M.Tech", duration: "2 Years", intake: "30" },
+    hod: { name: "To be updated", email: "To be updated" },
+    about: "The M.Tech in Power Systems offers specialized training in modern power grids, protection systems, and energy management, preparing students for leadership roles in the energy sector.",
+    vision: "To be updated.",
+    mission: ["To be updated."],
+    peos: ["To be updated."],
+    pos: ["To be updated."],
+    psos: ["To be updated."],
+    highlights: ["Smart Grid Technology", "Power System Protection", "Renewable Energy integration", "Power Electronics in PS"],
+    labs: [
+      { name: "Advanced Power Systems Lab", desc: "Specialized lab for power system simulation and testing.", equipment: ["Simulation tools", "Relay testing kits"] },
+    ],
+    activities: ["Technical seminars", "Industry collaboration", "Research project work"],
+    downloads: [{ label: "Syllabus", href: "/syllabus" }],
+    careers: ["Power System Analyst", "Smart Grid Specialist", "Energy Consultant", "Academic / Research roles"],
   },
 };
 
@@ -280,4 +322,12 @@ export const SLUG_ALIASES = {
   electrical: "eee",
   "electrical-engineering": "eee",
   "eee-department": "eee",
-};      
+
+  "mtech-cse": "mtech-cse",
+  "m-tech-cse": "mtech-cse",
+  "pg-cse": "mtech-cse",
+  "mtech-power-systems": "mtech-ps",
+  "m-tech-power-systems": "mtech-ps",
+  "pg-power-systems": "mtech-ps",
+};
+      

@@ -92,7 +92,7 @@ const heroContent = {
   cta2: { label: "Explore Programs", href: "/academics" },
   stats: [
     { value: "3000+", label: "Alumni" },
-    { value: "6", label: "Programs" },
+    { value: "8", label: "Programs" },
     { value: "200+", label: "Recruiters" },
     { value: "15+", label: "Years" },
   ],
@@ -101,7 +101,7 @@ const heroContent = {
 const statsData = [
   { icon: GraduationCap, value: 3000, suffix: "+", label: "Alumni Worldwide" },
   { icon: Users, value: 150, suffix: "+", label: "Expert Faculty" },
-  { icon: BookOpen, value: 6, suffix: "", label: "B.Tech Programs" },
+  { icon: BookOpen, value: 8, suffix: "", label: "Programs (UG & PG)" },
   { icon: Trophy, value: 50, suffix: "+", label: "Awards & Rankings" },
   { icon: Briefcase, value: 200, suffix: "+", label: "Placement Partners" },
   { icon: Award, value: 15, suffix: "+", label: "Years of Excellence" },
@@ -169,6 +169,28 @@ const departments = [
     highlight: false,
     desc: "Power Systems, Control & Electronics.",
   },
+  {
+    icon: Cpu,
+    name: "M.Tech in Computer Science & Engineering",
+    short: "M.Tech CSE",
+    slug: "mtech-cse",
+    seats: 30,
+    accent: "#3b82f6",
+    highlight: false,
+    desc: "Advanced research in computing, algorithms and systems.",
+    tag: "PG Program",
+  },
+  {
+    icon: Zap,
+    name: "M.Tech in Power Systems",
+    short: "M.Tech PS",
+    slug: "mtech-ps",
+    seats: 30,
+    accent: "#f59e0b",
+    highlight: false,
+    desc: "Advanced studies in electrical power generation and distribution.",
+    tag: "PG Program",
+  },
 ];
 
 const bentoNotices = {
@@ -191,18 +213,6 @@ const bentoNotices = {
   ],
 };
 
-const placementStats = [
-  { value: 12, suffix: " LPA", label: "Highest Package" },
-  { value: 92, suffix: "%", label: "Placement Rate" },
-  { value: 500, suffix: "+", label: "Students Placed" },
-  { value: 200, suffix: "+", label: "Hiring Companies" },
-];
-
-const recruiters = [
-  "TCS", "Infosys", "Wipro", "HCL Technologies", "Cognizant",
-  "Tech Mahindra", "L&T", "BHEL", "ONGC", "BSNL",
-  "Accenture", "IBM", "Capgemini", "NIC", "DRDO",
-];
 
 const campusGrid = [
   { label: "Central Library", icon: Library, accent: "#1e40af", span: "row-span-2", desc: "25,000+ books, e-journals & digital resources accessible 24×7", stat: "25K+ Books" },
@@ -246,38 +256,59 @@ function Counter({ target, suffix }) {
   );
 }
 
+const sliderImages = [
+  "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhllkEHGFKH1BoTjUS6lWEZ12t4z_E77JS-9ruOUVm8zD5GZBQxQ6RwHosUR6woG2WLvN39do9rt65R19bZRyZEs4OwyfkXLtnObeWcNAF0EXHfloeAsVvMJZVEhMKYgNqnNQ4Ggi-1Pz11/w1200-h630-p-k-no-nu/Untitled11.png",
+  "https://www.collegebatch.com/static/clg-gallery/nalanda-college-of-engineering-chandi-nalanda-351897.webp",
+  "https://www.collegebatch.com/static/clg-gallery/nalanda-college-of-engineering-chandi-nalanda-351896.webp",
+  "https://image-static.collegedunia.com/public/college_data/images/campusimage/1563170019Capture.PNG",
+];
+
 // ─── HERO SECTION ─────────────────────────────────────────────────────────────
 
 function HeroSection() {
   const [loaded, setLoaded] = useState(false);
-  useEffect(() => { setLoaded(true); }, []);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    setLoaded(true);
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#001122]">
-      {/* Ken Burns background */}
+      {/* Dynamic Slide Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <div
-          className="ken-burns absolute inset-[-5%] bg-cover bg-center"
-          style={{
-            backgroundImage: `
-              radial-gradient(ellipse at 70% 50%, rgba(0,51,102,0.55) 0%, transparent 70%),
-              linear-gradient(135deg, #001833 0%, #002244 40%, #003366 70%, #001122 100%)
-            `,
-          }}
-        />
-        {/* Subtle grid overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.3) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.3) 1px,transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-        {/* Radial glow */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${sliderImages[currentSlide]})` }}
+          >
+            {/* Overlays for readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#001122]/90 via-[#001122]/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#001122]/80" />
+            
+            {/* Subtle grid overlay */}
+            <div
+              className="absolute inset-0 opacity-[0.06]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(255,255,255,0.3) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.3) 1px,transparent 1px)",
+                backgroundSize: "60px 60px",
+              }}
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Floating dust particles / Radial glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
-        {/* Dark gradient bottom */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70" />
       </div>
 
       {/* Content */}
@@ -378,6 +409,20 @@ function HeroSection() {
             </div>
           </div>
         </motion.div>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-10 right-10 flex gap-2 z-20">
+          {sliderImages.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentSlide(i)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                currentSlide === i ? "bg-[#c9a84c] w-6" : "bg-white/30 hover:bg-white/60"
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Scroll indicator */}
@@ -563,6 +608,70 @@ function BentoNotices() {
 function DepartmentsSection() {
   const [hoveredIdx, setHoveredIdx] = useState(null);
 
+  const btechPrograms = departments.filter((d) => d.tag !== "PG Program");
+  const mtechPrograms = departments.filter((d) => d.tag === "PG Program");
+
+  const renderCard = (dept, i, globalIdx) => {
+    const Icon = dept.icon;
+    const isHovered = hoveredIdx === globalIdx;
+    return (
+      <motion.div
+        key={dept.slug}
+        variants={fadeUp}
+        onMouseEnter={() => setHoveredIdx(globalIdx)}
+        onMouseLeave={() => setHoveredIdx(null)}
+        className="relative"
+      >
+        <Link
+          href={`/departments/${dept.slug}`}
+          className={`group relative h-full block rounded-2xl border-2 overflow-hidden transition-all duration-300 ${
+            dept.highlight
+              ? "border-violet-300 bg-gradient-to-br from-violet-50 to-purple-50"
+              : "border-slate-100 bg-white hover:border-slate-200"
+          } hover:-translate-y-1.5 hover:shadow-xl`}
+          style={{ boxShadow: isHovered ? `0 20px 40px -10px ${dept.accent}30` : undefined }}
+        >
+          {dept.highlight && (
+            <div className="absolute top-3 right-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">
+              Popular
+            </div>
+          )}
+          {dept.tag && (
+            <div className="absolute top-3 right-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">
+              {dept.tag}
+            </div>
+          )}
+          <div className="p-6">
+            <div
+              className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110"
+              style={{ backgroundColor: `${dept.accent}15` }}
+            >
+              <Icon size={22} style={{ color: dept.accent }} />
+            </div>
+            <span
+              className="text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider mb-2 inline-block"
+              style={{ backgroundColor: `${dept.accent}12`, color: dept.accent }}
+            >
+              {dept.short}
+            </span>
+            <h3 className="text-sm font-bold text-slate-800 leading-snug mt-1 mb-2">{dept.name}</h3>
+            <p className="text-xs text-slate-500 leading-relaxed mb-3">{dept.desc}</p>
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-slate-400">
+                Intake: <span className="font-semibold text-slate-600">{dept.seats}</span>
+              </span>
+              <ArrowRight
+                size={14}
+                className="opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1"
+                style={{ color: dept.accent }}
+              />
+            </div>
+          </div>
+        </Link>
+      </motion.div>
+    );
+  };
+
   return (
     <Section className="py-20 bg-white">
       <div className="container mx-auto px-6">
@@ -572,135 +681,40 @@ function DepartmentsSection() {
             Academic Departments
           </h2>
           <p className="text-slate-500 mt-3 text-sm md:text-base max-w-xl mx-auto">
-            Six AICTE-approved B.Tech programs designed to produce industry-ready engineers.
+            AICTE-approved Undergraduate and Postgraduate programs designed to produce industry-ready engineers.
           </p>
         </motion.div>
 
-        <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {departments.map((dept, i) => {
-            const Icon = dept.icon;
-            const isHovered = hoveredIdx === i;
-            return (
-              <motion.div
-                key={dept.slug}
-                variants={fadeUp}
-                onMouseEnter={() => setHoveredIdx(i)}
-                onMouseLeave={() => setHoveredIdx(null)}
-                className="relative"
-              >
-                <Link
-                  href={`/departments/${dept.slug}`}
-                  className={`group relative block rounded-2xl border-2 overflow-hidden transition-all duration-300 ${
-                    dept.highlight
-                      ? "border-violet-300 bg-gradient-to-br from-violet-50 to-purple-50"
-                      : "border-slate-100 bg-white hover:border-slate-200"
-                  } hover:-translate-y-1.5 hover:shadow-xl`}
-                  style={{ boxShadow: isHovered ? `0 20px 40px -10px ${dept.accent}30` : undefined }}
-                >
-                  {dept.highlight && (
-                    <div className="absolute top-3 right-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">
-                      {dept.tag}
-                    </div>
-                  )}
-                  <div className="p-6">
-                    <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110"
-                      style={{ backgroundColor: `${dept.accent}15` }}
-                    >
-                      <Icon size={22} style={{ color: dept.accent }} />
-                    </div>
-                    <span
-                      className="text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider mb-2 inline-block"
-                      style={{ backgroundColor: `${dept.accent}12`, color: dept.accent }}
-                    >
-                      {dept.short}
-                    </span>
-                    <h3 className="text-sm font-bold text-slate-800 leading-snug mt-1 mb-2">{dept.name}</h3>
-                    <p className="text-xs text-slate-500 leading-relaxed mb-3">{dept.desc}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-slate-400">
-                        Intake:{" "}
-                        <span className="font-semibold text-slate-600">{dept.seats}</span>
-                      </span>
-                      <ArrowRight
-                        size={14}
-                        className="opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1"
-                        style={{ color: dept.accent }}
-                      />
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-      </div>
-    </Section>
-  );
-}
-
-// ─── PLACEMENT SECTION ────────────────────────────────────────────────────────
-
-function PlacementSection() {
-  return (
-    <Section className="py-20 bg-[#001a33]">
-      <div className="container mx-auto px-6">
-        {/* Header */}
-        <motion.div variants={fadeUp} className="text-center mb-14">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#c9a84c] mb-3">Careers & Placements</p>
-          <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold text-white">
-            Placement Legacy
-          </h2>
-          <p className="text-slate-400 mt-3 text-sm md:text-base max-w-xl mx-auto">
-            Our Training & Placement Cell partners with leading organisations to launch careers.
-          </p>
-        </motion.div>
-
-        {/* Stats counters */}
-        <motion.div variants={stagger} className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
-          {placementStats.map(({ value, suffix, label }, i) => (
-            <motion.div
-              key={label}
-              variants={fadeUp}
-              className="bg-white/5 border border-white/10 rounded-2xl p-7 text-center hover:bg-white/8 transition-all"
-            >
-              <div className="font-playfair text-4xl md:text-5xl font-bold text-white mb-1">
-                <Counter target={value} suffix={suffix} />
-              </div>
-              <div className="text-slate-400 text-sm font-medium">{label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Marquee recruiters */}
-        <motion.div variants={fadeIn} className="overflow-hidden">
-          <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-slate-500 mb-5">Our Recruiting Partners</p>
-          <div className="flex">
-            <div className="marquee-track flex gap-6 items-center">
-              {[...recruiters, ...recruiters].map((r, i) => (
-                <div
-                  key={i}
-                  className="shrink-0 px-7 py-3.5 bg-white/5 hover:bg-[#c9a84c]/15 border border-white/10 hover:border-[#c9a84c]/30 rounded-xl text-white/60 hover:text-white font-semibold text-sm cursor-pointer transition-all whitespace-nowrap"
-                >
-                  {r}
-                </div>
-              ))}
-            </div>
+        {/* UG Section */}
+        <div className="mb-16">
+          <div className="flex items-center gap-4 mb-10 overflow-hidden">
+            <h3 className="flex-shrink-0 font-playfair text-xl font-bold text-slate-400 uppercase tracking-widest">
+              Undergraduate <span className="text-[#003366] block sm:inline">(B.Tech)</span>
+            </h3>
+            <div className="h-px w-full bg-slate-100" />
           </div>
-        </motion.div>
+          <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {btechPrograms.map((dept, i) => renderCard(dept, i, i))}
+          </motion.div>
+        </div>
 
-        <motion.div variants={fadeUp} className="text-center mt-10">
-          <Link
-            href="/placement"
-            className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#c9a84c] to-[#e8c86a] text-[#001122] font-bold px-8 py-3.5 rounded-xl transition-all hover:-translate-y-0.5 shadow-lg shadow-yellow-900/30 text-sm"
-          >
-            <Briefcase size={16} /> Explore T&P Cell
-          </Link>
-        </motion.div>
+        {/* PG Section */}
+        <div>
+          <div className="flex items-center gap-4 mb-10 overflow-hidden">
+            <h3 className="flex-shrink-0 font-playfair text-xl font-bold text-slate-400 uppercase tracking-widest">
+              Postgraduate <span className="text-[#003366] block sm:inline">(M.Tech)</span>
+            </h3>
+            <div className="h-px w-full bg-slate-100" />
+          </div>
+          <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {mtechPrograms.map((dept, i) => renderCard(dept, i, btechPrograms.length + i))}
+          </motion.div>
+        </div>
       </div>
     </Section>
   );
 }
+
 
 // ─── CAMPUS LIFE GRID ─────────────────────────────────────────────────────────
 
@@ -862,7 +876,6 @@ function QuickLinksBar() {
     { label: "Results", href: "/results" },
     { label: "Fee Payment", href: "/fee" },
     { label: "Scholarships", href: "/scholarships" },
-    { label: "NIRF Report", href: "/nirf" },
     { label: "RTI", href: "/rti" },
   ];
 
@@ -898,7 +911,6 @@ export default function Home() {
       <StatsRow />
       <BentoNotices />
       <DepartmentsSection />
-      <PlacementSection />
       <CampusGrid />
       <ImportantLinks />
     </div>

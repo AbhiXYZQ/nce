@@ -20,38 +20,6 @@ import {
 export default function Footer() {
   return (
     <footer className="bg-[#001a33] text-white/80 border-t border-white/10">
-      {/* Top CTA band */}
-      <div className="border-b border-white/10 bg-[#001a33]">
-        <div className="container mx-auto px-6 py-9">
-          <div className="rounded-3xl border border-white/10 bg-white/5 px-6 py-6 md:px-10 md:py-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-            <div className="max-w-3xl">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#c9a84c]">Need Help?</p>
-              <h3 className="font-playfair text-2xl md:text-3xl font-extrabold text-white mt-2">
-                Admissions, Academics, Placements — get official guidance
-              </h3>
-              <p className="text-sm md:text-base text-white/65 mt-2 leading-relaxed">
-                This website is structured for a premium experience. We can plug in official PDFs, faculty lists, labs,
-                and notices to make every page complete.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              <Link
-                href="/admission"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#c9a84c] to-[#e8c86a] text-[#001122] font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 shadow-lg shadow-yellow-900/25"
-              >
-                <GraduationCap size={18} /> Admission
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 border border-white/15 text-white font-bold px-6 py-3 rounded-xl transition-all"
-              >
-                <ArrowRight size={18} /> Contact Office
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main footer */}
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-10">
@@ -104,7 +72,6 @@ export default function Footer() {
               <Link className="hover:text-white transition-colors" href="/faculty">Faculty</Link>
               <Link className="hover:text-white transition-colors" href="/principal">Principal's Desk</Link>
               <Link className="hover:text-white transition-colors" href="/iqac">IQAC</Link>
-              <Link className="hover:text-white transition-colors" href="/nirf">NIRF Data</Link>
             </div>
           </div>
 

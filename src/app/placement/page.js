@@ -1,28 +1,87 @@
+"use client";
+import { useState, useEffect, useRef } from "react";
 import PageShell from "@/components/PageShell";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { Briefcase } from "lucide-react";
+
+// ─── ANIMATION VARIANTS ──────────────────────────────────────────────────────
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
+};
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+function Section({ children, className = "" }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  return (
+    <motion.section
+      ref={ref}
+      variants={stagger}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      className={className}
+    >
+      {children}
+    </motion.section>
+  );
+}
+
+// ─── ANIMATED COUNTER ────────────────────────────────────────────────────────
+
+function Counter({ target, suffix }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const duration = 1800;
+    const step = 16;
+    const increment = target / (duration / step);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, step);
+    return () => clearInterval(timer);
+  }, [inView, target]);
+
+  return (
+    <span ref={ref} className="tabular-nums">
+      {count}
+      {suffix}
+    </span>
+  );
+}
+
+const placementStats = [
+  { value: 12, suffix: " LPA", label: "Highest Package" },
+  { value: 92, suffix: "%", label: "Placement Rate" },
+  { value: 500, suffix: "+", label: "Students Placed" },
+  { value: 200, suffix: "+", label: "Hiring Companies" },
+];
+
+const recruiters = [
+  "TCS", "Infosys", "Wipro", "HCL Technologies", "Cognizant",
+  "Tech Mahindra", "L&T", "BHEL", "ONGC", "BSNL",
+  "Accenture", "IBM", "Capgemini", "NIC", "DRDO",
+];
 
 export default function PlacementPage() {
-  const kpis = [
-    { label: "Offers", value: "To be updated" },
-    { label: "Recruiting Partners", value: "To be updated" },
-    { label: "Highest Package", value: "To be updated" },
-    { label: "Average Package", value: "To be updated" },
-  ];
-
-  const recruiterWall = [
-    "TCS",
-    "Infosys",
-    "Wipro",
-    "HCL",
-    "Cognizant",
-    "Tech Mahindra",
-    "Capgemini",
-    "Accenture",
-    "L&T",
-    "Bosch",
-    "Byjus",
-    "Other recruiters (to be updated)",
-  ];
-
   const placementProcess = [
     {
       title: "Corporate Engagement",
@@ -169,76 +228,53 @@ export default function PlacementPage() {
         },
       ]}
     >
-      {/* KPI Band */}
-      <section className="bg-slate-50 border-y border-slate-100">
-        <div className="container mx-auto px-6 py-10">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#c9a84c]">Placement Highlights</p>
-              <h2 className="font-playfair text-2xl md:text-3xl font-bold text-[#003366] mt-2">
-                Outcomes that recruiters care about
-              </h2>
-              <p className="text-slate-600 text-sm mt-2 max-w-2xl">
-                Replace the placeholders with year-wise official placement statistics for a strong first impression.
-              </p>
-            </div>
-            <a
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-xl bg-[#003366] text-white font-bold px-5 py-3 hover:bg-[#00274d] transition-colors"
-            >
-              Talk to T&P Team
-            </a>
-          </div>
+      {/* Placement Legacy Section (Moved from Home) */}
+      <Section className="py-20 bg-[#001a33]">
+        <div className="container mx-auto px-6">
+          <motion.div variants={fadeUp} className="text-center mb-14">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#c9a84c] mb-3">Careers & Placements</p>
+            <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+              Placement Legacy
+            </h2>
+            <p className="text-slate-400 mt-3 text-sm md:text-base max-w-xl mx-auto">
+              Our Training & Placement Cell partners with leading organisations to launch careers.
+            </p>
+          </motion.div>
 
-          <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {kpis.map((k) => (
-              <div key={k.label} className="rounded-2xl bg-white border border-slate-100 p-5">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">{k.label}</p>
-                <p className="mt-2 text-xl md:text-2xl font-extrabold text-slate-900">{k.value}</p>
-                <p className="mt-1 text-xs text-slate-500">2025–26 (to be updated)</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Recruiter Wall */}
-      <section className="bg-white">
-        <div className="container mx-auto px-6 py-12">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#c9a84c]">Recruiter Network</p>
-              <h2 className="font-playfair text-2xl md:text-3xl font-bold text-[#003366] mt-2">
-                Companies that engage with our students
-              </h2>
-              <p className="text-slate-600 text-sm mt-2 max-w-2xl">
-                Replace the list with the official recruiter list (and logos) for maximum credibility.
-              </p>
-            </div>
-            <a
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-5 py-3 font-bold text-slate-900 hover:bg-slate-50 transition-colors"
-            >
-              Invite Your Company
-            </a>
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-2">
-            {recruiterWall.map((c) => (
-              <span
-                key={c}
-                className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-800"
+          {/* Stats counters */}
+          <motion.div variants={stagger} className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+            {placementStats.map(({ value, suffix, label }, i) => (
+              <motion.div
+                key={label}
+                variants={fadeUp}
+                className="bg-white/5 border border-white/10 rounded-2xl p-7 text-center hover:bg-white/8 transition-all"
               >
-                {c}
-              </span>
+                <div className="font-playfair text-4xl md:text-5xl font-bold text-white mb-1">
+                  <Counter target={value} suffix={suffix} />
+                </div>
+                <div className="text-slate-400 text-sm font-medium">{label}</div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="mt-6 rounded-2xl border border-slate-100 bg-slate-50 p-5 text-sm text-slate-600">
-            Note: This section is a placeholder. We should only publish companies that have officially visited/engaged.
-          </div>
+          {/* Marquee recruiters */}
+          <motion.div variants={fadeIn} className="overflow-hidden">
+            <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-slate-500 mb-5">Our Recruiting Partners</p>
+            <div className="flex">
+              <div className="marquee-track flex gap-6 items-center">
+                {[...recruiters, ...recruiters].map((r, i) => (
+                  <div
+                    key={i}
+                    className="shrink-0 px-7 py-3.5 bg-white/5 hover:bg-[#c9a84c]/15 border border-white/10 hover:border-[#c9a84c]/30 rounded-xl text-white/60 hover:text-white font-semibold text-sm cursor-pointer transition-all whitespace-nowrap"
+                  >
+                    {r}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </section>
+      </Section>
 
       {/* Process + Roadmap */}
       <section className="bg-slate-50 border-y border-slate-100">

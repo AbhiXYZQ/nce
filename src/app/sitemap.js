@@ -30,7 +30,6 @@ export default function sitemap() {
     "/placement",
     "/research",
     "/iqac",
-    "/nirf",
     "/notices",
     "/calendar",
     "/syllabus",

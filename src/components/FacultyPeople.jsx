@@ -29,17 +29,19 @@ const stagger = {
 
 function Avatar({ person, size = "md" }) {
   const sizeClass =
-    size === "xl"
-      ? "h-24 w-24 md:h-28 md:w-28"
-      : size === "lg"
-        ? "h-20 w-20 md:h-24 md:w-24"
-        : "h-16 w-16 md:h-20 md:w-20";
+    size === "2xl"
+      ? "h-40 w-40 md:h-48 md:w-48"
+      : size === "xl"
+        ? "h-32 w-32 md:h-40 md:w-40"
+        : size === "lg"
+          ? "h-20 w-20 md:h-24 md:w-24"
+          : "h-16 w-16 md:h-20 md:w-20";
 
-  const imageSize = size === "xl" ? 112 : size === "lg" ? 96 : 80;
+  const imageSize = size === "2xl" ? 192 : size === "xl" ? 160 : size === "lg" ? 96 : 80;
 
   if (person?.photo) {
     return (
-      <div className={`relative ${sizeClass} rounded-3xl overflow-hidden border border-slate-200 bg-slate-50`}>
+      <div className={`relative ${sizeClass} rounded-[2rem] overflow-hidden border border-slate-200 bg-slate-50 shadow-inner`}>
         <Image
           src={person.photo}
           alt={person.name}
@@ -52,14 +54,14 @@ function Avatar({ person, size = "md" }) {
   }
 
   return (
-    <div className={`${sizeClass} rounded-3xl border border-slate-200 bg-white/80 backdrop-blur flex items-center justify-center p-4`}>
+    <div className={`${sizeClass} rounded-[2rem] border border-slate-200 bg-white shadow-sm flex items-center justify-center p-6`}>
       <Image
         src={DEFAULT_LOGO_SRC}
         alt="Nalanda College of Engineering logo"
-        width={imageSize - 18}
-        height={imageSize - 18}
+        width={imageSize - 32}
+        height={imageSize - 32}
         className="object-contain"
-        priority={size === "xl"}
+        priority={size === "2xl" || size === "xl"}
       />
     </div>
   );
@@ -112,7 +114,7 @@ function Areas({ areas }) {
   );
 }
 
-function PersonCard({ person, variant = "default", tag }) {
+function PersonCard({ person, variant = "default", tag, size }) {
   const isFeatured = variant === "featured";
   const [open, setOpen] = useState(false);
   const reactId = useId();
@@ -128,89 +130,106 @@ function PersonCard({ person, variant = "default", tag }) {
       <motion.div
         whileHover={{ y: -4 }}
         transition={{ type: "spring", stiffness: 260, damping: 20 }}
-        className="group rounded-[28px] p-[1px] bg-gradient-to-br from-[#c9a84c]/40 via-slate-200 to-[#003366]/35"
+        className="group rounded-[28px] p-[1px] bg-gradient-to-br from-[#c9a84c]/40 via-slate-200 to-[#003366]/35 shadow-sm hover:shadow-xl transition-all"
       >
-        <div className={`rounded-[27px] bg-white/80 backdrop-blur ${isFeatured ? "p-6 md:p-8" : "p-6"} shadow-sm group-hover:shadow-lg transition-shadow`}>
-          <div className={`flex ${isFeatured ? "flex-col lg:flex-row" : "flex-col"} gap-5`}>
-            <div className={isFeatured ? "shrink-0" : ""}>
-              <Avatar person={person} size={isFeatured ? "xl" : "lg"} />
+        <div className={`rounded-[27px] bg-white ${isFeatured ? "p-8 md:p-10" : "p-6"}`}>
+          <div className={`flex ${isFeatured ? "flex-col lg:flex-row lg:items-center" : "flex-col"} gap-10`}>
+            <div className={isFeatured ? "shrink-0 flex justify-center" : ""}>
+              <Avatar person={person} size={size ?? (isFeatured ? "xl" : "lg")} />
             </div>
 
             <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <p className={`${isFeatured ? "text-lg md:text-xl" : "text-base"} font-extrabold text-slate-900`}>
+              <div className="flex flex-wrap items-center gap-3">
+                <p className={`${isFeatured ? "text-xl md:text-2xl" : "text-base"} font-extrabold text-[#003366] leading-tight`}>
                   {person?.name}
                 </p>
                 {(tag || person?.designation) && (
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-2xl bg-[#c9a84c]/15 text-[#7a5a12]">
-                    <BadgeCheck size={14} /> {tag ?? person?.designation}
+                  <span className="inline-flex items-center gap-1.5 text-[10px] font-bold px-3 py-1 rounded-full bg-[#c9a84c]/10 text-[#7a5a12] border border-[#c9a84c]/20">
+                    <BadgeCheck size={12} strokeWidth={3} /> {tag ?? person?.designation}
                   </span>
                 )}
               </div>
 
               {person?.department && (
-                <p className="text-sm text-slate-600 mt-1">{person.department}</p>
-              )}
-
-              {!!previewAreas.length && (
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {previewAreas.map((a) => (
-                    <span
-                      key={a}
-                      className="text-xs font-semibold px-3 py-1 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700"
-                    >
-                      {a}
-                    </span>
-                  ))}
-                  {Array.isArray(person?.areas) && person.areas.length > 2 && (
-                    <span className="text-xs font-bold px-3 py-1 rounded-2xl bg-slate-50 border border-slate-200 text-slate-500">
-                      +{person.areas.length - 2}
-                    </span>
-                  )}
-                </div>
-              )}
-
-              <div className="mt-5 flex items-center justify-between gap-3">
-                <p className="text-xs text-slate-500">
-                  {open ? "Details" : "Quick preview"}
+                <p className={`${isFeatured ? "text-base" : "text-sm"} text-slate-500 font-medium mt-1`}>
+                  {person.department}
                 </p>
-                <button
-                  type="button"
-                  onClick={() => setOpen((v) => !v)}
-                  aria-expanded={open}
-                  aria-controls={panelId}
-                  className="inline-flex items-center gap-2 text-sm font-bold text-[#003366] hover:text-[#c9a84c] transition-colors"
-                >
-                  {open ? "Show less" : "Learn more"}
-                  <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.18 }}>
-                    <ChevronDown size={16} />
-                  </motion.span>
-                </button>
-              </div>
+              )}
 
-              <AnimatePresence initial={false}>
-                {open && (
-                  <motion.div
-                    id={panelId}
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.25, ease: "easeOut" }}
-                    className="overflow-hidden"
-                  >
-                    <div className="mt-4 pt-4 border-t border-slate-100">
-                      {person?.qualification && (
-                        <p className="text-sm text-slate-600">
-                          <span className="font-semibold text-slate-900">Qualification:</span> {person.qualification}
-                        </p>
-                      )}
-
+              {/* Show direct details for featured cards */}
+              {isFeatured ? (
+                <div className="mt-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="space-y-3">
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Contact Details</p>
                       <PersonMeta person={person} />
+                    </div>
+                    <div className="sm:col-span-2 space-y-3">
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Expertise & Focus</p>
                       <Areas areas={person?.areas} />
                     </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  {!!previewAreas.length && (
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {previewAreas.map((a) => (
+                        <span
+                          key={a}
+                          className="text-xs font-semibold px-3 py-1 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700"
+                        >
+                          {a}
+                        </span>
+                      ))}
+                      {Array.isArray(person?.areas) && person.areas.length > 2 && (
+                        <span className="text-xs font-bold px-3 py-1 rounded-2xl bg-slate-50 border border-slate-200 text-slate-500">
+                          +{person.areas.length - 2}
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="mt-5 flex items-center justify-between gap-3">
+                    <p className="text-xs text-slate-500">Quick preview detail</p>
+                    <button
+                      type="button"
+                      onClick={() => setOpen((v) => !v)}
+                      aria-expanded={open}
+                      aria-controls={panelId}
+                      className="inline-flex items-center gap-2 text-sm font-bold text-[#003366] hover:text-[#c9a84c] transition-colors"
+                    >
+                      {open ? "Show less" : "Learn more"}
+                      <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.18 }}>
+                        <ChevronDown size={16} />
+                      </motion.span>
+                    </button>
+                  </div>
+
+                  <AnimatePresence initial={false}>
+                    {open && (
+                      <motion.div
+                        id={panelId}
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: "easeOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="mt-4 pt-4 border-t border-slate-100">
+                          {person?.qualification && (
+                            <p className="text-sm text-slate-600">
+                              <span className="font-semibold text-slate-900">Qualification:</span> {person.qualification}
+                            </p>
+                          )}
+                          <PersonMeta person={person} />
+                          <Areas areas={person?.areas} />
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -234,7 +253,7 @@ export default function FacultyPeople({ principal, departments }) {
             </motion.div>
 
             <div className="mt-6">
-              <PersonCard person={principal} variant="featured" />
+              <PersonCard person={principal} variant="featured" size="2xl" />
             </div>
           </motion.div>
         </div>

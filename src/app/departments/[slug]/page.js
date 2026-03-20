@@ -1,6 +1,7 @@
 import PageShell from "@/components/PageShell";
 import { notFound, redirect } from "next/navigation";
 import { DEPARTMENTS, SLUG_ALIASES } from "@/lib/departments";
+import { facultyDepartments } from "@/lib/facultyPeople";
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
@@ -25,6 +26,14 @@ export default async function DepartmentPage({ params }) {
 
   const dept = DEPARTMENTS[slug];
   if (!dept) return notFound();
+
+  // Find faculty for this department
+  const facultyMapping = {
+    "mtech-cse": "cse",
+    "mtech-ps": "eee",
+  };
+  const lookupKey = facultyMapping[slug] || slug;
+  const facultyDept = facultyDepartments.find((fd) => fd.key === lookupKey);
 
   const labs = Array.isArray(dept.labs) ? dept.labs : [];
   const labObjects = labs.map((lab) =>
@@ -95,6 +104,31 @@ export default async function DepartmentPage({ params }) {
           ],
         },
         {
+          title: "Faculty",
+          cards: facultyDept
+            ? [
+                {
+                  title: facultyDept.head.name,
+                  kicker: "Head of Department",
+                  text: `${facultyDept.head.qualification} | ${facultyDept.head.email}`,
+                  points: facultyDept.head.areas || [],
+                },
+                ...facultyDept.assistants.map((f) => ({
+                  title: f.name,
+                  kicker: "Assistant Professor",
+                  text: `${f.qualification} | ${f.email}`,
+                  points: f.areas || [],
+                })),
+              ]
+            : [
+                {
+                  title: "Faculty Profiles",
+                  kicker: "People",
+                  text: "Information to be updated soon.",
+                },
+              ],
+        },
+        {
           title: "Key Strengths",
           cards: [
             {
@@ -108,9 +142,9 @@ export default async function DepartmentPage({ params }) {
               points: dept.activities ?? ["To be updated."],
             },
             {
-              title: "Faculty & Leadership",
+              title: "Full Faculty List",
               kicker: "People",
-              text: "Faculty list and profiles.",
+              text: "Browse profiles of all institute faculty members.",
               href: "/faculty",
             },
           ],
