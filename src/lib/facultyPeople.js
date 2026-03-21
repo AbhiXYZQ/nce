@@ -3,7 +3,7 @@ export const principal = {
   designation: "Principal",
   department: "Nalanda College of Engineering, Chandi",
   qualification: "Ph.D.",
-  email: "principal@ncechandi.ac.in",
+  email: "nceprincipalchandi@gmail.com",
   phone: "+91-9412955789",
   office: "Principal Office",
   areas: ["Administration", "Academic Leadership"],

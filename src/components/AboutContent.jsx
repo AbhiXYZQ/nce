@@ -333,9 +333,7 @@ export default function AboutContent() {
               <p className="text-sm text-slate-600 mt-1">{principal?.designation ?? "Principal"}</p>
 
               <p className="text-sm md:text-base text-slate-600 mt-4 leading-relaxed">
-                Welcome to Nalanda College of Engineering. We believe in strong fundamentals, discipline, and hands-on
-                engineering practice — supported by research, innovation, and ethical values. Our focus is to help students
-                grow into competent professionals and responsible citizens.
+                Welcome to NCE Chandi. Our aim is to provide best quality education, encouraging students to explore and enjoy the learning. We create a platform where global competitive skills are nurtured and leadership is developed.
               </p>
 
               <div className="mt-5 flex flex-wrap gap-2">
