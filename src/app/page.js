@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   GraduationCap,
@@ -292,16 +293,23 @@ function HeroSection() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${sliderImages[currentSlide]})` }}
+            className="absolute inset-0"
           >
+            <Image 
+              src={sliderImages[currentSlide]}
+              alt="Campus Insight"
+              fill
+              priority
+              quality={85}
+              className="object-cover object-center z-0"
+            />
             {/* Overlays for readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#001122]/90 via-[#001122]/60 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#001122]/80" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#001122]/90 via-[#001122]/60 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#001122]/80 z-10" />
             
             {/* Subtle grid overlay */}
             <div
-              className="absolute inset-0 opacity-[0.06]"
+              className="absolute inset-0 opacity-[0.06] z-10"
               style={{
                 backgroundImage:
                   "linear-gradient(rgba(255,255,255,0.3) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.3) 1px,transparent 1px)",
@@ -663,10 +671,12 @@ function DepartmentsSection() {
           {/* Background Image / Giant Watermark Icon */}
           {dept.bgImage ? (
             <div className="absolute inset-0 z-0 overflow-hidden mix-blend-multiply">
-              <img 
+              <Image 
                 src={dept.bgImage} 
-                alt="" 
-                className="w-full h-full object-cover opacity-[0.08] grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-[0.15] transition-all duration-[0.8s] ease-out" 
+                alt={dept.name} 
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover opacity-[0.08] grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-[0.15] transition-all duration-[0.8s] ease-out" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
             </div>
@@ -799,10 +809,12 @@ function CampusGrid() {
                 {/* Background Image / Giant Watermark Icon */}
                 {item.bgImage ? (
                   <div className="absolute inset-0 z-0 overflow-hidden bg-white">
-                    <img 
+                    <Image 
                       src={item.bgImage} 
-                      alt="" 
-                      className="w-full h-full object-cover opacity-15 grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-25 transition-all duration-[0.8s] ease-out" 
+                      alt={item.label} 
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover opacity-15 grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-25 transition-all duration-[0.8s] ease-out" 
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
                   </div>

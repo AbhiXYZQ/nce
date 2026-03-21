@@ -230,7 +230,7 @@ export default function PlacementPage() {
 
                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-t border-slate-100 pt-8">
                  <div>
-                   <h4 className="font-black text-slate-900 text-2xl font-playfair">Dr. Ashish Kumar</h4>
+                   <h4 className="font-black text-slate-900 text-2xl font-playfair">Prof. Avinash Kumar</h4>
                    <p className="text-sm font-bold text-slate-400 mt-1 uppercase tracking-widest">Training & Placement Officer</p>
                  </div>
                  
