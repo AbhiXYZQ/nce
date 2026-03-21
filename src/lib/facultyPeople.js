@@ -7,7 +7,7 @@ export const principal = {
   phone: "+91-9412955789",
   office: "Principal Office",
   areas: ["Administration", "Academic Leadership"],
-  photo: null,
+  photo: "/images/faculties/principal.png",
 };
 
 export const facultyDepartments = [

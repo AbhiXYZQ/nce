@@ -26,7 +26,6 @@ const NAV_ITEMS = [
       { label: "Administration", href: "/administration", icon: Users },
       { label: "Faculty", href: "/faculty", icon: Users },
       { label: "Principal's Desk", href: "/principal", icon: UserCircle },
-      { label: "IQAC", href: "/iqac", icon: FileText },
     ],
   },
   {

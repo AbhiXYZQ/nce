@@ -117,6 +117,7 @@ const departments = [
     accent: "#2563eb",
     highlight: false,
     desc: "Algorithms, Systems & Software Engineering.",
+    bgImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
   },
   {
     icon: Brain,
@@ -128,6 +129,7 @@ const departments = [
     highlight: true,
     desc: "Deep Learning, NLP, Computer Vision & Data Science.",
     tag: "New · Flagship",
+    bgImage: "https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=2070&auto=format&fit=crop"
   },
   {
     icon: Building2,
@@ -138,6 +140,7 @@ const departments = [
     accent: "#16a34a",
     highlight: false,
     desc: "Structural, Geo-technical & Environmental.",
+    bgImage: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2071&auto=format&fit=crop"
   },
   {
     icon: Wrench,
@@ -148,6 +151,7 @@ const departments = [
     accent: "#64748b",
     highlight: false,
     desc: "Thermodynamics, Manufacturing & Design.",
+    bgImage: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
   },
   {
     icon: Plane,
@@ -158,6 +162,7 @@ const departments = [
     accent: "#0ea5e9",
     highlight: false,
     desc: "Aerodynamics, Propulsion & Aircraft Structures.",
+    bgImage: "https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=2070&auto=format&fit=crop"
   },
   {
     icon: Zap,
@@ -208,24 +213,24 @@ const bentoNotices = {
   ],
   circulars: [
     { title: "Anti-Ragging Committee Guidelines 2025-26", date: "Jan 2026" },
-    { title: "IQAC Activity Report Submission Deadline", date: "Feb 2026" },
+    { title: "Annual Activity Report Submission Deadline", date: "Feb 2026" },
     { title: "Faculty Research Publication Incentive Scheme", date: "Feb 2026" },
   ],
 };
 
 
 const campusGrid = [
-  { label: "Central Library", icon: Library, accent: "#1e40af", span: "row-span-2", desc: "25,000+ books, e-journals & digital resources accessible 24×7", stat: "25K+ Books" },
-  { label: "AI / ML Laboratory", icon: Brain, accent: "#6d28d9", span: "", desc: "GPU clusters, research workstations & cloud compute nodes", stat: "40 Servers" },
-  { label: "Sports Complex", icon: Dumbbell, accent: "#15803d", span: "", desc: "Cricket, Football, Badminton courts & fully equipped Gymnasium", stat: "5 Arenas" },
-  { label: "Student Hostel", icon: HomeIcon, accent: "#b45309", span: "col-span-2", desc: "1000+ capacity — secured campus, Wi-Fi, dining hall & 24×7 staff", stat: "1000+ Beds" },
-  { label: "Research Labs", icon: Microscope, accent: "#0f766e", span: "", desc: "40+ specialised laboratories across all engineering departments", stat: "40+ Labs" },
-  // { label: "Auditorium", icon: Music2, accent: "#be123c", span: "", desc: "1200-seat state-of-the-art multipurpose convention facility", stat: "1200 Seats" },
+  { label: "Academic & Study", icon: Library, accent: "#1e40af", bgImage: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop", desc: "Central Library (10,000+ books, 80+ journals), Computer Centre, laboratories for every branch, Smart Classrooms, and a Wi-Fi enabled campus.", stat: "Smart Infra", span: "md:col-span-2 md:row-span-2 row-span-2" },
+  { label: "Hostel Facilities", icon: HomeIcon, accent: "#b45309", bgImage: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=2069&auto=format&fit=crop", desc: "In-campus Boys & Girls hostels with single/double/triple sharing. Equipped with TV rooms, study areas, Mess (Veg/Non-veg), and 24×7 security.", stat: "Secure Stay", span: "md:col-span-1 md:row-span-2 row-span-2" },
+  { label: "Sports & Activities", icon: Trophy, accent: "#15803d", bgImage: "https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?q=80&w=2070&auto=format&fit=crop", desc: "UMANG annual fest, large grounds for Cricket, Football, Volleyball. Indoor arenas for Badminton & TT. Active Coding, Sports, Cultural, and E-cells.", stat: "Clubs & Fests", span: "md:col-span-1 md:row-span-2 row-span-2" },
+  { label: "Other Facilities (T&P)", icon: Briefcase, accent: "#0f766e", desc: "Active Training & Placement Cell offering internship support, skill development, and resources.", stat: "Careers Support", span: "md:col-span-1 md:row-span-1" },
+  { label: "Food & Daily Needs", icon: Building2, accent: "#be123c", desc: "Hygienic Canteen & Mess. Basic daily items are easily available around the campus.", stat: "Canteen & Shops", span: "md:col-span-1 md:row-span-1" },
+  { label: "Basic Services", icon: Landmark, accent: "#6d28d9", desc: "A 24/7 ATM facility is available directly and securely inside the college campus for all students.", stat: "On-Campus ATM", span: "md:col-span-2 md:row-span-1" },
 ];
 
 // ─── ANIMATED COUNTER ────────────────────────────────────────────────────────
 
-function Counter({ target, suffix }) {
+function Counter({ target, suffix, prefix = "" }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
@@ -250,8 +255,7 @@ function Counter({ target, suffix }) {
 
   return (
     <span ref={ref} className="tabular-nums">
-      {count}
-      {suffix}
+      {prefix}{count}{suffix}
     </span>
   );
 }
@@ -448,31 +452,56 @@ function HeroSection() {
 
 function StatsRow() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+
+  const customStats = [
+    { value: 6000, suffix: "+", label: "Alumni Worldwide", prefix: "" },
+    { value: 50, suffix: "+", label: "Expert Faculties", prefix: "" },
+    { value: 8, suffix: "", label: "Engineering Programs", prefix: "" },
+    { value: 5, suffix: "", label: "in BEU Rankings", prefix: "Top " },
+    { value: 15, suffix: "+", label: "Years of Excellence", prefix: "" },
+  ];
 
   return (
-    <div ref={ref} className="bg-[#003366] py-10">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
-          {statsData.map(({ icon: Icon, value, suffix, label }, i) => (
-            <motion.div
-              key={label}
-              variants={fadeUp}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              transition={{ delay: i * 0.08 }}
-              className="flex flex-col items-center text-center"
-            >
-              <div className="mb-2 bg-white/10 p-2.5 rounded-lg">
-                <Icon size={20} className="text-[#c9a84c]" />
-              </div>
-              <div className="font-playfair text-2xl md:text-3xl font-bold text-white">
-                {inView ? <Counter target={value} suffix={suffix} /> : "0"}
-              </div>
-              <div className="text-blue-200 text-xs mt-0.5 font-medium">{label}</div>
-            </motion.div>
-          ))}
-        </div>
+    <div ref={ref} className="py-24 bg-white border-y border-slate-100">
+      <div className="container mx-auto px-6 max-w-6xl">
+         <div className="flex flex-col md:flex-row gap-16 lg:gap-24 items-center">
+            
+            {/* Left Title Area */}
+            <div className="md:w-1/3 shrink-0 text-center md:text-left">
+               <h2 className="text-3xl lg:text-5xl font-playfair font-black text-[#001122] mb-5 leading-[1.1]">
+                 Excellence<br />in Numbers
+               </h2>
+               <div className="w-16 h-1 bg-[#c9a84c] mb-6 mx-auto md:mx-0" />
+               <p className="text-slate-500 font-medium text-sm lg:text-base leading-relaxed">
+                 A celebrated legacy of delivering world-class engineering education and shaping the state's brightest future leaders.
+               </p>
+            </div>
+
+            {/* Right Grid Area */}
+            <div className="md:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-12 w-full">
+               {customStats.map((stat, i) => (
+                 <motion.div
+                   key={i}
+                   variants={{
+                     hidden: { opacity: 0, y: 20 },
+                     visible: { opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.6, ease: "easeOut" } }
+                   }}
+                   initial="hidden"
+                   animate={inView ? "visible" : "hidden"}
+                   className="flex flex-col border-l-2 border-[#003366]/10 pl-5"
+                 >
+                   <span className="font-playfair text-4xl lg:text-5xl font-black text-[#003366] mb-1 tracking-tight">
+                     {inView ? <Counter target={stat.value} suffix={stat.suffix} prefix={stat.prefix} /> : "0"}
+                   </span>
+                   <span className="text-[10px] lg:text-xs font-bold text-slate-400 uppercase tracking-[0.15em] leading-snug mt-1">
+                     {stat.label}
+                   </span>
+                 </motion.div>
+               ))}
+            </div>
+
+         </div>
       </div>
     </div>
   );
@@ -620,51 +649,69 @@ function DepartmentsSection() {
         variants={fadeUp}
         onMouseEnter={() => setHoveredIdx(globalIdx)}
         onMouseLeave={() => setHoveredIdx(null)}
-        className="relative"
+        className="relative h-full"
       >
         <Link
           href={`/departments/${dept.slug}`}
-          className={`group relative h-full block rounded-2xl border-2 overflow-hidden transition-all duration-300 ${
+          className={`group relative h-full flex flex-col rounded-2xl border-2 overflow-hidden transition-all duration-300 ${
             dept.highlight
               ? "border-violet-300 bg-gradient-to-br from-violet-50 to-purple-50"
               : "border-slate-100 bg-white hover:border-slate-200"
           } hover:-translate-y-1.5 hover:shadow-xl`}
           style={{ boxShadow: isHovered ? `0 20px 40px -10px ${dept.accent}30` : undefined }}
         >
+          {/* Background Image / Giant Watermark Icon */}
+          {dept.bgImage ? (
+            <div className="absolute inset-0 z-0 overflow-hidden mix-blend-multiply">
+              <img 
+                src={dept.bgImage} 
+                alt="" 
+                className="w-full h-full object-cover opacity-[0.08] grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-[0.15] transition-all duration-[0.8s] ease-out" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
+            </div>
+          ) : (
+            <div className="absolute -bottom-6 -right-6 text-slate-100 opacity-60 group-hover:opacity-100 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none z-0">
+              <Icon size={160} strokeWidth={1.5} style={{ color: dept.accent, opacity: 0.05 }} className="group-hover:opacity-10 transition-opacity duration-700" />
+            </div>
+          )}
+
           {dept.highlight && (
-            <div className="absolute top-3 right-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">
+            <div className="absolute top-3 right-3 z-10 bg-gradient-to-r from-violet-600 to-purple-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide shadow-sm">
               Popular
             </div>
           )}
-          {dept.tag && (
-            <div className="absolute top-3 right-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">
+          {dept.tag && !dept.highlight && (
+            <div className="absolute top-3 right-3 z-10 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide shadow-sm">
               {dept.tag}
             </div>
           )}
-          <div className="p-6">
+          
+          <div className="p-6 relative z-10 flex flex-col flex-1">
             <div
-              className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110"
-              style={{ backgroundColor: `${dept.accent}15` }}
+              className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 bg-white"
+              style={{ border: `1px solid ${dept.accent}30`, boxShadow: `0 4px 12px ${dept.accent}10` }}
             >
               <Icon size={22} style={{ color: dept.accent }} />
             </div>
-            <span
-              className="text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider mb-2 inline-block"
-              style={{ backgroundColor: `${dept.accent}12`, color: dept.accent }}
-            >
-              {dept.short}
-            </span>
-            <h3 className="text-sm font-bold text-slate-800 leading-snug mt-1 mb-2">{dept.name}</h3>
-            <p className="text-xs text-slate-500 leading-relaxed mb-3">{dept.desc}</p>
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-400">
-                Intake: <span className="font-semibold text-slate-600">{dept.seats}</span>
+            <div>
+              <span
+                className="text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider mb-2 inline-block bg-white drop-shadow-sm"
+                style={{ border: `1px solid ${dept.accent}20`, color: dept.accent }}
+              >
+                {dept.short}
               </span>
-              <ArrowRight
-                size={14}
-                className="opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1"
-                style={{ color: dept.accent }}
-              />
+              <h3 className="text-[15px] font-bold text-slate-800 leading-snug mt-1 mb-2 drop-shadow-sm group-hover:text-[#003366] transition-colors">{dept.name}</h3>
+              <p className="text-xs text-slate-500 font-medium leading-relaxed mb-4 flex-1 drop-shadow-sm">{dept.desc}</p>
+            </div>
+            
+            <div className="mt-auto flex items-center justify-between text-xs font-semibold pt-3 border-t" style={{ borderColor: `${dept.accent}20` }}>
+              <span className="text-slate-500">
+                Intake: <span className="font-bold" style={{ color: dept.accent }}>{dept.seats}</span>
+              </span>
+              <span className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300" style={{ color: dept.accent }}>
+                View <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+              </span>
             </div>
           </div>
         </Link>
@@ -738,7 +785,7 @@ function CampusGrid() {
 
         <motion.div
           variants={stagger}
-          className="grid grid-cols-2 md:grid-cols-3 auto-rows-[220px] gap-5"
+          className="grid grid-cols-1 md:grid-cols-3 auto-rows-[200px] gap-5"
         >
           {campusGrid.map((item, i) => {
             const Icon = item.icon;
@@ -749,46 +796,62 @@ function CampusGrid() {
                 whileHover={{ y: -5, transition: { duration: 0.22, ease: "easeOut" } }}
                 className={`relative rounded-2xl overflow-hidden bg-white border border-slate-200/80 shadow-sm hover:shadow-lg transition-shadow duration-300 group cursor-pointer flex flex-col ${item.span || ""}`}
               >
-                {/* Colored top accent bar */}
-                <div className="h-[3px] w-full flex-shrink-0" style={{ background: item.accent }} />
+                {/* Background Image / Giant Watermark Icon */}
+                {item.bgImage ? (
+                  <div className="absolute inset-0 z-0 overflow-hidden bg-white">
+                    <img 
+                      src={item.bgImage} 
+                      alt="" 
+                      className="w-full h-full object-cover opacity-15 grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-25 transition-all duration-[0.8s] ease-out" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
+                  </div>
+                ) : (
+                  <div className="absolute -bottom-8 -right-8 text-slate-100 opacity-60 group-hover:opacity-100 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none z-0">
+                    <Icon size={200} strokeWidth={1} style={{ color: item.accent, opacity: 0.05 }} className="group-hover:opacity-10 transition-opacity duration-700" />
+                  </div>
+                )}
 
-                <div className="flex flex-col flex-1 p-5">
+                {/* Colored top accent bar */}
+                <div className="h-[3px] w-full flex-shrink-0 z-10" style={{ background: item.accent }} />
+
+                <div className="flex flex-col flex-1 p-5 md:p-6 lg:p-7 relative z-10">
                   {/* Icon + stat row */}
-                  <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-start justify-between mb-4">
                     <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                      style={{ background: `${item.accent}18` }}
+                      className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110 shadow-sm bg-white"
+                      style={{ border: `1px solid ${item.accent}30` }}
                     >
-                      <Icon size={22} style={{ color: item.accent }} strokeWidth={1.8} />
+                      <Icon size={24} style={{ color: item.accent }} strokeWidth={1.8} />
                     </div>
                     <span
-                      className="text-[10px] font-bold px-2.5 py-1 rounded-full leading-none"
-                      style={{ background: `${item.accent}12`, color: item.accent }}
+                      className="text-[10px] font-bold px-3 py-1.5 rounded-full leading-none tracking-widest uppercase shadow-sm bg-white"
+                      style={{ border: `1px solid ${item.accent}30`, color: item.accent }}
                     >
                       {item.stat}
                     </span>
                   </div>
 
                   {/* Label */}
-                  <h3 className="font-bold text-slate-800 text-sm md:text-[15px] leading-snug mb-1.5">
+                  <h3 className="font-bold text-slate-800 text-base md:text-[17px] leading-snug mb-2.5 group-hover:text-[#003366] transition-colors drop-shadow-sm">
                     {item.label}
                   </h3>
 
-                  {/* Description — fades in on hover for short cards, always visible for tall */}
-                  <p className="text-slate-500 text-[12px] leading-relaxed line-clamp-3">
+                  {/* Description — dynamically clamps based on row height */}
+                  <p className="text-slate-600 font-medium text-[13px] md:text-sm leading-relaxed max-h-full overflow-hidden flex-1 drop-shadow-sm">
                     {item.desc}
                   </p>
-
-                  {/* Read more arrow */}
-                  <div className="mt-auto pt-3 flex items-center gap-1 text-[11px] font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ color: item.accent }}>
-                    Learn more <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-300" />
+                  
+                  {/* Read more arrow (unclamps or just looks nice) */}
+                  <div className="mt-auto pt-3 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ color: item.accent }}>
+                    Learn more <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
                   </div>
                 </div>
 
                 {/* Subtle background glow on hover */}
                 <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none rounded-2xl"
-                  style={{ background: `radial-gradient(ellipse at 20% 80%, ${item.accent}08 0%, transparent 70%)` }}
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl z-0"
+                  style={{ background: `radial-gradient(ellipse at 80% 0%, ${item.accent}0a 0%, transparent 60%)` }}
                 />
               </motion.div>
             );
@@ -908,10 +971,10 @@ export default function Home() {
     <div className="font-sans bg-white antialiased">
       <HeroSection />
       <QuickLinksBar />
-      <StatsRow />
       <BentoNotices />
       <DepartmentsSection />
       <CampusGrid />
+      <StatsRow />
       <ImportantLinks />
     </div>
   );

@@ -172,9 +172,9 @@ export default function AboutContent() {
     () => ({
       establishedYear: "2008 (verify)",
       under: "DST, Government of Bihar",
-      campusAcres: "To be updated",
-      nearestRailway: "To be updated",
-      nearestAirport: "To be updated",
+      campusAcres: "~52 Acres",
+      nearestRailway: "Bihar Sharif Railway Station (~15 km). Alt: Nalanda Railway Station (~20 km)",
+      nearestAirport: "Jay Prakash Narayan Int. Airport, Patna (~85 km). Alt: Gaya Int. Airport (~85-90 km)",
     }),
     []
   );
@@ -290,7 +290,7 @@ export default function AboutContent() {
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <LogoTile
-            src={DEFAULT_LOGO_SRC}
+            src="/images/aicte-logo.png"
             alt="AICTE logo"
             label="AICTE Approved"
             fallback={<span className="text-[#003366] font-extrabold text-sm">AICTE</span>}
@@ -436,7 +436,7 @@ export default function AboutContent() {
                 <MapPin size={16} className="text-[#c9a84c] mt-0.5 shrink-0" />
                 <div>
                   <p className="font-semibold text-white">Address</p>
-                  <p className="text-white/75">Chandi, Nalanda, Bihar (add full address)</p>
+                  <p className="text-white/75">Nalanda College of Engineering, <br/>Chandi – Jalalpur Road, Gokhulpur, <br/>Chandi, Nalanda District, <br/>Bihar – 803108, India</p>
                 </div>
               </div>
             </div>

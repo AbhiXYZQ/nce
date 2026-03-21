@@ -29,7 +29,6 @@ export default function sitemap() {
     "/departments",
     "/placement",
     "/research",
-    "/iqac",
     "/notices",
     "/calendar",
     "/syllabus",
