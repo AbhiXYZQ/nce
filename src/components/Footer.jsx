@@ -25,9 +25,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-10">
           {/* Brand + socials */}
           <div className="xl:col-span-4">
-            <p className="font-playfair text-2xl font-extrabold text-white">NCE Chandi</p>
+            <p className="font-playfair text-2xl font-extrabold text-white">NCE</p>
             <p className="text-sm text-white/65 mt-3 leading-relaxed">
-              Nalanda College of Engineering, Chandi — Government Engineering College under Dept. of Science & Technology,
+              Nalanda College of Engineering — Government Engineering College under Dept. of Science & Technology,
               Govt. of Bihar. AICTE Approved.
             </p>
 
@@ -173,7 +173,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-8 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-white/55">© {new Date().getFullYear()} Nalanda College of Engineering, Chandi. All Rights Reserved.</p>
+          <p className="text-xs text-white/55">© {new Date().getFullYear()} Nalanda College of Engineering. All Rights Reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-3 text-xs">
             <Link className="inline-flex items-center gap-1.5 hover:text-white transition-colors" href="/placement">
               <Briefcase size={14} className="text-[#c9a84c]" /> T&P Cell

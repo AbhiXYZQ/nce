@@ -17,10 +17,10 @@ const playfair = Playfair_Display({
 });
 
 export const metadata = {
-  title: "Nalanda College of Engineering, Chandi | NCE",
+  title: "Nalanda College of Engineering | NCE",
   description:
-    "Official Website of Nalanda College of Engineering, Chandi — A premier Government Engineering College under Dept. of Science & Technology, Govt. of Bihar. AICTE Approved.",
-  keywords: "NCE Chandi, Nalanda College of Engineering, Government Engineering Bihar, AICTE",
+    "Official Website of Nalanda College of Engineering — A premier Government Engineering College under Dept. of Science & Technology, Govt. of Bihar. AICTE Approved.",
+  keywords: "NCE, Nalanda College of Engineering, Government Engineering Bihar, AICTE",
 };
 
 export default function RootLayout({ children }) {

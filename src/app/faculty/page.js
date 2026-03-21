@@ -8,6 +8,8 @@ export default function FacultyPage() {
       accentLabel="People"
       title="Faculty"
       subtitle="Principal, Heads of Department, and Assistant Professors — a clean directory with smooth animations."
+      bgImage="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop"
+      patternType="faculty"
       breadcrumbs={[{ label: "Home", href: "/" }, { label: "Faculty" }]}
       quickLinks={[
         { label: "Departments", href: "/departments" },

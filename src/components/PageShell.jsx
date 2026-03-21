@@ -2,8 +2,29 @@
 
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
-import { useMemo, useRef } from "react";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { useMemo, useRef, useState } from "react";
+import { 
+  ArrowRight, ChevronRight,
+  Cpu, Code2, Database, Network, Terminal, 
+  Brain, Sparkles, Binary, Layers,
+  Building2, Landmark, Compass, Ruler, Hammer,
+  Wrench, Settings, PenTool, Truck, Cylinder,
+  Plane, Wind, Navigation, Rocket, Globe,
+  Zap, CircuitBoard, Bolt, BatteryCharging,
+  Users, Award, GraduationCap, BookOpen
+} from "lucide-react";
+
+const PATTERN_MAP = {
+  cse: [Cpu, Code2, Database, Network, Terminal],
+  aiml: [Brain, Sparkles, Binary, Layers, Cpu],
+  ce: [Building2, Landmark, Compass, Ruler, Hammer],
+  me: [Wrench, Settings, PenTool, Truck, Cylinder],
+  aero: [Plane, Wind, Navigation, Rocket, Globe],
+  eee: [Zap, CircuitBoard, Bolt, BatteryCharging, Cpu],
+  about: [GraduationCap, BookOpen, Building2, Award],
+  faculty: [Users, Award, BookOpen, GraduationCap],
+  mtech: [Cpu, Zap, GraduationCap, BookOpen]
+};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
@@ -65,14 +86,101 @@ function Breadcrumbs({ items }) {
   );
 }
 
+function GalleryCarousel({ gallery }) {
+  const [index, setIndex] = useState(0);
+
+  if (!gallery || gallery.length === 0) return null;
+
+  const numItems = gallery.length;
+
+  const handleNext = () => setIndex((prev) => (prev + 1) % numItems);
+  const handlePrev = () => setIndex((prev) => (prev - 1 + numItems) % numItems);
+
+  return (
+    <div className="relative w-full h-[320px] md:h-[450px] lg:h-[500px] flex items-center justify-center overflow-hidden py-4 text-[#001a33]">
+      <div className="relative w-full max-w-7xl h-full flex items-center justify-center">
+        {gallery.map((img, i) => {
+          let offset = i - index;
+          if (offset > Math.floor(numItems / 2)) {
+            offset -= numItems;
+          } else if (offset < -Math.floor(numItems / 2)) {
+            offset += numItems;
+          }
+
+          const isActive = offset === 0;
+
+          return (
+            <motion.div
+              key={i}
+              initial={false}
+              animate={{
+                x: `${offset * 85}%`,
+                scale: isActive ? 1 : 0.8,
+                opacity: Math.abs(offset) > 1 ? 0 : offset === 0 ? 1 : 0.6,
+                filter: isActive ? "blur(0px) brightness(1.1)" : "blur(4px) brightness(0.6)",
+                zIndex: 10 - Math.abs(offset),
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 30,
+                mass: 0.8,
+              }}
+              onClick={() => {
+                if (offset === 1) handleNext();
+                if (offset === -1) handlePrev();
+              }}
+              className="absolute shrink-0 flex items-center justify-center w-[75%] sm:w-[60%] md:w-[50%] lg:w-[45%] h-full cursor-pointer pointer-events-auto"
+            >
+              <div className="relative inline-flex items-center justify-center max-w-full max-h-full rounded-2xl md:rounded-3xl drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]">
+                <img 
+                  src={img} 
+                  alt="Gallery view" 
+                  className="max-w-full max-h-full object-contain rounded-2xl md:rounded-3xl" 
+                />
+                {isActive && (
+                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#001122]/90 to-transparent pointer-events-none flex flex-col justify-end p-5 md:p-6 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-b-2xl md:rounded-b-3xl">
+                    <span className="text-white text-sm md:text-base font-bold uppercase tracking-widest drop-shadow-md flex items-center gap-2">
+                      <Sparkles size={16} className="text-[#c9a84c]" /> Highlight
+                    </span>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-between px-2 sm:px-4 md:px-12 z-30 pointer-events-none">
+        <button 
+          onClick={handlePrev} 
+          className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/40 hover:bg-white border border-white/50 backdrop-blur-md flex items-center justify-center text-[#001a33] shadow-xl pointer-events-auto transition-all hover:scale-110 active:scale-95"
+        >
+          <ChevronRight size={28} className="rotate-180" />
+        </button>
+        <button 
+          onClick={handleNext} 
+          className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/40 hover:bg-white border border-white/50 backdrop-blur-md flex items-center justify-center text-[#001a33] shadow-xl pointer-events-auto transition-all hover:scale-110 active:scale-95"
+        >
+          <ChevronRight size={28} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function PageShell({
-  eyebrow = "Nalanda College of Engineering, Chandi",
+  eyebrow = "Nalanda College of Engineering",
   title,
   subtitle,
   breadcrumbs,
   quickLinks,
   sections,
   accentLabel = "Explore",
+  patternType = null,
+  bgImage = null,
+  gallery = [],
   children,
 }) {
   const normalizedSections = useMemo(() => sections?.filter(Boolean) ?? [], [sections]);
@@ -86,12 +194,47 @@ export default function PageShell({
         animate="visible"
         className="relative overflow-hidden"
       >
-        <div className="relative bg-gradient-to-br from-[#001a33] via-[#003366] to-[#001a33]">
+        <div className="relative min-h-[300px] md:min-h-[380px] bg-[#001a33] flex items-center">
+          {/* Background Image with Overlay */}
+          {bgImage && (
+            <div className="absolute inset-0 z-0">
+              <img 
+                src={bgImage} 
+                alt={title} 
+                className="w-full h-full object-cover opacity-40 select-none pointer-events-none"
+              />
+              {/* Very strong dark overlap on the left for text contrast */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#001122] via-[#001122]/90 to-transparent" />
+              {/* Subtle darkening from bottom for depth */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#001122]/80 via-transparent to-transparent" />
+            </div>
+          )}
+
+          {/* Fallback Sleek Floating Decor if no image */}
+          {!bgImage && patternType && PATTERN_MAP[patternType] && (
+            <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#c9a84c]/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/3" />
+              <div className="relative h-full w-full opacity-20">
+                {(() => {
+                  const icons = PATTERN_MAP[patternType];
+                   return (
+                    <>
+                      <div className="absolute top-1/2 right-[10%] -translate-y-1/2 opacity-[0.2] blur-[1px] rotate-12 text-white">
+                        {(() => { const Icon = icons[0]; return <Icon size={200} />; })()}
+                      </div>
+                    </>
+                  );
+                })()}
+              </div>
+            </div>
+          )}
+
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-[#c9a84c]/10 blur-3xl" />
             <div className="absolute -bottom-28 -right-24 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
           </div>
-          <div className="container mx-auto px-6 py-14 md:py-16">
+          <div className="container mx-auto px-6 py-14 md:py-16 relative z-10">
             <motion.div variants={fadeUp} className="max-w-3xl">
               <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#c9a84c] mb-3">
                 {accentLabel}
@@ -170,6 +313,15 @@ export default function PageShell({
           )}
         </Section>
       ))}
+
+      {/* Gallery Section */}
+      {gallery.length > 0 && (
+        <Section title="Explore Our Environment">
+          <div className="relative -mx-6 px-6 md:-mx-4 md:px-4">
+            <GalleryCarousel gallery={gallery} />
+          </div>
+        </Section>
+      )}
 
       {children}
 

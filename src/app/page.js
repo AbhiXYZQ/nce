@@ -85,10 +85,10 @@ const GOLD = "#c9a84c";
 const RED = "#d32f2f";
 
 const heroContent = {
-  eyebrow: "Under Construction 😊, NCE Chandi",
+  eyebrow: "Under Construction 😊, NCE",
   headline: ["Forging Engineers,", "Shaping the Future."],
   sub: "Government Engineering College · AICTE Approved · Dept. of Science & Technology, Govt. of Bihar",
-  cta1: { label: "Apply for Admission 2026", href: "/admission" },
+  cta1: { label: "Admission Procedure 2026", href: "/admission" },
   cta2: { label: "Explore Programs", href: "/academics" },
   stats: [
     { value: "3000+", label: "Alumni" },
@@ -195,7 +195,7 @@ const departments = [
 
 const bentoNotices = {
   updates: [
-    { date: "24 Feb 2026", title: "Admission Registration Extended till 10th March 2026", isNew: true },
+    { date: "24 Feb 2026", title: "BCECE/UGEAC Counseling Registration Extended", isNew: true },
     { date: "20 Feb 2026", title: "End-Semester Exam Date Sheet (Even Sem) Released", isNew: true },
     { date: "15 Feb 2026", title: "Smart India Hackathon 2026 – Internal Round Results", isNew: false },
     { date: "10 Feb 2026", title: "NPTEL Online Certification Courses – Last Date 28 Feb", isNew: false },
@@ -504,7 +504,7 @@ function BentoNotices() {
                 News &<br />Announcements
               </h2>
               <p className="text-slate-500 text-sm mt-3 leading-relaxed">
-                The latest updates, upcoming events, and official circulars from NCE Chandi.
+                The latest updates, upcoming events, and official circulars from NCE.
               </p>
             </motion.div>
             <motion.div variants={stagger} className="flex flex-row lg:flex-col gap-2">

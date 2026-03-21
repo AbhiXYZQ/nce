@@ -69,7 +69,7 @@ const NAV_ITEMS = [
 ];
 
 const TICKER_NEWS = [
-  "📢 Admission Registration Extended till 10th March 2026.",
+  "📢 BCECE / UGEAC Counseling Registration Extended till 10th March 2026.",
   "🎓 TCS Campus Drive on 5th March 2026 – Register Now.",
   "📋 End-Semester Exam Date Sheet (Even Sem) has been released.",
   "🏆 NANO-26 Techno-Cultural Fest registrations are open.",
@@ -390,7 +390,7 @@ export default function Navbar() {
                   Nalanda College of Engineering
                 </h1>
                 <h2 className="font-playfair text-[12px] sm:text-base md:text-xl lg:text-2xl font-bold text-[#d32f2f] mt-0.5 md:mt-1 leading-tight">
-                  नालंदा अभियंत्रण महाविद्यालय, चंडी
+                  नालंदा अभियंत्रण महाविद्यालय
                 </h2>
                 <p className="hidden md:block text-[11px] lg:text-sm text-slate-500 font-medium mt-1 tracking-wide">
                   Department of Science &amp; Technology, Govt. of Bihar &nbsp;|&nbsp; AICTE Approved
@@ -445,7 +445,7 @@ export default function Navbar() {
                 {/* Drawer header */}
                 <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
                   <div>
-                    <p className="font-playfair text-white font-bold text-base">NCE Chandi</p>
+                    <p className="font-playfair text-white font-bold text-base">NCE</p>
                     <p className="text-slate-400 text-[10px] tracking-wider">Navigation Menu</p>
                   </div>
                   <button
@@ -485,7 +485,7 @@ export default function Navbar() {
                     ))}
                   </div>
                   <p className="text-center text-[10px] text-slate-600 mt-3 tracking-wider">
-                    © 2026 NCE Chandi. All Rights Reserved.
+                    © 2026 NCE. All Rights Reserved.
                   </p>
                 </div>
               </motion.div>
@@ -538,7 +538,7 @@ export default function Navbar() {
             {/* Mobile: Logo text + Hamburger */}
             <div className="md:hidden flex items-center justify-between w-full">
               <Link href="/" className="text-[#c9a84c] font-extrabold text-sm tracking-widest uppercase font-playfair">
-                NCE Chandi
+                NCE
               </Link>
               <button
                 onClick={() => setDrawerOpen(true)}

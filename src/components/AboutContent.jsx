@@ -192,7 +192,7 @@ export default function AboutContent() {
     <div className="bg-transparent">
       <RevealSection
         kicker="Introduction & History"
-        title="Nalanda College of Engineering, Chandi"
+        title="Nalanda College of Engineering"
         subtitle="A brief, official-friendly introduction — establishment, governance, and campus snapshot."
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -206,7 +206,7 @@ export default function AboutContent() {
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#c9a84c]">Brief</p>
             <p className="text-lg md:text-xl font-extrabold text-slate-900 mt-2">A trusted government institute</p>
             <p className="text-sm md:text-base text-slate-600 mt-2 leading-relaxed">
-              Nalanda College of Engineering, Chandi is a Government Engineering College under {facts.under}. This About page
+              Nalanda College of Engineering is a Government Engineering College under {facts.under}. This About page
               is structured for official content — replace placeholders with verified details from the college office.
             </p>
           </div>
@@ -333,7 +333,7 @@ export default function AboutContent() {
               <p className="text-sm text-slate-600 mt-1">{principal?.designation ?? "Principal"}</p>
 
               <p className="text-sm md:text-base text-slate-600 mt-4 leading-relaxed">
-                Welcome to Nalanda College of Engineering, Chandi. We believe in strong fundamentals, discipline, and hands-on
+                Welcome to Nalanda College of Engineering. We believe in strong fundamentals, discipline, and hands-on
                 engineering practice — supported by research, innovation, and ethical values. Our focus is to help students
                 grow into competent professionals and responsible citizens.
               </p>

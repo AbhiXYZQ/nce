@@ -10,7 +10,7 @@ export async function generateMetadata({ params }) {
   const dept = DEPARTMENTS[slug];
   if (!dept) return {};
   return {
-    title: `${dept.title} | NCE Chandi`,
+    title: `${dept.title} | NCE`,
     description: dept.subtitle,
   };
 }
@@ -26,6 +26,10 @@ export default async function DepartmentPage({ params }) {
 
   const dept = DEPARTMENTS[slug];
   if (!dept) return notFound();
+
+  // Handle pattern type
+  const isMtech = slug.startsWith("mtech");
+  const patternType = isMtech ? "mtech" : slug;
 
   // Find faculty for this department
   const facultyMapping = {
@@ -47,6 +51,9 @@ export default async function DepartmentPage({ params }) {
       accentLabel="Department"
       title={dept.title}
       subtitle={dept.subtitle}
+      bgImage={dept.bannerImage}
+      gallery={dept.gallery}
+      patternType={patternType}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Departments", href: "/departments" },
