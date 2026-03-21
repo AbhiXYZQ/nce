@@ -7,7 +7,7 @@ export const principal = {
   phone: "+91-9412955789",
   office: "Principal Office",
   areas: ["Administration", "Academic Leadership"],
-  photo: "/images/faculties/principal.png",
+      photo: "/images/faculties/principal.JPG",
 };
 
 export const facultyDepartments = [
@@ -35,7 +35,7 @@ export const facultyDepartments = [
         phone: "+91-9579334914",
         office: "CSE Department",
         areas: ["Systems", "Programming"],
-        photo: null,
+        photo: "/images/faculties/digamber_computerScience.JPG",
       },
       {
         name: "Dr. SAKSHIWALA",
@@ -46,7 +46,7 @@ export const facultyDepartments = [
         phone: "+91-9705632100",
         office: "CSE Department",
         areas: ["Computer Networks", "Information Security"],
-        photo: null,
+        photo: "/images/faculties/Sakhiwala_CSE.JPG",
       },
       {
         name: "Rajeev Kumar",
@@ -68,7 +68,7 @@ export const facultyDepartments = [
         phone: "+91-7903262170",
         office: "CSE Department",
         areas: ["Database Management Systems"],
-        photo: null,
+        photo: "/images/faculties/rashmi_cse.JPG",
       },
       {
         name: "Kumar Sachin Yadav",
@@ -79,7 +79,7 @@ export const facultyDepartments = [
         phone: "+91-9122710072",
         office: "CSE Department",
         areas: ["Algorithms", "Data structures"],
-        photo: null,
+        photo: "/images/faculties/Sachin_CSE.JPG",
       },
       {
         name: "Kumari Shambhavi",
@@ -118,7 +118,7 @@ export const facultyDepartments = [
         phone: "+91-9579334914",
         office: "AI & ML Department",
         areas: ["Systems", "Programming"],
-        photo: null,
+        photo: "/images/faculties/digamber_computerScience.JPG",
       },
       {
         name: "Dr. SAKSHIWALA",
@@ -129,7 +129,7 @@ export const facultyDepartments = [
         phone: "+91-9705632100",
         office: "AI & ML Department",
         areas: ["Computer Networks", "Information Security"],
-        photo: null,
+        photo: "/images/faculties/Sakhiwala_CSE.JPG",
       },
       {
         name: "Rajeev Kumar",
@@ -151,7 +151,7 @@ export const facultyDepartments = [
         phone: "+91-7903262170",
         office: "AI & ML Department",
         areas: ["Database Management Systems"],
-        photo: null,
+        photo: "/images/faculties/rashmi_cse.JPG",
       },
       {
         name: "Kumar Sachin Yadav",
@@ -162,7 +162,7 @@ export const facultyDepartments = [
         phone: "+91-9122710072",
         office: "AI & ML Department",
         areas: ["Algorithms", "Data structures"],
-        photo: null,
+        photo: "/images/faculties/Sachin_CSE.JPG",
       },
       {
         name: "Kumari Shambhavi",
@@ -189,7 +189,7 @@ export const facultyDepartments = [
       phone: "+91-7903026264",
       office: "Civil Engineering Department",
       areas: ["Planning & Construction", "Structural Design"],
-      photo: null,
+      photo: "/images/faculties/Sudeep_civil.JPG",
     },
     assistants: [
       {
@@ -201,7 +201,7 @@ export const facultyDepartments = [
         phone: "+91-9716416402",
         office: "Civil Engineering Department",
         areas: ["Surveying", "Geotechnical Engineering"],
-        photo: null,
+        photo: "/images/faculties/bhavesh_civil.JPG",
       },
       {
         name: "Dr. Keshav Kumar",
@@ -212,7 +212,7 @@ export const facultyDepartments = [
         phone: "+91-8797034365",
         office: "Civil Engineering Department",
         areas: ["Hydraulics", "Water Resource Engineering"],
-        photo: null,
+        photo: "/images/faculties/Keshav_Civil.JPG",
       },
       {
         name: "Mansi Ranjan",
@@ -223,7 +223,7 @@ export const facultyDepartments = [
         phone: "+91-9135851509",
         office: "Civil Engineering Department",
         areas: ["Transportation Engineering", "Surveying"],
-        photo: null,
+        photo: "/images/faculties/Manshi_civil.JPG",
       },
       {
         name: "Akash Ranjan",
@@ -234,7 +234,7 @@ export const facultyDepartments = [
         phone: "+91-7978033855",
         office: "Civil Engineering Department",
         areas: ["Building Construction", "CAD"],
-        photo: null,
+        photo: "/images/faculties/AkashRanjan_Civil.JPG",
       },
       {
         name: "Supriya Sinha",
@@ -245,7 +245,7 @@ export const facultyDepartments = [
         phone: "+91-7870763487",
         office: "Civil Engineering Department",
         areas: ["Irrigation & Water Resource Engineering"],
-        photo: null,
+        photo: "/images/faculties/Supriya_Civil.JPG",
       },
     ],
   },
@@ -273,7 +273,7 @@ export const facultyDepartments = [
         phone: "+91-XXXXXXXXXX",
         office: "Mechanical Engineering Department",
         areas: ["Manufacturing Processes", "Tool Engineering"],
-        photo: null,
+        photo: "/images/faculties/avinash_Machenical.JPG",
       },
       {
         name: "Saurabh Suman",
@@ -284,7 +284,7 @@ export const facultyDepartments = [
         phone: "+91-7674924892",
         office: "Mechanical Engineering Department",
         areas: ["Mechatronics", "Heat and Mass Transfer", "CIM"],
-        photo: null,
+        photo: "/images/faculties/SaurabhSuman_machenical.JPG",
       },
     ],
   },
@@ -339,7 +339,7 @@ export const facultyDepartments = [
       phone: "+91-XXXXXXXXXX",
       office: "EEE Department",
       areas: ["Generation", "Transmission"],
-      photo: null,
+      photo: "/images/faculties/Ashish_ranjan_eee_hod.JPG",
     },
     assistants: [
       {
@@ -395,7 +395,7 @@ export const facultyDepartments = [
         phone: "+91-XXXXXXXXXX",
         office: "EEE Department",
         areas: ["Analog Electronics", "Digital Electronics"],
-        photo: null,
+        photo: "/images/faculties/monaPriya_electrical.JPG",
       },
       {
         name: "Nikhil Nigam",
@@ -406,7 +406,7 @@ export const facultyDepartments = [
         phone: "+91-8309954480",
         office: "EEE Department",
         areas: ["Electrical Systems", "Communication Domain"],
-        photo: null,
+        photo: "/images/faculties/NikhilNigam_EEE.JPG",
       },
       {
         name: "Dr. Shagufta Khan",

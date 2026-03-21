@@ -46,6 +46,7 @@ import {
   ClipboardList,
   Link2,
   Music2,
+  Quote,
 } from "lucide-react";
 
 // ─── ANIMATION VARIANTS ──────────────────────────────────────────────────────
@@ -283,7 +284,7 @@ function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#001122]">
+    <section className="relative min-h-[85svh] md:min-h-screen flex flex-col justify-center overflow-hidden bg-[#001122]">
       {/* Dynamic Slide Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <AnimatePresence mode="wait">
@@ -300,7 +301,8 @@ function HeroSection() {
               alt="Campus Insight"
               fill
               priority
-              quality={85}
+              quality={100}
+              sizes="100vw"
               className="object-cover object-center z-0"
             />
             {/* Overlays for readability */}
@@ -976,6 +978,107 @@ function QuickLinksBar() {
   );
 }
 
+// ─── PRINCIPAL MESSAGE ────────────────────────────────────────────────────────
+
+function PrincipalMessage() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section ref={ref} className="py-24 relative overflow-hidden bg-white border-b border-slate-100">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#c9a84c]/5 rounded-full blur-[100px] pointer-events-none translate-x-1/3 -translate-y-1/3" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#003366]/5 rounded-full blur-[100px] pointer-events-none -translate-x-1/3 translate-y-1/3" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            
+            <motion.div 
+              initial={{ opacity: 0, x: -40, filter: "blur(10px)" }}
+              animate={inView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+              className="lg:col-span-5 relative"
+            >
+              <div className="relative z-10 mx-auto max-w-sm lg:max-w-none">
+                <motion.div 
+                  whileHover={{ scale: 1.02, rotate: 1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="relative rounded-[2.5rem] overflow-hidden aspect-[4/5] shadow-2xl shadow-[#003366]/20 border-[6px] border-white bg-slate-100 group"
+                >
+                  <Image
+                    src="/images/faculties/principal.JPG"
+                    alt="Dr. Gopal Nandan"
+                    fill
+                    quality={100}
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-1000"
+                    sizes="(max-width: 1024px) 100vw, 500px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#001122]/90 via-[#001122]/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute bottom-0 left-0 w-full p-8 md:p-10 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                    <p className="font-playfair text-2xl md:text-3xl font-bold leading-tight drop-shadow-md">Dr. Gopal Nandan</p>
+                    <p className="text-[#c9a84c] text-xs font-bold tracking-[0.2em] uppercase mt-2 drop-shadow-sm">Principal, NCE</p>
+                  </div>
+                </motion.div>
+                
+                <motion.div 
+                   animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                   className="absolute -bottom-6 -right-6 w-32 h-32 rounded-3xl bg-gradient-to-br from-[#c9a84c] to-[#e8c86a] -z-10 shadow-xl opacity-80"
+                />
+                <div className="absolute -top-6 -left-6 w-full h-full rounded-[2.5rem] border border-[#003366]/10 -z-20" />
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+              animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
+              className="lg:col-span-7 flex flex-col justify-center"
+            >
+              <div className="relative">
+                <Quote className="absolute -top-10 -left-6 md:-left-10 text-[#c9a84c]/20 w-24 h-24 md:w-32 md:h-32 rotate-180 -z-10 transition-transform hover:scale-110 duration-500" />
+                
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#c9a84c] mb-4">Leadership Vision</p>
+                <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold text-[#003366] leading-[1.15] mb-8">
+                  Empowering minds to <br className="hidden md:block"/>
+                  <span className="relative inline-block mt-2 md:mt-0">
+                    <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-[#c9a84c] to-[#b8963d]">redefine the future.</span>
+                    <span className="absolute bottom-2 left-0 w-full h-3 bg-[#c9a84c]/10 -z-10 rounded-sm"></span>
+                  </span>
+                </h2>
+                
+                <div className="space-y-5 text-slate-500 font-sans text-[15px] md:text-base lg:text-[17px] leading-relaxed">
+                  <p>
+                    "Rooted in the historic land of Nalanda—a beacon of global learning—Nalanda College of Engineering proudly carries forward this monumental legacy. Our mission extends far beyond imparting technical education; we are here to forge brilliant innovators equipped with unshakable ethical values and a profound sense of social responsibility."
+                  </p>
+                  <p>
+                    "We offer a dynamic, state-of-the-art academic environment where students transform their curiosities into groundbreaking technologies. I warmly welcome you to join our visionary campus and take your place among the next generation of global engineering leaders."
+                  </p>
+                </div>
+
+                <div className="mt-10 pt-8 border-t border-slate-100 flex items-center justify-between">
+                  <div>
+                    <p className="font-playfair italic font-bold text-xl md:text-2xl text-slate-800">Dr. Gopal Nandan</p>
+                    <p className="text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase text-slate-400 mt-1.5">Ph.D. / Principal</p>
+                  </div>
+                  
+                  <Link href="/principal" className="flex items-center gap-3 group">
+                    <span className="text-sm font-bold text-[#003366] uppercase tracking-wider opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300">Read Message</span>
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-slate-200 flex items-center justify-center text-[#c9a84c] group-hover:bg-[#003366] group-hover:text-white group-hover:scale-110 group-hover:border-transparent transition-all duration-300 shadow-sm">
+                      <ArrowRight size={20} className="group-hover:-rotate-45 transition-transform duration-300" />
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── PAGE ─────────────────────────────────────────────────────────────────────
 
 export default function Home() {
@@ -984,6 +1087,7 @@ export default function Home() {
       <HeroSection />
       <QuickLinksBar />
       <BentoNotices />
+      <PrincipalMessage />
       <DepartmentsSection />
       <CampusGrid />
       <StatsRow />

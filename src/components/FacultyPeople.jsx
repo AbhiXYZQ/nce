@@ -46,8 +46,9 @@ function Avatar({ person, size = "md" }) {
           src={person.photo}
           alt={person.name}
           fill
-          className="object-cover"
-          sizes={`${imageSize}px`}
+          quality={85}
+          className="object-cover object-[center_top]"
+          sizes="(max-width: 768px) 256px, 384px"
         />
       </div>
     );

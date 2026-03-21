@@ -54,20 +54,21 @@ export default function Footer() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.15 }} // trigger slightly early when scrolling down
-      className="bg-[#001a33] text-white/80 border-t border-white/10 relative overflow-hidden font-sans"
+      className="bg-[#050505] text-white/80 border-t border-white/10 relative overflow-hidden font-sans"
     >
-      {/* Decorative subtle background glows for premium feel */}
+      {/* Decorative Grid & glows for premium feel */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
       <motion.div 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 0.3 }}
         transition={{ duration: 1.5 }}
-        className="absolute top-0 left-1/4 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-[#c9a84c]/5 rounded-full blur-[100px] pointer-events-none" 
+        className="absolute top-0 left-1/4 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-[#c9a84c]/10 rounded-full blur-[120px] pointer-events-none" 
       />
       <motion.div 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 0.15 }}
         transition={{ duration: 1.5, delay: 0.3 }}
-        className="absolute bottom-0 right-1/4 w-[300px] md:w-[450px] h-[300px] md:h-[450px] bg-white/5 rounded-full blur-[100px] pointer-events-none" 
+        className="absolute bottom-0 right-1/4 w-[300px] md:w-[450px] h-[300px] md:h-[450px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" 
       />
 
       <div className="container mx-auto px-6 py-14 relative z-10">
@@ -243,9 +244,17 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
-          className="mt-10 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-5"
+          className="mt-10 pt-8 border-t border-white/10 flex flex-col lg:flex-row items-center justify-between gap-6"
         >
-          <p className="text-xs text-white/50 tracking-wider">© {new Date().getFullYear()} Nalanda College of Engineering. All Rights Reserved.</p>
+          <p className="text-xs text-white/50 tracking-wider text-center lg:text-left">© {new Date().getFullYear()} Nalanda College of Engineering. All Rights Reserved.</p>
+          
+          <div className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors shadow-lg shadow-black/50 mx-auto lg:mx-0">
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
+            <span className="text-[11px] md:text-xs text-white/70 font-medium tracking-wide">
+              Developed & Maintained by <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#c9a84c] to-[#e8c86a] ml-1 text-xs md:text-sm">T&P Cell, NCE</span>
+            </span>
+          </div>
+
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-medium uppercase tracking-wider">
             <Link className="inline-flex items-center gap-2 text-white/60 hover:text-[#c9a84c] transition-transform hover:-translate-y-0.5" href="/placement">
                T&P Cell
