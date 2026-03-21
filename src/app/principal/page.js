@@ -9,11 +9,24 @@ export default function PrincipalDeskPage() {
       breadcrumbs={[{ label: "Home", href: "/" }, { label: "Institute" }, { label: "Principal's Desk" }]}
       sections={[
         {
-          title: "Message",
+          title: "Principal's Message",
           cards: [
-            { title: "Principal’s Message", kicker: "Message", text: "Add the official message and a photo of the Principal." },
-            { title: "Key Focus Areas", kicker: "Focus", text: "Teaching quality, placements, research, student welfare, campus culture." },
-            { title: "Contact Office", kicker: "Contact", text: "Office hours, email, and official communication channels.", href: "/contact" },
+            { 
+              title: "My Dear Students", 
+              kicker: "Welcome", 
+              text: "Welcome to Nalanda College of Engineering (NCE). Our aim is to provide you the best quality education. In fact, the education is hidden in the student itself; we just encourage them to explore and enjoy the learning." 
+            },
+            { 
+              title: "Leadership & Skills", 
+              kicker: "Mission", 
+              text: "Increasing diversity in needs and globalization have generated and enhanced the demand for competitive skills. We provide a platform where these needs are fulfilled and motivate students to develop leadership skills." 
+            },
+            { 
+              title: "Contact Dr. Gopal Nandan", 
+              kicker: "Direct Office", 
+              text: "Official inquiries: nceprincipalchandi@gmail.com. Office hours: 10:00 AM – 5:00 PM.", 
+              href: "mailto:nceprincipalchandi@gmail.com" 
+            },
           ],
         },
       ]}

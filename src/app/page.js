@@ -45,6 +45,7 @@ import {
   ClipboardList,
   Link2,
   Music2,
+  Lightbulb,
 } from "lucide-react";
 
 // ─── ANIMATION VARIANTS ──────────────────────────────────────────────────────
@@ -85,21 +86,21 @@ const GOLD = "#c9a84c";
 const RED = "#d32f2f";
 
 const heroContent = {
-  eyebrow: "Under Construction 😊, NCE",
-  headline: ["Forging Engineers,", "Shaping the Future."],
-  sub: "Government Engineering College · AICTE Approved · Dept. of Science & Technology, Govt. of Bihar",
-  cta1: { label: "Admission Procedure 2026", href: "/admission" },
-  cta2: { label: "Explore Programs", href: "/academics" },
+  eyebrow: "Engineering Excellence · Est. 2008 · Nalanda",
+  headline: ["Innovating Today,", "Defining Tomorrow."],
+  sub: "A Premier Government Engineering Institution under the Dept. of Science & Technology, Govt. of Bihar. AICTE Approved & Affiliated to Bihar Engineering University.",
+  cta1: { label: "Admission 2026", href: "/admission" },
+  cta2: { label: "Our Programs", href: "/academics" },
   stats: [
-    { value: "3000+", label: "Alumni" },
-    { value: "8", label: "Programs" },
-    { value: "200+", label: "Recruiters" },
-    { value: "15+", label: "Years" },
+    { value: "4000+", label: "Alumni" },
+    { value: "08", label: "Specializations" },
+    { value: "100%", label: "Govt. Institution" },
+    { value: "15+", label: "Years of Legacy" },
   ],
 };
 
 const statsData = [
-  { icon: GraduationCap, value: 3000, suffix: "+", label: "Alumni Worldwide" },
+  { icon: GraduationCap, value: 4000, suffix: "+", label: "Alumni Worldwide" },
   { icon: Users, value: 150, suffix: "+", label: "Expert Faculty" },
   { icon: BookOpen, value: 8, suffix: "", label: "Programs (UG & PG)" },
   { icon: Trophy, value: 50, suffix: "+", label: "Awards & Rankings" },
@@ -119,15 +120,14 @@ const departments = [
     desc: "Algorithms, Systems & Software Engineering.",
   },
   {
-    icon: Brain,
-    name: "AI & Machine Learning",
-    short: "AI & ML",
-    slug: "aiml",
+    icon: Zap,
+    name: "Electrical & Electronics Engineering",
+    short: "EEE",
+    slug: "eee",
     seats: 60,
-    accent: "#7c3aed",
-    highlight: true,
-    desc: "Deep Learning, NLP, Computer Vision & Data Science.",
-    tag: "New · Flagship",
+    accent: "#d97706",
+    highlight: false,
+    desc: "Power Systems, Control & Electronics.",
   },
   {
     icon: Building2,
@@ -160,14 +160,15 @@ const departments = [
     desc: "Aerodynamics, Propulsion & Aircraft Structures.",
   },
   {
-    icon: Zap,
-    name: "Electrical & Electronics Engineering",
-    short: "EEE",
-    slug: "eee",
+    icon: Brain,
+    name: "AI & Machine Learning",
+    short: "AI & ML",
+    slug: "aiml",
     seats: 60,
-    accent: "#d97706",
-    highlight: false,
-    desc: "Power Systems, Control & Electronics.",
+    accent: "#7c3aed",
+    highlight: true,
+    desc: "Deep Learning, NLP, Computer Vision & Data Science.",
+    tag: "New · Flagship",
   },
   {
     icon: Cpu,
@@ -215,12 +216,60 @@ const bentoNotices = {
 
 
 const campusGrid = [
-  { label: "Central Library", icon: Library, accent: "#1e40af", span: "row-span-2", desc: "25,000+ books, e-journals & digital resources accessible 24×7", stat: "25K+ Books" },
-  { label: "AI / ML Laboratory", icon: Brain, accent: "#6d28d9", span: "", desc: "GPU clusters, research workstations & cloud compute nodes", stat: "40 Servers" },
-  { label: "Sports Complex", icon: Dumbbell, accent: "#15803d", span: "", desc: "Cricket, Football, Badminton courts & fully equipped Gymnasium", stat: "5 Arenas" },
-  { label: "Student Hostel", icon: HomeIcon, accent: "#b45309", span: "col-span-2", desc: "1000+ capacity — secured campus, Wi-Fi, dining hall & 24×7 staff", stat: "1000+ Beds" },
-  { label: "Research Labs", icon: Microscope, accent: "#0f766e", span: "", desc: "40+ specialised laboratories across all engineering departments", stat: "40+ Labs" },
-  // { label: "Auditorium", icon: Music2, accent: "#be123c", span: "", desc: "1200-seat state-of-the-art multipurpose convention facility", stat: "1200 Seats" },
+  { 
+    label: "Central Library", 
+    icon: Library, 
+    accent: "#1e40af", 
+    span: "row-span-2", 
+    desc: "25,000+ books, e-journals & digital resources accessible 24×7", 
+    stat: "25K+ Books",
+    image: "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&q=80&w=2070" 
+  },
+  { 
+    label: "AI / ML Laboratory", 
+    icon: Brain, 
+    accent: "#6d28d9", 
+    span: "", 
+    desc: "GPU clusters, research workstations & cloud compute nodes", 
+    stat: "40 Servers",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2070"
+  },
+  { 
+    label: "Sports Complex", 
+    icon: Dumbbell, 
+    accent: "#15803d", 
+    span: "", 
+    desc: "Cricket, Football, Badminton courts & fully equipped Gymnasium", 
+    stat: "5 Arenas",
+    image: "https://images.unsplash.com/photo-1541252260737-0402bb7d8caf?auto=format&fit=crop&q=80&w=2070"
+  },
+  { 
+    label: "Student Hostel", 
+    icon: HomeIcon, 
+    accent: "#b45309", 
+    span: "col-span-1 md:col-span-2", 
+    desc: "1000+ capacity — secured campus, Wi-Fi, dining hall & 24×7 staff", 
+    stat: "1000+ Beds",
+    image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80&w=2070"
+  },
+  { 
+    label: "Research Labs", 
+    icon: Microscope, 
+    accent: "#0f766e", 
+    span: "", 
+    desc: "40+ specialised laboratories across all engineering departments", 
+    stat: "40+ Labs",
+    image: "https://images.unsplash.com/photo-1532187875323-ce432d664539?auto=format&fit=crop&q=80&w=2070"
+  },
+  { 
+    label: "Innovation Hub", 
+    icon: Lightbulb, 
+    accent: "#7c3aed", 
+    span: "col-span-2 md:col-span-2", 
+    desc: "A creative incubator for student startups, patent support & multidisciplinary projects", 
+    stat: "10+ Startups",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=2070"
+  },
 ];
 
 // ─── ANIMATED COUNTER ────────────────────────────────────────────────────────
@@ -295,15 +344,16 @@ function HeroSection() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#001122]/90 via-[#001122]/60 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#001122]/80" />
             
-            {/* Subtle grid overlay */}
+            {/* Glass Texture Overlay */}
             <div
-              className="absolute inset-0 opacity-[0.06]"
+              className="absolute inset-0 opacity-[0.08]"
               style={{
                 backgroundImage:
-                  "linear-gradient(rgba(255,255,255,0.3) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.3) 1px,transparent 1px)",
-                backgroundSize: "60px 60px",
+                  "linear-gradient(rgba(255,255,255,0.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.4) 1px,transparent 1px)",
+                backgroundSize: "80px 80px",
               }}
             />
+            <div className="absolute inset-0 bg-[#001122]/30" />
           </motion.div>
         </AnimatePresence>
 
@@ -331,8 +381,8 @@ function HeroSection() {
                 <motion.h1
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.65, delay: 0.25 }}
-                  className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-6"
+                  transition={{ duration: 0.75, delay: 0.25 }}
+                  className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] mb-6 tracking-tight"
                 >
                   {heroContent.headline.map((line, i) => (
                     <span key={i} className={`block ${i === 1 ? "text-transparent bg-clip-text bg-gradient-to-r from-[#c9a84c] to-[#f0d080]" : ""}`}>
@@ -425,22 +475,115 @@ function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-slate-400"
-      >
-        <span className="text-[10px] tracking-[0.2em] uppercase font-medium">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 5, 0] }}
-          transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
-        >
-          <ChevronDown size={16} />
-        </motion.div>
-      </motion.div>
     </section>
+  );
+}
+
+// ─── PRINCIPAL'S DESK SECTION (NEW) ──────────────────────────────────────────
+
+function PrincipalDesk() {
+  return (
+    <Section className="py-24 bg-white overflow-hidden">
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col lg:flex-row items-center gap-16">
+          {/* Principal Image with Decorative Elements */}
+          <motion.div variants={fadeIn} className="relative group flex-shrink-0 w-full lg:w-5/12">
+            <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-8 border-slate-50 transition-transform duration-500 group-hover:scale-[1.02]">
+              <img
+                src="/images/principal.png"
+                alt="Principal, NCE"
+                className="w-full aspect-[4/5] object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#003366] to-transparent p-8">
+                <h4 className="text-white font-bold text-xl mb-0.5">Dr. Gopal Nandan</h4>
+                <p className="text-blue-200 text-xs font-semibold uppercase tracking-[0.2em]">Principal, NCE Chandi</p>
+              </div>
+            </div>
+            {/* Shapes behind image */}
+            <div className="absolute top-10 -left-10 w-64 h-64 bg-slate-50 rounded-full blur-3xl -z-0" />
+            <div className="absolute -bottom-10 -right-10 w-80 h-80 bg-blue-50 rounded-full blur-3xl -z-0" />
+            <div className="absolute top-1/2 -right-4 w-12 h-12 border-2 border-[#c9a84c] rounded-full hidden lg:block" />
+          </motion.div>
+
+          {/* Principal Message Content */}
+          <div className="flex-1">
+            <motion.div variants={fadeUp}>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#c9a84c] mb-4">Leadership Voice</p>
+              <h2 className="font-playfair text-4xl lg:text-5xl font-bold text-[#003366] mb-8 leading-tight">
+                From the Principal&apos;s Desk
+              </h2>
+              
+              <div className="relative">
+                <span className="absolute -top-10 -left-6 text-slate-100 text-9xl font-serif select-none pointer-events-none">&ldquo;</span>
+                <div className="space-y-6 text-slate-700 font-medium leading-[1.8] italic text-lg relative z-10">
+                  <p className="text-xl text-[#003366] not-italic font-bold mb-4">My Dear Students,</p>
+                  <p>
+                    Welcome to Nalanda College of Engineering (NCE). Our aim is to provide you the best quality education. In fact, the education is hidden in the student itself; we just encourage them to explore and enjoy the learning. 
+                  </p>
+                  <p>
+                    Increasing diversity in needs and globalization have generated and enhanced the demand for competitive skills. So, the main purpose of NCE is to provide such a platform where the needs can be fulfilled. We motivate students to develop leadership skills and encourage them to trust in themselves to achieve great heights.
+                  </p>
+                  <p className="text-[#003366] font-bold not-italic border-l-4 border-[#c9a84c] pl-4 py-1">
+                    &quot;In fact, they can do everything if they believe in their abilities.&quot;
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-12 pt-8 border-t border-slate-100">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                  <div>
+                    <p className="text-[#003366] font-bold text-xl">Dr. Gopal Nandan</p>
+                    <p className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Principal, NCE Chandi</p>
+                    <a href="mailto:nceprincipalchandi@gmail.com" className="text-[#c9a84c] text-sm font-medium hover:underline mt-1 block tracking-tight">
+                      nceprincipalchandi@gmail.com
+                    </a>
+                  </div>
+                  <Link href="/principal" className="inline-flex items-center gap-2 bg-[#003366] text-white px-6 py-3 rounded-xl font-bold text-sm hover:shadow-lg transition-all hover:-translate-y-0.5">
+                    Read Full Message <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+// ─── RECRUITERS MARQUEE (NEW) ────────────────────────────────────────────────
+
+const recruiters = [
+  "TCS", "Infosys", "Wipro", "Cognizant", "HCL", "Accenture", "L&T", "BYJU's", "Prism Cement", "Oracle",
+];
+
+function RecruitersMarquee() {
+  return (
+    <Section className="py-12 bg-slate-50 border-t border-slate-100 overflow-hidden">
+      <div className="container mx-auto px-6 mb-6 text-center">
+        <motion.div variants={fadeUp}>
+          <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#c9a84c] mb-2">Placement Excellence</p>
+          <h2 className="font-playfair text-lg md:text-xl font-bold text-[#003366] mb-3 uppercase tracking-tight">
+            Our Students are Recruited By
+          </h2>
+          <div className="w-12 h-0.5 bg-[#c9a84c] mx-auto opacity-30 rounded-full" />
+        </motion.div>
+      </div>
+      <div className="relative overflow-hidden w-full whitespace-nowrap group">
+        <div className="marquee-track inline-flex items-center gap-12 lg:gap-20 py-4">
+          {[...recruiters, ...recruiters, ...recruiters, ...recruiters].map((name, i) => (
+            <div key={i} className="flex-shrink-0 flex items-center justify-center grayscale hover:grayscale-0 opacity-30 hover:opacity-100 transition-all duration-500 cursor-pointer transform hover:scale-105 px-2">
+               <span className="font-playfair text-xl lg:text-2xl font-black text-[#003366]/20 group-hover:text-[#003366]/40 hover:!text-[#003366] uppercase tracking-tighter transition-colors">
+                 {name}
+               </span>
+            </div>
+          ))}
+        </div>
+        {/* Gradients */}
+        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-slate-50 via-slate-50/70 to-transparent z-10" />
+        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-slate-50 via-slate-50/70 to-transparent z-10" />
+      </div>
+    </Section>
   );
 }
 
@@ -693,7 +836,7 @@ function DepartmentsSection() {
             </h3>
             <div className="h-px w-full bg-slate-100" />
           </div>
-          <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {btechPrograms.map((dept, i) => renderCard(dept, i, i))}
           </motion.div>
         </div>
@@ -706,7 +849,7 @@ function DepartmentsSection() {
             </h3>
             <div className="h-px w-full bg-slate-100" />
           </div>
-          <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 max-w-4xl">
             {mtechPrograms.map((dept, i) => renderCard(dept, i, btechPrograms.length + i))}
           </motion.div>
         </div>
@@ -749,28 +892,35 @@ function CampusGrid() {
                 whileHover={{ y: -5, transition: { duration: 0.22, ease: "easeOut" } }}
                 className={`relative rounded-2xl overflow-hidden bg-white border border-slate-200/80 shadow-sm hover:shadow-lg transition-shadow duration-300 group cursor-pointer flex flex-col ${item.span || ""}`}
               >
-                {/* Colored top accent bar */}
-                <div className="h-[3px] w-full flex-shrink-0" style={{ background: item.accent }} />
+                {/* Background Image with Overlay */}
+                <div className="absolute inset-0 z-0">
+                  <img src={item.image} alt={item.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-white/90 group-hover:bg-white/80 transition-colors duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-60" />
+                </div>
 
-                <div className="flex flex-col flex-1 p-5">
+                {/* Colored top accent bar */}
+                <div className="h-[4px] w-full flex-shrink-0 relative z-10" style={{ background: item.accent }} />
+
+                <div className="flex flex-col flex-1 p-6 relative z-10">
                   {/* Icon + stat row */}
-                  <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-start justify-between mb-4">
                     <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                      style={{ background: `${item.accent}18` }}
+                      className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm"
+                      style={{ background: `white`, border: `1px solid ${item.accent}30` }}
                     >
-                      <Icon size={22} style={{ color: item.accent }} strokeWidth={1.8} />
+                      <Icon size={24} style={{ color: item.accent }} strokeWidth={2} />
                     </div>
                     <span
-                      className="text-[10px] font-bold px-2.5 py-1 rounded-full leading-none"
-                      style={{ background: `${item.accent}12`, color: item.accent }}
+                      className="text-[10px] font-bold px-3 py-1 rounded-full leading-none shadow-sm"
+                      style={{ background: `white`, color: item.accent, border: `1px solid ${item.accent}20` }}
                     >
                       {item.stat}
                     </span>
                   </div>
 
                   {/* Label */}
-                  <h3 className="font-bold text-slate-800 text-sm md:text-[15px] leading-snug mb-1.5">
+                  <h3 className="font-playfair font-bold text-slate-900 text-lg md:text-xl leading-snug mb-2 group-hover:text-[#003366] transition-colors">
                     {item.label}
                   </h3>
 
@@ -866,53 +1016,20 @@ function ImportantLinks() {
   );
 }
 
-// ─── QUICK LINKS BAR ──────────────────────────────────────────────────────────
-
-function QuickLinksBar() {
-  const links = [
-    { label: "Admission 2026", href: "/admission", hot: true },
-    { label: "Academic Calendar", href: "/calendar" },
-    { label: "Exam Schedule", href: "/exam" },
-    { label: "Results", href: "/results" },
-    { label: "Fee Payment", href: "/fee" },
-    { label: "Scholarships", href: "/scholarships" },
-    { label: "RTI", href: "/rti" },
-  ];
-
-  return (
-    <div className="bg-[#001a33] border-b border-white/10">
-      <div className="container mx-auto px-4 py-2.5 flex flex-wrap justify-center gap-1 text-xs font-medium">
-        {links.map((q) => (
-          <Link
-            key={q.label}
-            href={q.href}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg transition-colors ${
-              q.hot
-                ? "bg-[#d32f2f] text-white hover:bg-red-700 font-bold"
-                : "text-slate-400 hover:text-white hover:bg-white/10"
-            }`}
-          >
-            {q.hot && <span className="w-1.5 h-1.5 rounded-full bg-yellow-300 animate-pulse" />}
-            {q.label}
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 // ─── PAGE ─────────────────────────────────────────────────────────────────────
 
 export default function Home() {
   return (
-    <div className="font-sans bg-white antialiased">
+    <main className="font-sans bg-white antialiased">
       <HeroSection />
-      <QuickLinksBar />
-      <StatsRow />
       <BentoNotices />
+      <PrincipalDesk />
       <DepartmentsSection />
       <CampusGrid />
       <ImportantLinks />
-    </div>
+      <StatsRow />
+      <RecruitersMarquee />
+    </main>
   );
 }
