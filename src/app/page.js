@@ -269,7 +269,6 @@ const heroSlides = [
     headline: ["Forge Your", "Destiny"],
     sub: "Nalanda College of Engineering · Est. 2008",
     buttons: [
-      { label: "Find Your Program", href: "/programs", style: "bg-[#961b1b] text-white hover:bg-[#7a1515] border-none" },
       { label: "Admission 2026", href: "/admission", style: "bg-[#c9a84c] text-[#001122] hover:bg-[#b5953e] border-none" }
     ]
   },
@@ -279,8 +278,7 @@ const heroSlides = [
     headline: ["Innovation", "Meets Heritage"],
     sub: "State-of-the-Art Infrastructure across 65 Acres",
     buttons: [
-      { label: "Explore Campus", href: "/campus", style: "bg-[#001E36] text-white hover:bg-[#001122] border-none" },
-      { label: "Student Life", href: "/student-life", style: "bg-transparent border-2 border-[#001E36] text-[#001E36] hover:bg-[#001E36] hover:text-white" }
+      { label: "Explore Campus", href: "/campus", style: "bg-[#001E36] text-white hover:bg-[#001122] border-none" }
     ]
   },
   {
@@ -289,8 +287,7 @@ const heroSlides = [
     headline: ["Leading &", "Empowering"],
     sub: "Top tier academic growth with experienced faculty",
     buttons: [
-      { label: "Our Facilities", href: "/facilities", style: "bg-[#c9a84c] text-[#001122] hover:bg-[#b5953e] border-none" },
-      { label: "Meet the Faculty", href: "/faculty", style: "bg-transparent border-2 border-slate-700 text-slate-800 hover:bg-slate-800 hover:text-white" }
+      { label: "Our Facilities", href: "/facilities", style: "bg-[#c9a84c] text-[#001122] hover:bg-[#b5953e] border-none" }
     ]
   },
   {
@@ -326,48 +323,47 @@ function HeroSection() {
     if (distance < -total / 2) distance += total;
 
     if (distance === 0) {
-      return { x: "0%", scale: 1, opacity: 1, zIndex: 30, filter: "brightness(1) blur(0px)" };
+      return { x: "0%", scale: 1, opacity: 1, zIndex: 30, filter: "brightness(1)" };
     } else if (distance === 1) { // Next slide (Right)
-      return { x: "75%", scale: 0.85, opacity: 0.7, zIndex: 20, filter: "brightness(0.6) blur(2px)" };
+      return { x: "75%", scale: 0.85, opacity: 0.7, zIndex: 20, filter: "brightness(0.7)" };
     } else if (distance === -1) { // Previous slide (Left)
-      return { x: "-75%", scale: 0.85, opacity: 0.7, zIndex: 20, filter: "brightness(0.6) blur(2px)" };
+      return { x: "-75%", scale: 0.85, opacity: 0.7, zIndex: 20, filter: "brightness(0.7)" };
     } else { // Hidden slides
       const sign = Math.sign(distance);
-      return { x: `${sign * 100}%`, scale: 0.7, opacity: 0, zIndex: 10, filter: "brightness(0)" };
+      return { x: `${sign * 100}%`, scale: 0.7, opacity: 0, zIndex: 10 };
     }
   };
 
   return (
-    <section className="relative min-h-[70vh] md:min-h-[85vh] w-full flex flex-col justify-center items-center overflow-hidden bg-slate-900">
+    <section className="relative min-h-[70vh] md:min-h-[85vh] w-full flex flex-col justify-center items-center overflow-hidden bg-slate-900 isolation-isolate">
       
       {/* 1. BACKGROUND: Ambient light derived from current slide */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.5 }}
-            className="absolute inset-0"
+            transition={{ duration: 1.2, ease: "linear" }}
+            className="absolute inset-0 will-change-opacity"
           >
             <Image 
               src={heroSlides[currentSlide].image}
               alt="Ambient Background"
               fill
               priority
-              quality={10}
-              className="object-cover blur-[50px] scale-125 opacity-100 brightness-[0.6]"
-              sizes="100vw"
+              quality={1} 
+              className="object-cover blur-[40px] scale-110 opacity-60 brightness-[0.5]"
+              sizes="10vw"
             />
           </motion.div>
         </AnimatePresence>
-        {/* Soft, brightened top and bottom vignette to just pop the text and navbar. No harsh black. */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 pointer-events-none" />
+        <div className="absolute inset-0 bg-[#001122]/40 backdrop-brightness-75 pointer-events-none" />
       </div>
 
       {/* 2. GALLERY CAROUSEL: Left, Center, Right Peeking Slides */}
-      <div className="relative z-10 w-full h-[60vh] sm:h-[70vh] md:h-[75vh] flex justify-center items-center mt-2 md:mt-4 px-0 pb-6">
+      <div className="relative z-10 w-full h-[60vh] sm:h-[70vh] md:h-[75vh] flex justify-center items-center mt-2 md:mt-4 px-0 pb-6 will-change-transform">
           {heroSlides.map((slide, index) => {
              const style = getSlideStyle(index);
              const isCenter = index === currentSlide;
@@ -377,37 +373,36 @@ function HeroSection() {
                  key={index}
                  initial={false}
                  animate={style}
-                 transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-                 className="absolute w-[92%] sm:w-[85%] md:w-[75%] lg:w-[60%] aspect-[4/3] md:aspect-video rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] cursor-pointer bg-black/10 backdrop-blur-sm border border-white/20"
+                 transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }} 
+                 className="absolute w-[92%] sm:w-[85%] md:w-[75%] lg:w-[60%] aspect-[4/3] md:aspect-video rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-pointer bg-slate-800/20 backdrop-blur-md border border-white/10 will-change-transform"
                  onClick={() => !isCenter && setCurrentSlide(index)}
                >
-                 <Image src={slide.image} fill quality={100} className="object-cover" alt="Gallery View Slide" sizes="(max-width: 768px) 100vw, 70vw" />
+                 <Image src={slide.image} fill quality={85} priority={index === 0} className="object-cover" alt="Gallery View Slide" sizes="(max-width: 768px) 95vw, 60vw" />
                  
                  {/* Inner Drop Shadow for Text Readability */}
-                 <div className="absolute inset-x-0 bottom-0 h-[80%] md:h-[70%] bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none transition-opacity duration-700" style={{ opacity: isCenter ? 1 : 0 }} />
+                 <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none transition-opacity duration-500" style={{ opacity: isCenter ? 1 : 0 }} />
 
                  <AnimatePresence>
                    {isCenter && (
                      <motion.div 
-                       initial={{ opacity: 0, y: 20 }}
+                       initial={{ opacity: 0, y: 15 }}
                        animate={{ opacity: 1, y: 0 }}
-                       transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
+                       transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
                        className="absolute inset-x-0 bottom-0 p-6 sm:p-8 md:p-12 flex flex-col items-center text-center"
                      >
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 text-[#c9a84c] border border-[#c9a84c]/30 font-bold tracking-widest text-[9px] md:text-sm uppercase mb-3 backdrop-blur-md">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#c9a84c] animate-pulse" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#c9a84c]" />
                           {slide.eyebrow}
                         </div>
                         
-                        <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-playfair leading-[1.1] drop-shadow-lg mb-3">
+                        <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-black font-playfair leading-[1.1] drop-shadow-lg mb-3">
                           {slide.headline.join(" ")}
                         </h1>
                         
-                        <p className="text-slate-300 text-sm md:text-lg font-medium max-w-xl drop-shadow mb-6 md:mb-8">
+                        <p className="text-slate-200 text-sm md:text-lg font-medium max-w-xl drop-shadow mb-6 md:mb-8 opacity-90">
                           {slide.sub}
                         </p>
 
-                        {/* "Explore Our Environment" Inspired Gallery Button */}
                         <div className="flex flex-wrap justify-center gap-4">
                            {slide.buttons.map((btn, i) => (
                               <button 
