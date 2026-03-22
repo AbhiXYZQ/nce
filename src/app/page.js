@@ -262,11 +262,46 @@ function Counter({ target, suffix, prefix = "" }) {
   );
 }
 
-const sliderImages = [
-  "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhllkEHGFKH1BoTjUS6lWEZ12t4z_E77JS-9ruOUVm8zD5GZBQxQ6RwHosUR6woG2WLvN39do9rt65R19bZRyZEs4OwyfkXLtnObeWcNAF0EXHfloeAsVvMJZVEhMKYgNqnNQ4Ggi-1Pz11/w1200-h630-p-k-no-nu/Untitled11.png",
-  "https://www.collegebatch.com/static/clg-gallery/nalanda-college-of-engineering-chandi-nalanda-351897.webp",
-  "https://www.collegebatch.com/static/clg-gallery/nalanda-college-of-engineering-chandi-nalanda-351896.webp",
-  "https://image-static.collegedunia.com/public/college_data/images/campusimage/1563170019Capture.PNG",
+const heroSlides = [
+  {
+    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhllkEHGFKH1BoTjUS6lWEZ12t4z_E77JS-9ruOUVm8zD5GZBQxQ6RwHosUR6woG2WLvN39do9rt65R19bZRyZEs4OwyfkXLtnObeWcNAF0EXHfloeAsVvMJZVEhMKYgNqnNQ4Ggi-1Pz11/w1200-h630-p-k-no-nu/Untitled11.png",
+    eyebrow: "Welcome to NCE",
+    headline: ["Forge Your", "Destiny"],
+    sub: "Nalanda College of Engineering · Est. 2008",
+    buttons: [
+      { label: "Find Your Program", href: "/programs", style: "bg-[#961b1b] text-white hover:bg-[#7a1515] border-none" },
+      { label: "Admission 2026", href: "/admission", style: "bg-[#c9a84c] text-[#001122] hover:bg-[#b5953e] border-none" }
+    ]
+  },
+  {
+    image: "https://www.collegebatch.com/static/clg-gallery/nalanda-college-of-engineering-chandi-nalanda-351897.webp",
+    eyebrow: "Excellence in Engineering",
+    headline: ["Innovation", "Meets Heritage"],
+    sub: "State-of-the-Art Infrastructure across 65 Acres",
+    buttons: [
+      { label: "Explore Campus", href: "/campus", style: "bg-[#001E36] text-white hover:bg-[#001122] border-none" },
+      { label: "Student Life", href: "/student-life", style: "bg-transparent border-2 border-[#001E36] text-[#001E36] hover:bg-[#001E36] hover:text-white" }
+    ]
+  },
+  {
+    image: "https://www.collegebatch.com/static/clg-gallery/nalanda-college-of-engineering-chandi-nalanda-351896.webp",
+    eyebrow: "Advanced Learning",
+    headline: ["Leading &", "Empowering"],
+    sub: "Top tier academic growth with experienced faculty",
+    buttons: [
+      { label: "Our Facilities", href: "/facilities", style: "bg-[#c9a84c] text-[#001122] hover:bg-[#b5953e] border-none" },
+      { label: "Meet the Faculty", href: "/faculty", style: "bg-transparent border-2 border-slate-700 text-slate-800 hover:bg-slate-800 hover:text-white" }
+    ]
+  },
+  {
+    image: "https://image-static.collegedunia.com/public/college_data/images/campusimage/1563170019Capture.PNG",
+    eyebrow: "Future Ready",
+    headline: ["Pioneering", "Research"],
+    sub: "Cultivating tech leaders of tomorrow in Bihar",
+    buttons: [
+      { label: "T&P Cell", href: "/placement", style: "bg-[#961b1b] text-white hover:bg-[#7a1515] border-none" }
+    ]
+  }
 ];
 
 // ─── HERO SECTION ─────────────────────────────────────────────────────────────
@@ -278,182 +313,138 @@ function HeroSection() {
   useEffect(() => {
     setLoaded(true);
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
-    }, 5000);
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5500);
     return () => clearInterval(interval);
   }, []);
 
+  const getSlideStyle = (index) => {
+    let distance = index - currentSlide;
+    const total = heroSlides.length;
+    // Calculate shortest path for infinite scrolling effect
+    if (distance > total / 2) distance -= total;
+    if (distance < -total / 2) distance += total;
+
+    if (distance === 0) {
+      return { x: "0%", scale: 1, opacity: 1, zIndex: 30, filter: "brightness(1) blur(0px)" };
+    } else if (distance === 1) { // Next slide (Right)
+      return { x: "75%", scale: 0.85, opacity: 0.7, zIndex: 20, filter: "brightness(0.6) blur(2px)" };
+    } else if (distance === -1) { // Previous slide (Left)
+      return { x: "-75%", scale: 0.85, opacity: 0.7, zIndex: 20, filter: "brightness(0.6) blur(2px)" };
+    } else { // Hidden slides
+      const sign = Math.sign(distance);
+      return { x: `${sign * 100}%`, scale: 0.7, opacity: 0, zIndex: 10, filter: "brightness(0)" };
+    }
+  };
+
   return (
-    <section className="relative min-h-[85svh] md:min-h-screen flex flex-col justify-center overflow-hidden bg-[#001122]">
-      {/* Dynamic Slide Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+    <section className="relative min-h-[70vh] md:min-h-[85vh] w-full flex flex-col justify-center items-center overflow-hidden bg-slate-900">
+      
+      {/* 1. BACKGROUND: Ambient light derived from current slide */}
+      <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5 }}
             className="absolute inset-0"
           >
             <Image 
-              src={sliderImages[currentSlide]}
-              alt="Campus Insight"
+              src={heroSlides[currentSlide].image}
+              alt="Ambient Background"
               fill
               priority
-              quality={100}
+              quality={10}
+              className="object-cover blur-[50px] scale-125 opacity-100 brightness-[0.6]"
               sizes="100vw"
-              className="object-cover object-center z-0"
-            />
-            {/* Overlays for readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#001122]/90 via-[#001122]/60 to-transparent z-10" />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#001122]/80 z-10" />
-            
-            {/* Subtle grid overlay */}
-            <div
-              className="absolute inset-0 opacity-[0.06] z-10"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,0.3) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.3) 1px,transparent 1px)",
-                backgroundSize: "60px 60px",
-              }}
             />
           </motion.div>
         </AnimatePresence>
-
-        {/* Floating dust particles / Radial glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
+        {/* Soft, brightened top and bottom vignette to just pop the text and navbar. No harsh black. */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 pointer-events-none" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 lg:px-16 py-24 md:py-32 flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-20">
-        {/* Left: Text */}
-        <div className="flex-1 max-w-2xl">
-          <AnimatePresence>
-            {loaded && (
-              <>
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  className="inline-flex items-center gap-2 border border-white/20 bg-white/5 backdrop-blur-sm text-slate-300 text-xs font-medium px-4 py-1.5 rounded-full mb-7 tracking-wide"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                  {heroContent.eyebrow}
-                </motion.div>
+      {/* 2. GALLERY CAROUSEL: Left, Center, Right Peeking Slides */}
+      <div className="relative z-10 w-full h-[60vh] sm:h-[70vh] md:h-[75vh] flex justify-center items-center mt-2 md:mt-4 px-0 pb-6">
+          {heroSlides.map((slide, index) => {
+             const style = getSlideStyle(index);
+             const isCenter = index === currentSlide;
 
-                <motion.h1
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.65, delay: 0.25 }}
-                  className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-6"
-                >
-                  {heroContent.headline.map((line, i) => (
-                    <span key={i} className={`block ${i === 1 ? "text-transparent bg-clip-text bg-gradient-to-r from-[#c9a84c] to-[#f0d080]" : ""}`}>
-                      {line}
-                    </span>
-                  ))}
-                </motion.h1>
+             return (
+               <motion.div
+                 key={index}
+                 initial={false}
+                 animate={style}
+                 transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+                 className="absolute w-[92%] sm:w-[85%] md:w-[75%] lg:w-[60%] aspect-[4/3] md:aspect-video rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] cursor-pointer bg-black/10 backdrop-blur-sm border border-white/20"
+                 onClick={() => !isCenter && setCurrentSlide(index)}
+               >
+                 <Image src={slide.image} fill quality={100} className="object-cover" alt="Gallery View Slide" sizes="(max-width: 768px) 100vw, 70vw" />
+                 
+                 {/* Inner Drop Shadow for Text Readability */}
+                 <div className="absolute inset-x-0 bottom-0 h-[80%] md:h-[70%] bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none transition-opacity duration-700" style={{ opacity: isCenter ? 1 : 0 }} />
 
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, delay: 0.45 }}
-                  className="text-slate-300 text-base md:text-lg leading-relaxed mb-9 max-w-lg"
-                >
-                  {heroContent.sub}
-                </motion.p>
+                 <AnimatePresence>
+                   {isCenter && (
+                     <motion.div 
+                       initial={{ opacity: 0, y: 20 }}
+                       animate={{ opacity: 1, y: 0 }}
+                       transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
+                       className="absolute inset-x-0 bottom-0 p-6 sm:p-8 md:p-12 flex flex-col items-center text-center"
+                     >
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 text-[#c9a84c] border border-[#c9a84c]/30 font-bold tracking-widest text-[9px] md:text-sm uppercase mb-3 backdrop-blur-md">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#c9a84c] animate-pulse" />
+                          {slide.eyebrow}
+                        </div>
+                        
+                        <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-playfair leading-[1.1] drop-shadow-lg mb-3">
+                          {slide.headline.join(" ")}
+                        </h1>
+                        
+                        <p className="text-slate-300 text-sm md:text-lg font-medium max-w-xl drop-shadow mb-6 md:mb-8">
+                          {slide.sub}
+                        </p>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.6 }}
-                  className="flex flex-col sm:flex-row gap-4"
-                >
-                  <Link
-                    href={heroContent.cta1.href}
-                    className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#c9a84c] to-[#e8c86a] hover:from-[#b8963d] hover:to-[#d4b455] text-[#001122] font-bold px-8 py-4 rounded-lg transition-all shadow-lg shadow-yellow-900/30 hover:shadow-xl hover:shadow-yellow-900/40 hover:-translate-y-0.5 text-sm"
-                  >
-                    {heroContent.cta1.label}
-                    <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                  <Link
-                    href={heroContent.cta2.href}
-                    className="inline-flex items-center justify-center gap-2 border border-white/25 hover:border-white/60 bg-white/5 hover:bg-white/10 backdrop-blur-sm text-white font-semibold px-8 py-4 rounded-lg transition-all text-sm"
-                  >
-                    {heroContent.cta2.label}
-                  </Link>
-                </motion.div>
-              </>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* Right: Glassmorphism Stats Card */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.65, delay: 0.7 }}
-          className="lg:flex-shrink-0 w-full lg:w-auto"
-        >
-          <div className="bg-white/8 backdrop-blur-xl border border-white/15 rounded-2xl p-7 shadow-2xl max-w-xs mx-auto lg:mx-0">
-            <div className="flex items-center gap-2 mb-5">
-              <Sparkles size={14} className="text-[#c9a84c]" />
-              <span className="text-white font-semibold text-sm">At a Glance</span>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              {heroContent.stats.map(({ value, label }) => (
-                <div key={label} className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
-                  <div className="font-playfair text-3xl font-bold text-white mb-1">{value}</div>
-                  <div className="text-slate-400 text-xs font-medium">{label}</div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-5 pt-4 border-t border-white/10 flex flex-col gap-2">
-              {[
-                { icon: Shield, text: "AICTE Approved" },
-                { icon: AwardIcon, text: "Govt. of Bihar" },
-                { icon: Star, text: "Est. 2008, Nalanda" },
-              ].map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-center gap-2 text-slate-300 text-xs">
-                  <Icon size={12} className="text-[#c9a84c] shrink-0" />
-                  {text}
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Slide Indicators */}
-        <div className="absolute bottom-10 right-10 flex gap-2 z-20">
-          {sliderImages.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentSlide(i)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                currentSlide === i ? "bg-[#c9a84c] w-6" : "bg-white/30 hover:bg-white/60"
-              }`}
-              aria-label={`Go to slide ${i + 1}`}
-            />
-          ))}
-        </div>
+                        {/* "Explore Our Environment" Inspired Gallery Button */}
+                        <div className="flex flex-wrap justify-center gap-4">
+                           {slide.buttons.map((btn, i) => (
+                              <button 
+                                key={i}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  window.location.href = btn.href;
+                                }}
+                                className="group relative px-6 md:px-8 py-3.5 flex items-center justify-center overflow-hidden rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:border-white transition-all duration-300"
+                              >
+                                 <span className="relative z-10 flex items-center gap-3 text-white font-bold text-xs uppercase tracking-widest transition-colors duration-300 group-hover:text-black">
+                                    {btn.label} <ArrowRight size={15} className="group-hover:translate-x-1.5 transition-transform duration-300" />
+                                 </span>
+                                 <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] rounded-full" />
+                              </button>
+                           ))}
+                        </div>
+                     </motion.div>
+                   )}
+                 </AnimatePresence>
+               </motion.div>
+             )
+          })}
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-slate-400"
-      >
-        <span className="text-[10px] tracking-[0.2em] uppercase font-medium">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 5, 0] }}
-          transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
-        >
-          <ChevronDown size={16} />
-        </motion.div>
-      </motion.div>
+      <style>{`
+        @keyframes swing {
+          20% { transform: rotate(15deg); }
+          40% { transform: rotate(-10deg); }
+          60% { transform: rotate(5deg); }
+          80% { transform: rotate(-5deg); }
+          100% { transform: rotate(0deg); }
+        }
+        .animate-swing {
+           animation: swing 2s infinite ease-in-out;
+        }
+      `}</style>
     </section>
   );
 }
