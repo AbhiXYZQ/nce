@@ -192,7 +192,7 @@ export default function Footer() {
                 <div className="p-2.5 rounded-xl bg-white/5 group-hover:bg-[#c9a84c] group-hover:text-[#001122] transition-colors border border-white/5">
                   <Mail size={16} />
                 </div>
-                <a className="text-white/65 hover:text-white transition-colors" href="mailto:example@ncechandi.ac.in">example@ncechandi.ac.in</a>
+                <a className="text-white/65 hover:text-white transition-colors" href="mailto:info@ncechandi.ac.in">info@ncechandi.ac.in</a>
               </div>
             </div>
           </motion.div>

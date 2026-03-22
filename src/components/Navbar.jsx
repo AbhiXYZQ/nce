@@ -11,7 +11,7 @@ import {
   FlaskConical, Cpu, Zap, Wrench, Brain,
   Plane,
   Info, Calendar, FileText, Award, Newspaper,
-  HelpCircle, MessageSquare, UserCircle, Briefcase,
+  HelpCircle, MessageSquare, UserCircle, Briefcase, Bell
 } from "lucide-react";
 
 // ─── NAV DATA ─────────────────────────────────────────────────────────────────
@@ -113,21 +113,23 @@ const overlayVariants = {
   exit: { opacity: 0, transition: { duration: 0.2 } },
 };
 
-// ─── DESKTOP NAV LINK (with animated underline) ───────────────────────────────
+// ─── DESKTOP NAV LINK ─────────────────────────────────────────────────────────
+
+// ─── DESKTOP NAV LINK ─────────────────────────────────────────────────────────
 
 function DesktopNavLink({ href, label, active }) {
   return (
     <Link
       href={href}
-      className={`relative group h-12 flex items-center px-3 lg:px-4 rounded-md text-[12px] lg:text-[13px] font-semibold uppercase tracking-wider transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c9a84c]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#003366] ${active ? "text-[#c9a84c]" : "text-white/90 hover:text-white"
-        } hover:bg-white/10`}
+      className={`relative group px-3 lg:px-4 py-1.5 flex items-center text-[11px] lg:text-[12px] font-bold uppercase tracking-[0.08em] transition-all duration-300 ${
+        active ? "text-[#c9a84c]" : "text-white/80 hover:text-white"
+      }`}
     >
-      {label}
-      {/* Animated underline from center */}
-      <span
-        className={`absolute bottom-0 left-2 right-2 h-[3px] bg-[#c9a84c] transition-transform duration-300 ease-out origin-center ${active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-          }`}
-      />
+      <span className="relative z-10">{label}</span>
+      <span className={`absolute bottom-0 left-0 h-[2px] bg-[#c9a84c] transition-all duration-500 ease-out ${
+        active ? "w-full" : "w-0 group-hover:w-full"
+      }`} />
+      <span className="absolute inset-0 bg-white/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     </Link>
   );
 }
@@ -137,77 +139,71 @@ function DesktopNavLink({ href, label, active }) {
 function DesktopDropdown({ label, children, pathname }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
-
   const isActive = children?.some((c) => pathname === c.href || pathname?.startsWith(`${c.href}/`));
 
-  useEffect(() => {
-    function handler(e) {
-      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
-    }
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
-
   return (
-    <div ref={ref} className="relative h-12 flex items-center">
+    <div 
+      ref={ref} 
+      className="relative flex items-center h-full"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
       <button
-        onMouseEnter={() => setOpen(true)}
-        onMouseLeave={() => setOpen(false)}
         onClick={() => setOpen((v) => !v)}
-        className={`relative group h-12 flex items-center gap-1 px-3 lg:px-4 rounded-md text-[12px] lg:text-[13px] font-semibold uppercase tracking-wider transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c9a84c]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#003366] ${isActive ? "text-[#c9a84c]" : "text-white/90 hover:text-white"
-          } hover:bg-white/10`}
-        aria-haspopup="menu"
-        aria-expanded={open}
+        className={`relative group px-3 lg:px-4 py-1.5 flex items-center gap-1.5 text-[11px] lg:text-[12px] font-bold uppercase tracking-[0.08em] transition-all duration-300 ${
+          isActive || open ? "text-[#c9a84c]" : "text-white/80 hover:text-white"
+        }`}
       >
-        {label}
-        <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
-          <ChevronDown size={13} className="opacity-70" />
-        </motion.span>
-        <span
-          className={`absolute bottom-0 left-2 right-2 h-[3px] bg-[#c9a84c] transition-transform duration-300 ease-out origin-center ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-            }`}
-        />
+        <span className="relative z-10">{label}</span>
+        <ChevronDown size={14} className={`relative z-10 transition-transform duration-300 ${open ? "rotate-180 text-[#c9a84c]" : "text-white/50 group-hover:text-white/80"}`} />
+        
+        <span className={`absolute bottom-0 left-0 h-[2px] bg-[#c9a84c] transition-all duration-500 ease-out ${
+          isActive || open ? "w-full" : "w-0 group-hover:w-full"
+        }`} />
+        <span className={`absolute inset-0 bg-white/5 rounded-md transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
       </button>
 
       <AnimatePresence>
         {open && (
           <motion.div
-            variants={dropdownVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            onMouseEnter={() => setOpen(true)}
-            onMouseLeave={() => setOpen(false)}
-            className="absolute top-full left-0 mt-0 min-w-[220px] bg-white rounded-b-xl shadow-2xl border-t-[3px] border-[#c9a84c] z-50 overflow-hidden"
-            style={{ transformOrigin: "top center" }}
+            initial={{ opacity: 0, y: 15, scale: 0.98, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: 10, scale: 0.98, filter: "blur(4px)" }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute top-[calc(100%+0px)] left-0 min-w-[280px] bg-[#001E36]/95 backdrop-blur-2xl rounded-b-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] border border-white/10 p-3 z-50 overflow-hidden"
           >
-            {children.map((item) => {
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#c9a84c]/50 to-transparent opacity-50" />
+            
+            {children.map((item, i) => {
               const Icon = item.icon;
               const childActive = pathname === item.href || pathname?.startsWith(`${item.href}/`);
               return (
-                <Link
+                <motion.div
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.03, duration: 0.2 }}
                   key={item.href}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 transition-colors text-[13px] font-medium border-b border-slate-50 last:border-0 group ${childActive
-                      ? "bg-slate-50 text-[#003366]"
-                      : "text-slate-700 hover:bg-slate-50 hover:text-[#003366]"
-                    }`}
                 >
-                  {Icon && (
-                    <span
-                      className={`w-7 h-7 flex items-center justify-center rounded-lg transition-colors shrink-0 ${childActive ? "bg-[#003366]/10" : "bg-slate-100 group-hover:bg-[#003366]/10"
-                        }`}
-                    >
-                      <Icon
-                        size={14}
-                        className={`${childActive ? "text-[#003366]" : "text-slate-500 group-hover:text-[#003366]"}`}
-                      />
-                    </span>
-                  )}
-                  {item.label}
-                  <ChevronDown size={10} className="ml-auto -rotate-90 opacity-30 group-hover:opacity-70 transition-opacity" />
-                </Link>
+                  <Link
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className={`relative flex items-center gap-3.5 px-3 py-3 rounded-xl transition-all duration-300 text-[13px] font-semibold group overflow-hidden ${
+                      childActive
+                        ? "bg-[#c9a84c]/10 text-[#c9a84c]"
+                        : "text-white/70 hover:text-white hover:bg-white/5"
+                    }`}
+                  >
+                    {Icon && (
+                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300 ${
+                        childActive ? "bg-[#c9a84c]/20 text-[#c9a84c] shadow-[0_0_10px_rgba(201,168,76,0.2)]" : "bg-white/5 text-white/50 group-hover:bg-[#c9a84c]/20 group-hover:text-[#c9a84c]"
+                      }`}>
+                        <Icon size={15} className={childActive ? "" : "group-hover:scale-110 transition-transform duration-300"} />
+                      </div>
+                    )}
+                    <span className="relative z-10">{item.label}</span>
+                    <ChevronDown size={14} className="relative z-10 ml-auto -rotate-90 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-[#c9a84c]" />
+                  </Link>
+                </motion.div>
               );
             })}
           </motion.div>
@@ -307,106 +303,82 @@ export default function Navbar() {
   }, [drawerOpen]);
 
   return (
-    <div className="w-full font-sans">
-
-      <header className="w-full">
-
-        {/* ───── LAYER 1: TOP UTILITY STRIP ───── */}
-        <div className="bg-[#0f172a] text-slate-300 py-1.5 border-b border-white/5">
-          <div className="container mx-auto px-4 flex justify-between items-center">
-
-            {/* Left: Contact info */}
-            <div className="flex items-center gap-4">
-              <a href="tel:06111295" className="hidden sm:flex items-center gap-1.5 hover:text-[#c9a84c] transition-colors text-[11px] font-bold tracking-wider uppercase">
-                <Phone size={11} className="text-[#c9a84c]" />
-                06111-295xxx
+    <>
+      <header className="w-full font-sans">
+        {/* ───── LAYER 1: ELITE UTILITY STRIP ───── */}
+        <div className="bg-[#020617] text-slate-300 py-1.5 border-b border-white/5 relative z-50">
+          <div className="container mx-auto px-4 flex justify-between items-center text-[10px] uppercase font-bold tracking-widest">
+            <div className="flex items-center gap-5">
+              <a href="tel:06111295" className="hidden sm:flex items-center gap-2 hover:text-white transition-colors group">
+                <Phone size={11} className="text-[#c9a84c] group-hover:animate-bounce" /> 06111-295xxx
               </a>
-              <a href="mailto:example@ncechandi.ac.in" className="hidden md:flex items-center gap-1.5 hover:text-[#c9a84c] transition-colors text-[11px] font-bold tracking-wider uppercase">
-                <Mail size={11} className="text-[#c9a84c]" />
-                example@ncechandi.ac.in
+              <a href="mailto:info@ncechandi.ac.in" className="hidden md:flex items-center gap-2 hover:text-white transition-colors group">
+                <Mail size={11} className="text-[#c9a84c] group-hover:scale-110 transition-transform" /> info@ncechandi.ac.in
               </a>
-              {/* Mobile: just phone */}
-              <a href="tel:06111295" className="sm:hidden flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-slate-300 uppercase">
-                <Phone size={11} className="text-[#c9a84c]" /> 06111-295xxx
+              <a href="tel:06111295" className="sm:hidden flex items-center gap-2 text-[#c9a84c]">
+                <Phone size={11} /> 06111-295xxx
               </a>
             </div>
-
-            {/* Right: Controls */}
-            <div className="flex items-center gap-2 md:gap-3">
-              {/* Social links */}
-              <div className="hidden lg:flex items-center gap-1.5">
+            
+            <div className="flex items-center gap-3">
+              <div className="hidden lg:flex items-center gap-3 mr-2 opacity-80">
                 {[Facebook, Youtube, Twitter, Linkedin].map((Icon, i) => (
-                  <a key={i} href="#" className="w-5 h-5 flex items-center justify-center text-slate-400 hover:text-[#c9a84c] transition-colors">
+                  <a key={i} href="#" className="hover:text-[#c9a84c] hover:scale-110 transition-all duration-300">
                     <Icon size={12} />
                   </a>
                 ))}
               </div>
-
-              {/* Divider */}
               <div className="hidden lg:block w-px h-3 bg-white/20" />
-
-              {/* Language toggle */}
-              <button
-                onClick={() => setLang((l) => (l === "EN" ? "HI" : "EN"))}
-                className="flex items-center gap-1 bg-white/5 hover:bg-white/10 border border-white/10 px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase text-slate-300 hover:text-white transition-all"
-              >
-                <Globe size={10} className="text-[#c9a84c]" />
-                {lang}
+              <button onClick={() => setLang(l => l === "EN" ? "HI" : "EN")} className="flex items-center gap-1.5 hover:text-white transition-colors">
+                <Globe size={11} className="text-[#c9a84c]" /> {lang}
               </button>
-
-              {/* Faculty Login */}
-              <Link
-                href="/login"
-                className="flex items-center gap-1.5 bg-gradient-to-r from-[#003366] to-[#004488] hover:from-[#004488] hover:to-[#0055aa] text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full transition-all shadow-sm hover:shadow-blue-900/30"
-              >
-                <LogIn size={11} />
-                Faculty Login
+              <div className="w-px h-3 bg-white/20" />
+              <Link href="/login" className="flex items-center gap-1.5 text-[#c9a84c] hover:text-white transition-colors">
+                <LogIn size={11} /> FACULTY LOGIN
               </Link>
             </div>
           </div>
         </div>
 
-        {/* ───── LAYER 2: BRANDING HEADER ───── */}
-        <div className="bg-white border-b border-slate-100 shadow-sm py-2 md:py-3">
-          <div className="max-w-6xl mx-auto px-4 md:px-1">
-            <div className="flex flex-row items-center justify-between gap-2 md:gap-6 flex-nowrap">
-
-              {/* LEFT LOGO */}
+        {/* ───── LAYER 2: GRAND BRANDING HEADER ───── */}
+        <div className="bg-white relative z-40 overflow-hidden border-b border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.02)] py-2 md:py-3 lg:py-4">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.015)_100%)] pointer-events-none" />
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+            <div className="flex items-center justify-between gap-3 md:gap-4">
               <div className="flex-shrink-0">
                 <Image
                   src="/images/nce-logo.png"
                   alt="NCE Logo"
-                  width={96} height={96}
-                  className="w-14 h-14 md:w-24 md:h-24 object-contain"
+                  width={84} height={84}
+                  className="w-14 h-14 md:w-20 md:h-20 lg:w-[84px] lg:h-[84px] object-contain"
                   priority
                   unoptimized
                 />
               </div>
 
-              {/* CENTER TEXT */}
-              <div className="flex-1 min-w-0 text-center px-1 md:px-2">
-                <h1 className="font-playfair text-[15px] sm:text-xl md:text-[28px] lg:text-[32px] font-extrabold text-[#003366] uppercase leading-tight tracking-tight">
+              <div className="flex-1 text-center flex flex-col items-center justify-center space-y-0.5 md:space-y-1">
+                <h1 className="font-playfair text-[16px] sm:text-xl md:text-2xl lg:text-[32px] font-black text-[#001E36] uppercase tracking-tight leading-none drop-shadow-sm">
                   Nalanda College of Engineering
                 </h1>
-                <h2 className="font-playfair text-[12px] sm:text-base md:text-xl lg:text-2xl font-bold text-[#d32f2f] mt-0.5 md:mt-1 leading-tight">
+                <h2 className="font-playfair text-[11px] sm:text-[13px] md:text-base lg:text-xl font-bold text-[#b91c1c] tracking-wide leading-tight drop-shadow-sm mt-0.5 border-b-2 border-[#b91c1c]/20 pb-0.5 px-3 inline-block">
                   नालंदा अभियंत्रण महाविद्यालय
                 </h2>
-                <p className="hidden md:block text-[11px] lg:text-sm text-slate-500 font-medium mt-1 tracking-wide">
-                  Department of Science &amp; Technology, Govt. of Bihar &nbsp;|&nbsp; AICTE Approved
-                </p>
-                {/* Mobile subtitle */}
-                <p className="md:hidden text-[9px] text-slate-500 font-medium mt-0.5 tracking-wide leading-tight">
-                  Dept. of Science &amp; Technology, Govt. of Bihar
-                </p>
+                <div className="flex items-center gap-2 mt-1 md:mt-1.5 opacity-80 pt-0.5">
+                  <div className="h-px w-6 md:w-12 bg-gradient-to-r from-transparent to-slate-400" />
+                  <p className="text-[8.5px] md:text-[10px] lg:text-[11px] text-[#001E36] font-bold uppercase tracking-[0.1em] md:tracking-[0.15em]">
+                    Govt. of Bihar &nbsp;|&nbsp; AICTE Approved
+                  </p>
+                  <div className="h-px w-6 md:w-12 bg-gradient-to-l from-transparent to-slate-400" />
+                </div>
               </div>
 
-              {/* RIGHT LOGO */}
               <div className="flex-shrink-0">
                 <Image
                   src="/images/bihar-logo.png"
                   alt="Bihar Govt Logo"
-                  width={88} height={88}
-                  className="w-12 h-12 md:w-[88px] md:h-[88px] object-contain"
+                  width={84} height={84}
+                  className="w-14 h-14 md:w-20 md:h-20 lg:w-[84px] lg:h-[84px] object-contain"
                   unoptimized
                 />
               </div>
@@ -414,93 +386,15 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* ───── MOBILE DRAWER ───── */}
-        <AnimatePresence>
-          {drawerOpen && (
-            <>
-              {/* Overlay */}
-              <motion.div
-                variants={overlayVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
-                onClick={() => setDrawerOpen(false)}
-              />
-
-              {/* Drawer panel */}
-              <motion.div
-                variants={drawerVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="fixed top-0 right-0 h-full w-[82vw] max-w-[340px] z-[70] flex flex-col shadow-2xl"
-                style={{
-                  background: "linear-gradient(160deg, rgba(0,25,60,0.97) 0%, rgba(0,12,30,0.98) 100%)",
-                  backdropFilter: "blur(24px)",
-                  borderLeft: "1px solid rgba(255,255,255,0.08)",
-                }}
-              >
-                {/* Drawer header */}
-                <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
-                  <div>
-                    <p className="font-playfair text-white font-bold text-base">NCE</p>
-                    <p className="text-slate-400 text-[10px] tracking-wider">Navigation Menu</p>
-                  </div>
-                  <button
-                    onClick={() => setDrawerOpen(false)}
-                    className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-                  >
-                    <X size={16} />
-                  </button>
-                </div>
-
-                {/* Drawer nav items */}
-                <div className="flex-1 overflow-y-auto overscroll-contain">
-                  {NAV_ITEMS.map((item) => (
-                    <MobileAccordionItem
-                      key={item.label}
-                      item={item}
-                      onClose={() => setDrawerOpen(false)}
-                      pathname={pathname}
-                    />
-                  ))}
-                </div>
-
-                {/* Drawer footer */}
-                <div className="px-5 py-4 border-t border-white/10">
-                  <Link
-                    href="/login"
-                    onClick={() => setDrawerOpen(false)}
-                    className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-[#003366] to-[#004a8f] hover:from-[#004a8f] hover:to-[#0060b8] text-white font-bold text-sm py-3 rounded-xl transition-all"
-                  >
-                    <LogIn size={15} /> Faculty Login
-                  </Link>
-                  <div className="flex items-center justify-center gap-4 mt-4">
-                    {[Facebook, Youtube, Twitter, Linkedin].map((Icon, i) => (
-                      <a key={i} href="#" className="text-slate-500 hover:text-[#c9a84c] transition-colors">
-                        <Icon size={16} />
-                      </a>
-                    ))}
-                  </div>
-                  <p className="text-center text-[10px] text-slate-600 mt-3 tracking-wider">
-                    © 2026 NCE. All Rights Reserved.
-                  </p>
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
-
       </header>
 
-      {/* ───── MAIN NAV (ONLY THIS IS STICKY) ───── */}
-      <nav className="sticky top-0 z-50 bg-[#003366]/95 backdrop-blur-md border-b-[3px] border-[#c9a84c] shadow-lg shadow-blue-900/30">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-12">
+      {/* ───── MAIN NAV (HYPER-PREMIUM STICKY BAR) ───── */}
+      <nav className="sticky top-0 z-50 bg-[#001E36]/95 backdrop-blur-2xl border-y border-white/10 shadow-[0_10px_40px_rgba(0,30,54,0.15)] transition-all duration-500">
+        <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
+        <div className="container mx-auto px-4 relative">
+          <div className="flex items-center justify-between h-12 md:h-14">
 
-            {/* Desktop Links */}
-            <div className="hidden md:flex items-center w-full justify-center gap-0">
+            <div className="hidden lg:flex items-center w-full justify-center gap-1 xl:gap-2 relative">
               {NAV_ITEMS.map((item) => {
                 if (item.isHighlight) {
                   const active = pathname === item.href || pathname?.startsWith(`${item.href}/`);
@@ -508,68 +402,127 @@ export default function Navbar() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className={`relative flex items-center gap-1.5 h-12 px-4 text-[12px] lg:text-[13px] font-bold uppercase tracking-wider text-white overflow-hidden group ${active ? "ring-1 ring-white/25" : ""
-                        }`}
+                      className={`ml-4 relative group overflow-hidden flex items-center gap-1.5 px-6 py-2 rounded-full text-[11px] lg:text-[12px] font-black uppercase tracking-[0.15em] transition-all duration-500 shadow-[0_5px_20px_rgba(201,168,76,0.3)] hover:shadow-[0_8px_25px_rgba(201,168,76,0.6)] hover:-translate-y-0.5 border border-[#f3e198]/50 ${
+                        active 
+                          ? "bg-gradient-to-r from-[#eecf6d] via-[#ffffff] to-[#eecf6d] text-[#001E36] bg-[length:200%_auto]" 
+                          : "bg-gradient-to-r from-[#c9a84c] via-[#f3e198] to-[#c9a84c] text-[#001E36] bg-[length:200%_auto] hover:bg-right"
+                      }`}
                     >
-                      <span className="absolute inset-0 bg-gradient-to-r from-[#b91c1c] to-[#dc2626]" />
-                      <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+                      {/* Glass/Shine overlay */}
+                      <span className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/40 to-transparent rounded-t-full pointer-events-none" />
                       <Briefcase size={13} className="relative z-10" />
                       <span className="relative z-10">{item.label}</span>
                     </Link>
                   );
                 }
                 if (item.children) {
-                  return (
-                    <DesktopDropdown key={item.label} label={item.label} children={item.children} pathname={pathname} />
-                  );
+                  return <DesktopDropdown key={item.label} label={item.label} children={item.children} pathname={pathname} />;
                 }
-                return (
-                  <DesktopNavLink
-                    key={item.href}
-                    href={item.href}
-                    label={item.label}
-                    active={pathname === item.href || pathname?.startsWith(`${item.href}/`)}
-                  />
-                );
+                return <DesktopNavLink key={item.href} href={item.href} label={item.label} active={pathname === item.href || pathname?.startsWith(`${item.href}/`)} />;
               })}
             </div>
 
-            {/* Mobile: Logo text + Hamburger */}
-            <div className="md:hidden flex items-center justify-between w-full">
-              <Link href="/" className="text-[#c9a84c] font-extrabold text-sm tracking-widest uppercase font-playfair">
-                NCE
+            <div className="lg:hidden flex items-center justify-between w-full">
+              <Link href="/" className="text-white font-black text-base md:text-lg tracking-widest uppercase font-playfair flex items-center gap-2 drop-shadow-md">
+                <span className="text-[#c9a84c]">|</span> NCE
               </Link>
               <button
                 onClick={() => setDrawerOpen(true)}
-                className="relative w-9 h-9 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
-                aria-label="Open menu"
+                className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-all shadow-sm focus:ring-2 ring-[#c9a84c]"
               >
-                <Menu size={20} />
+                <Menu size={18} />
               </button>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* ───── NEWS TICKER (SCROLLS NORMALLY) ───── */}
-      <div className="bg-[#fefce8] border-b border-yellow-200 flex items-center overflow-hidden h-8">
-        <div className="shrink-0 bg-[#d32f2f] text-white text-[10px] font-extrabold px-3 py-1 uppercase tracking-widest h-full flex items-center shadow-sm z-10">
-          NEWS
+      {/* ───── NEWS TICKER (ADVANCED LIVE TICKER) ───── */}
+      <div className="bg-white border-b border-slate-200 flex items-center overflow-hidden h-8 md:h-9 shadow-[inset_0_2px_10px_rgba(0,0,0,0.02)] relative z-30">
+        <div className="shrink-0 bg-[#001E36] text-white text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] px-4 md:px-5 h-full flex items-center justify-center relative shadow-[5px_0_15px_rgba(0,0,0,0.1)] z-20">
+          <div className="w-1.5 h-1.5 rounded-full bg-red-500 mr-2 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
+          <span className="text-[#c9a84c]">LIVE</span> &nbsp;UPDATES
         </div>
-        <div className="flex-1 overflow-hidden relative">
-          <div className="marquee-track inline-flex items-center gap-0">
+        <div className="flex-1 overflow-hidden relative h-full bg-slate-50/50">
+          <div className="absolute top-0 bottom-0 left-0 w-6 bg-gradient-to-r from-slate-50 to-transparent z-10" />
+          <div className="marquee-track inline-flex items-center h-full gap-0">
             {[...TICKER_NEWS, ...TICKER_NEWS].map((news, i) => (
-              <span
-                key={i}
-                className="inline-flex items-center text-[#003366] text-[11px] md:text-[12px] font-semibold whitespace-nowrap px-10"
-              >
+              <span key={i} className="inline-flex items-center text-[#001E36] text-[11px] md:text-[12px] font-semibold tracking-wide whitespace-nowrap px-8">
+                <span className="text-[#c9a84c] mr-2 font-black text-sm leading-none">•</span>
                 {news}
               </span>
             ))}
           </div>
         </div>
       </div>
+      
+      {/* ───── MOBILE DRAWER ───── */}
+      <AnimatePresence>
+        {drawerOpen && (
+          <>
+            <motion.div
+              variants={overlayVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="fixed inset-0 z-[60] bg-slate-900/40 backdrop-blur-sm"
+              onClick={() => setDrawerOpen(false)}
+            />
 
-    </div>
+            <motion.div
+              variants={drawerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="fixed top-0 right-0 h-full w-[85vw] max-w-[380px] z-[70] flex flex-col shadow-[-20px_0_50px_rgba(0,0,0,0.5)] bg-[#001E36] overflow-hidden"
+            >
+              <div className="flex items-center justify-between px-6 py-6 border-b border-white/10 bg-white/5 backdrop-blur-md relative z-10">
+                <div>
+                  <h2 className="font-playfair text-white font-black text-2xl tracking-wide">NCE</h2>
+                  <p className="text-[#c9a84c] text-[9px] font-bold tracking-[0.25em] uppercase mt-1">Directory</p>
+                </div>
+                <button
+                  onClick={() => setDrawerOpen(false)}
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-[#c9a84c] hover:text-[#001E36] text-white transition-all duration-300 shadow-lg"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              <div className="flex-1 overflow-y-auto overscroll-contain py-2 relative z-10">
+                {NAV_ITEMS.map((item) => (
+                  <MobileAccordionItem
+                    key={item.label}
+                    item={item}
+                    onClose={() => setDrawerOpen(false)}
+                    pathname={pathname}
+                  />
+                ))}
+              </div>
+
+              <div className="px-6 py-6 border-t border-white/10 bg-white/5 relative z-10">
+                <Link
+                  href="/login"
+                  onClick={() => setDrawerOpen(false)}
+                  className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-[#c9a84c] to-[#a88a38] text-white font-black tracking-[0.1em] uppercase text-xs py-4 rounded-xl shadow-[0_10px_20px_rgba(201,168,76,0.3)] transition-transform hover:-translate-y-1"
+                >
+                  <LogIn size={15} /> Faculty Login
+                </Link>
+                <div className="flex items-center justify-center gap-6 mt-6">
+                  {[Facebook, Youtube, Twitter, Linkedin].map((Icon, i) => (
+                    <a key={i} href="#" className="text-white/40 hover:text-[#c9a84c] hover:scale-125 transition-all duration-300">
+                      <Icon size={18} />
+                    </a>
+                  ))}
+                </div>
+                <p className="text-center text-[9px] text-white/30 mt-6 font-bold tracking-[0.2em] uppercase">
+                  © 2026 NCE Built by T&P Cell
+                </p>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
