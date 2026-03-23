@@ -55,7 +55,7 @@ export default function PlacementPage() {
       
       {/* ─── EXECUTIVE HERO SECTION ─── */}
       <section className="relative w-full overflow-hidden bg-white border-b border-slate-200">
-        <div className="container mx-auto px-6 max-w-7xl pt-16 pb-32 md:pt-24 md:pb-40 relative z-10 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+        <div className="container mx-auto px-6 max-w-7xl pt-12 pb-24 md:pt-24 md:pb-40 relative z-10 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
           
           <motion.div initial="hidden" animate="visible" variants={fadeUp} className="flex-1 w-full relative z-20">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-[#003366] text-xs font-bold uppercase tracking-widest mb-8">
@@ -131,7 +131,7 @@ export default function PlacementPage() {
       </section>
 
       {/* ─── TRUSTED PARTNERS GRID ─── */}
-      <section className="py-24 bg-[#f8fafc] overflow-hidden">
+      <section id="message" className="py-12 md:py-24 bg-[#f8fafc]">
          <div className="container mx-auto px-6 max-w-6xl">
            <div className="text-center mb-16">
               <span className="inline-block py-1.5 px-4 rounded-full bg-[#003366]/5 text-[#003366] text-sm font-bold uppercase tracking-[0.2em] mb-4">Our Network</span>
@@ -160,7 +160,7 @@ export default function PlacementPage() {
       </section>
 
       {/* ─── 3 PILLARS: WHY NCE ─── */}
-      <section className="py-24 bg-white border-y border-slate-200/60">
+      <section className="py-12 md:py-24 bg-white border-y border-slate-200/60">
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="text-center max-w-3xl mx-auto mb-20">
             <h2 className="text-4xl md:text-5xl font-playfair font-black text-[#001122] leading-tight mb-4">

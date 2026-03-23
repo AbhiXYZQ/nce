@@ -335,7 +335,7 @@ function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[70vh] md:min-h-[85vh] w-full flex flex-col justify-center items-center overflow-hidden bg-slate-900 isolation-isolate">
+    <section className="relative min-h-[60vh] md:min-h-[85vh] w-full flex flex-col justify-center items-center overflow-hidden bg-slate-900 isolation-isolate">
       
       {/* 1. BACKGROUND: Ambient light derived from current slide */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -363,7 +363,7 @@ function HeroSection() {
       </div>
 
       {/* 2. GALLERY CAROUSEL: Left, Center, Right Peeking Slides */}
-      <div className="relative z-10 w-full h-[60vh] sm:h-[70vh] md:h-[75vh] flex justify-center items-center mt-2 md:mt-4 px-0 pb-6 will-change-transform">
+      <div className="relative z-10 w-full h-[50vh] sm:h-[70vh] md:h-[75vh] flex justify-center items-center mt-2 md:mt-4 px-0 pb-6 will-change-transform">
           {heroSlides.map((slide, index) => {
              const style = getSlideStyle(index);
              const isCenter = index === currentSlide;
@@ -459,7 +459,7 @@ function StatsRow() {
   ];
 
   return (
-    <div ref={ref} className="py-24 bg-white border-y border-slate-100">
+    <div ref={ref} className="py-12 md:py-24 bg-white border-y border-slate-100">
       <div className="container mx-auto px-6 max-w-6xl">
          <div className="flex flex-col md:flex-row gap-16 lg:gap-24 items-center">
             
@@ -515,7 +515,7 @@ function BentoNotices() {
   const tagColor = { Placement: "bg-emerald-100 text-emerald-700", Event: "bg-amber-100 text-amber-700", Academic: "bg-blue-100 text-blue-700" };
 
   return (
-    <Section className="py-20 bg-slate-50">
+    <Section className="py-12 md:py-20 bg-slate-50">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-3 gap-8 items-start">
 
@@ -718,9 +718,9 @@ function DepartmentsSection() {
   };
 
   return (
-    <Section className="py-20 bg-white">
+    <Section className="py-12 md:py-20 bg-white">
       <div className="container mx-auto px-6">
-        <motion.div variants={fadeUp} className="text-center mb-14">
+        <motion.div variants={fadeUp} className="text-center mb-8 md:mb-14">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#c9a84c] mb-3">Programs</p>
           <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold text-[#003366]">
             Academic Departments
@@ -765,9 +765,9 @@ function DepartmentsSection() {
 
 function CampusGrid() {
   return (
-    <Section className="py-20 bg-slate-50">
+    <Section className="py-12 md:py-20 bg-slate-50">
       <div className="container mx-auto px-6">
-        <motion.div variants={fadeUp} className="text-center mb-14">
+        <motion.div variants={fadeUp} className="text-center mb-8 md:mb-14">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#c9a84c] mb-3">Life at NCE</p>
           <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold text-[#003366]">
             Campus &amp; Facilities

@@ -46,7 +46,7 @@ function Section({ title, children }) {
       variants={fadeUp}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      className="py-10"
+      className="py-6 md:py-10"
     >
       <div className="container mx-auto px-6">
         <div className="flex items-end justify-between gap-6 mb-5">
@@ -234,7 +234,7 @@ export default function PageShell({
             <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-[#c9a84c]/10 blur-3xl" />
             <div className="absolute -bottom-28 -right-24 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
           </div>
-          <div className="container mx-auto px-6 py-14 md:py-16 relative z-10">
+          <div className="container mx-auto px-6 py-10 md:py-16 relative z-10">
             <motion.div variants={fadeUp} className="max-w-3xl">
               <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#c9a84c] mb-3">
                 {accentLabel}
@@ -326,7 +326,7 @@ export default function PageShell({
       {children}
 
       {/* Footer CTA */}
-      <section className="py-14 bg-transparent border-t border-white/10">
+      <section className="py-10 md:py-14 bg-transparent border-t border-white/10">
         <div className="container mx-auto px-6">
           <div className="rounded-3xl bg-white/75 backdrop-blur border border-slate-200/70 p-7 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div className="max-w-2xl">

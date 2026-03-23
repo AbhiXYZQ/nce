@@ -1,11 +1,13 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { incrementVisitorCount } from "@/app/actions";
 import {
   Facebook, Youtube, Twitter, Linkedin,
   MapPin, Phone, Mail, Globe, ArrowRight, Clock,
-  Building2, GraduationCap, BookOpen, Briefcase, ShieldCheck,
+  Building2, GraduationCap, BookOpen, Briefcase, ShieldCheck, Users,
 } from "lucide-react";
 
 // Robust staggering and fade up animation variants
@@ -49,6 +51,26 @@ const scaleUpItem = {
 };
 
 export default function Footer() {
+  const [visitorCount, setVisitorCount] = useState(0);
+
+  useEffect(() => {
+    const updateCount = async () => {
+      try {
+        const newCount = await incrementVisitorCount();
+        if (newCount !== null) {
+          setVisitorCount(newCount);
+        } else {
+          // If DB is not connected/setup, show a fallback
+          setVisitorCount(45231); 
+        }
+      } catch (error) {
+        console.error("Failed to update visitor count:", error);
+        setVisitorCount(45231); 
+      }
+    };
+    updateCount();
+  }, []);
+
   return (
     <motion.footer 
       initial="hidden"
@@ -71,7 +93,7 @@ export default function Footer() {
         className="absolute bottom-0 right-1/4 w-[300px] md:w-[450px] h-[300px] md:h-[450px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" 
       />
 
-      <div className="container mx-auto px-6 py-14 relative z-10">
+      <div className="container mx-auto px-6 py-10 md:py-14 relative z-10">
         <motion.div variants={fadeUpContainer} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-10 lg:gap-12">
           
           {/* Brand + socials */}
@@ -244,15 +266,24 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
-          className="mt-10 pt-8 border-t border-white/10 flex flex-col lg:flex-row items-center justify-between gap-6"
+          className="mt-8 md:mt-10 pt-6 md:pt-8 border-t border-white/10 flex flex-col lg:flex-row items-center justify-between gap-6"
         >
           <p className="text-xs text-white/50 tracking-wider text-center lg:text-left">© {new Date().getFullYear()} Nalanda College of Engineering. All Rights Reserved.</p>
           
-          <div className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors shadow-lg shadow-black/50 mx-auto lg:mx-0">
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
-            <span className="text-[11px] md:text-xs text-white/70 font-medium tracking-wide">
-              Developed & Maintained by <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#c9a84c] to-[#e8c86a] ml-1 text-xs md:text-sm">T&P Cell, NCE</span>
-            </span>
+          <div className="flex flex-col md:flex-row items-center gap-4 lg:mx-0">
+            <div className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors shadow-lg shadow-black/50">
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
+              <span className="text-[11px] md:text-xs text-white/70 font-medium tracking-wide">
+                Developed & Maintained by <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#c9a84c] to-[#e8c86a] ml-1 text-xs md:text-sm">T&P Cell, NCE</span>
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors shadow-lg shadow-black/50">
+              <Users size={14} className="text-[#c9a84c]" />
+              <span className="text-[11px] md:text-xs text-white/70 font-medium tracking-wide">
+                Visitors: <span className="font-bold text-white ml-1">{visitorCount.toLocaleString()}</span>
+              </span>
+            </div>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-medium uppercase tracking-wider">

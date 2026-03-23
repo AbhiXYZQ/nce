@@ -41,8 +41,8 @@ function RevealSection({ kicker, title, subtitle, children, tone = "light" }) {
 
   const wrapperClass =
     tone === "dark"
-      ? "py-12 bg-gradient-to-br from-[#001a33] via-[#003366] to-[#001a33]"
-      : "py-12";
+      ? "py-8 md:py-12 bg-gradient-to-br from-[#001a33] via-[#003366] to-[#001a33]"
+      : "py-8 md:py-12";
 
   return (
     <section className={wrapperClass}>
