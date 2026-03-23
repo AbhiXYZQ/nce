@@ -206,11 +206,10 @@ export default function PlacementPage() {
             
             <div className="w-64 h-64 md:w-80 md:h-80 shrink-0 relative overflow-hidden rounded-3xl border border-slate-200 shadow-xl rotate-1 group hover:rotate-0 transition-transform duration-700">
               <Image 
-                src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=2070&auto=format&fit=crop" 
+                src="/images/faculties/avinash_Machenical.JPG" 
                 fill 
                 alt="TPO Officer" 
                 className="object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" 
-                unoptimized
               />
             </div>
 

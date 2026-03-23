@@ -21,6 +21,9 @@ export const metadata = {
   description:
     "Official Website of Nalanda College of Engineering — A premier Government Engineering College under Dept. of Science & Technology, Govt. of Bihar. AICTE Approved.",
   keywords: "NCE, Nalanda College of Engineering, Government Engineering Bihar, AICTE",
+  icons: {
+    icon: "/images/nce-logo.png",
+  },
 };
 
 export default function RootLayout({ children }) {
