@@ -128,9 +128,8 @@ const departments = [
     slug: "aiml",
     seats: 60,
     accent: "#7c3aed",
-    highlight: true,
+    highlight: false,
     desc: "Deep Learning, NLP, Computer Vision & Data Science.",
-    tag: "New · Flagship",
     bgImage: "https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=2070&auto=format&fit=crop"
   },
   {
@@ -224,8 +223,8 @@ const bentoNotices = {
 const campusGrid = [
   { label: "Academic & Study", icon: Library, accent: "#1e40af", bgImage: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop", desc: "Central Library (10,000+ books, 80+ journals), Computer Centre, laboratories for every branch, Smart Classrooms, and a Wi-Fi enabled campus.", stat: "Smart Infra", span: "md:col-span-2 md:row-span-2 row-span-2" },
   { label: "Hostel Facilities", icon: HomeIcon, accent: "#b45309", bgImage: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=2069&auto=format&fit=crop", desc: "In-campus Boys & Girls hostels with single/double/triple sharing. Equipped with TV rooms, study areas, Mess (Veg/Non-veg), and 24×7 security.", stat: "Secure Stay", span: "md:col-span-1 md:row-span-2 row-span-2" },
-  { label: "Sports & Activities", icon: Trophy, accent: "#15803d", bgImage: "https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?q=80&w=2070&auto=format&fit=crop", desc: "UMANG annual fest, large grounds for Cricket, Football, Volleyball. Indoor arenas for Badminton & TT. Active Coding, Sports, Cultural, and E-cells.", stat: "Clubs & Fests", span: "md:col-span-1 md:row-span-2 row-span-2" },
-  { label: "Other Facilities (T&P)", icon: Briefcase, accent: "#0f766e", desc: "Active Training & Placement Cell offering internship support, skill development, and resources.", stat: "Careers Support", span: "md:col-span-1 md:row-span-1" },
+  { label: "T&P Cell", icon: Briefcase, accent: "#0f766e", bgImage: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop", desc: "Active Training & Placement Cell providing corporate relations, internship support, soft skill development, and career resources.", stat: "200+ Recruiters", span: "md:col-span-1 md:row-span-2 row-span-2" },
+  { label: "Sports & Activities", icon: Trophy, accent: "#15803d", desc: "UMANG annual fest, large grounds for major sports, indoor arenas, and vibrant dynamic student clubs.", stat: "Clubs & Fests", span: "md:col-span-1 md:row-span-1" },
   { label: "Food & Daily Needs", icon: Building2, accent: "#be123c", desc: "Hygienic Canteen & Mess. Basic daily items are easily available around the campus.", stat: "Canteen & Shops", span: "md:col-span-1 md:row-span-1" },
   { label: "Basic Services", icon: Landmark, accent: "#6d28d9", desc: "A 24/7 ATM facility is available directly and securely inside the college campus for all students.", stat: "On-Campus ATM", span: "md:col-span-2 md:row-span-1" },
 ];

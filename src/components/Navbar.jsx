@@ -11,7 +11,7 @@ import {
   FlaskConical, Cpu, Zap, Wrench, Brain,
   Plane,
   Info, Calendar, FileText, Award, Newspaper,
-  HelpCircle, MessageSquare, UserCircle, Briefcase, Bell
+  HelpCircle, MessageSquare, UserCircle, Briefcase, Bell, Image as ImageIcon
 } from "lucide-react";
 
 // ─── NAV DATA ─────────────────────────────────────────────────────────────────
@@ -26,6 +26,7 @@ const NAV_ITEMS = [
       { label: "Administration", href: "/administration", icon: Users },
       { label: "Faculty", href: "/faculty", icon: Users },
       { label: "Principal's Desk", href: "/principal", icon: UserCircle },
+      { label: "Gallery", href: "/gallery", icon: ImageIcon },
     ],
   },
   {
@@ -61,6 +62,7 @@ const NAV_ITEMS = [
       { label: "Scholarships", href: "/scholarships", icon: Award },
       { label: "Grievance Cell", href: "/grievance", icon: MessageSquare },
       { label: "Anti-Ragging", href: "/anti-ragging", icon: HelpCircle },
+      { label: "Alumni", href: "/alumni", icon: Users },
     ],
   },
   { label: "Contact", href: "/contact" },

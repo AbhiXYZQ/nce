@@ -147,7 +147,8 @@ export default function Footer() {
                 { label: "Vision & Mission", href: "/vision" },
                 { label: "Administration", href: "/administration" },
                 { label: "Faculty", href: "/faculty" },
-                { label: "Principal's Desk", href: "/principal" }
+                { label: "Principal's Desk", href: "/principal" },
+                { label: "Gallery", href: "/gallery" }
               ]
             },
             {
@@ -169,7 +170,8 @@ export default function Footer() {
                 { label: "Scholarships", href: "/scholarships" },
                 { label: "Grievance Cell", href: "/grievance" },
                 { label: "Anti-Ragging", href: "/anti-ragging" },
-                { label: "Notices", href: "/notices" }
+                { label: "Notices", href: "/notices" },
+                { label: "Alumni Network", href: "/alumni" }
               ]
             }
           ].map((col, cIdx) => (

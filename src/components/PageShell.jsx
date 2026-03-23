@@ -1,171 +1,94 @@
 "use client";
 
+import { useState, useMemo, useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
-import { useMemo, useRef, useState } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { 
-  ArrowRight, ChevronRight,
-  Cpu, Code2, Database, Network, Terminal, 
-  Brain, Sparkles, Binary, Layers,
-  Building2, Landmark, Compass, Ruler, Hammer,
-  Wrench, Settings, PenTool, Truck, Cylinder,
-  Plane, Wind, Navigation, Rocket, Globe,
-  Zap, CircuitBoard, Bolt, BatteryCharging,
-  Users, Award, GraduationCap, BookOpen
+  ChevronRight, ArrowRight, Home, Info, Award, Users, 
+  UserCircle, Library, BookOpen, GraduationCap, Building2, 
+  ShieldCheck, MapPin, Calendar, Heart, Globe, Briefcase
 } from "lucide-react";
 
-const PATTERN_MAP = {
-  cse: [Cpu, Code2, Database, Network, Terminal],
-  aiml: [Brain, Sparkles, Binary, Layers, Cpu],
-  ce: [Building2, Landmark, Compass, Ruler, Hammer],
-  me: [Wrench, Settings, PenTool, Truck, Cylinder],
-  aero: [Plane, Wind, Navigation, Rocket, Globe],
-  eee: [Zap, CircuitBoard, Bolt, BatteryCharging, Cpu],
-  about: [GraduationCap, BookOpen, Building2, Award],
-  faculty: [Users, Award, BookOpen, GraduationCap],
-  mtech: [Cpu, Zap, GraduationCap, BookOpen]
-};
+// ─── STYLES & VARIANTS ────────────────────────────────────────────────────────
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
 };
 
 const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
+  visible: { transition: { staggerChildren: 0.1 } },
 };
 
-function Section({ title, children }) {
+const PATTERN_MAP = {
+  faculty: [Users, UserCircle, Briefcase],
+  about: [Library, Info, ShieldCheck],
+  admission: [Award, BookOpen, Home],
+  academics: [GraduationCap, Building2, Calendar]
+};
+
+// ─── COMPONENTS ───────────────────────────────────────────────────────────────
+
+function Breadcrumbs({ items = [] }) {
+  if (!items?.length) return null;
+  return (
+    <nav className="flex items-center gap-2 text-[10px] md:text-xs font-bold text-white/50 overflow-x-auto no-scrollbar py-1">
+      <Link href="/" className="hover:text-[#c9a84c] transition-colors flex items-center gap-1">
+        <Home size={12} /> Home
+      </Link>
+      {items.map((item, idx) => (
+        <div key={idx} className="flex items-center gap-2 shrink-0">
+          <ChevronRight size={10} className="text-white/30" />
+          {item.href ? (
+            <Link href={item.href} className="hover:text-[#c9a84c] transition-colors">
+              {item.label}
+            </Link>
+          ) : (
+            <span className="text-white/90">{item.label}</span>
+          )}
+        </div>
+      ))}
+    </nav>
+  );
+}
+
+function Section({ title, children, id }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-120px" });
 
   return (
     <motion.section
+      id={id}
       ref={ref}
-      variants={fadeUp}
+      variants={stagger}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      className="py-6 md:py-10"
+      className="py-12 md:py-16 scroll-mt-24 first:pt-8"
     >
-      <div className="container mx-auto px-6">
-        <div className="flex items-end justify-between gap-6 mb-5">
-          <h2 className="font-playfair text-2xl md:text-3xl font-bold text-[#003366]">
+      <div className="container mx-auto">
+        <motion.div variants={fadeUp} className="max-w-3xl mb-12">
+          <h2 className="font-playfair text-3xl md:text-4xl font-extrabold text-[#003366]">
             {title}
           </h2>
-        </div>
-        {children}
+          <div className="h-1 w-20 bg-[#c9a84c] mt-4 rounded-full" />
+        </motion.div>
+        <motion.div variants={fadeUp}>{children}</motion.div>
       </div>
     </motion.section>
   );
 }
 
-function Breadcrumbs({ items }) {
-  if (!items?.length) return null;
-
+function GalleryCarousel({ gallery = [] }) {
+  if (!gallery?.length) return null;
   return (
-    <nav aria-label="Breadcrumb" className="text-xs text-white/70">
-      <ol className="flex flex-wrap items-center gap-1">
-        {items.map((it, idx) => {
-          const isLast = idx === items.length - 1;
-          return (
-            <li key={`${it.href ?? it.label}-${idx}`} className="flex items-center gap-1">
-              {it.href && !isLast ? (
-                <Link href={it.href} className="hover:text-white transition-colors">
-                  {it.label}
-                </Link>
-              ) : (
-                <span className={isLast ? "text-white font-semibold" : ""}>{it.label}</span>
-              )}
-              {!isLast && <ChevronRight size={12} className="opacity-50" />}
-            </li>
-          );
-        })}
-      </ol>
-    </nav>
-  );
-}
-
-function GalleryCarousel({ gallery }) {
-  const [index, setIndex] = useState(0);
-
-  if (!gallery || gallery.length === 0) return null;
-
-  const numItems = gallery.length;
-
-  const handleNext = () => setIndex((prev) => (prev + 1) % numItems);
-  const handlePrev = () => setIndex((prev) => (prev - 1 + numItems) % numItems);
-
-  return (
-    <div className="relative w-full h-[320px] md:h-[450px] lg:h-[500px] flex items-center justify-center overflow-hidden py-4 text-[#001a33]">
-      <div className="relative w-full max-w-7xl h-full flex items-center justify-center">
-        {gallery.map((img, i) => {
-          let offset = i - index;
-          if (offset > Math.floor(numItems / 2)) {
-            offset -= numItems;
-          } else if (offset < -Math.floor(numItems / 2)) {
-            offset += numItems;
-          }
-
-          const isActive = offset === 0;
-
-          return (
-            <motion.div
-              key={i}
-              initial={false}
-              animate={{
-                x: `${offset * 85}%`,
-                scale: isActive ? 1 : 0.8,
-                opacity: Math.abs(offset) > 1 ? 0 : offset === 0 ? 1 : 0.6,
-                filter: isActive ? "blur(0px) brightness(1.1)" : "blur(4px) brightness(0.6)",
-                zIndex: 10 - Math.abs(offset),
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 300,
-                damping: 30,
-                mass: 0.8,
-              }}
-              onClick={() => {
-                if (offset === 1) handleNext();
-                if (offset === -1) handlePrev();
-              }}
-              className="absolute shrink-0 flex items-center justify-center w-[75%] sm:w-[60%] md:w-[50%] lg:w-[45%] h-full cursor-pointer pointer-events-auto"
-            >
-              <div className="relative inline-flex items-center justify-center max-w-full max-h-full rounded-2xl md:rounded-3xl drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]">
-                <img 
-                  src={img} 
-                  alt="Gallery view" 
-                  className="max-w-full max-h-full object-contain rounded-2xl md:rounded-3xl" 
-                />
-                {isActive && (
-                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#001122]/90 to-transparent pointer-events-none flex flex-col justify-end p-5 md:p-6 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-b-2xl md:rounded-b-3xl">
-                    <span className="text-white text-sm md:text-base font-bold uppercase tracking-widest drop-shadow-md flex items-center gap-2">
-                      <Sparkles size={16} className="text-[#c9a84c]" /> Highlight
-                    </span>
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
-
-      {/* Navigation Buttons */}
-      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-between px-2 sm:px-4 md:px-12 z-30 pointer-events-none">
-        <button 
-          onClick={handlePrev} 
-          className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/40 hover:bg-white border border-white/50 backdrop-blur-md flex items-center justify-center text-[#001a33] shadow-xl pointer-events-auto transition-all hover:scale-110 active:scale-95"
-        >
-          <ChevronRight size={28} className="rotate-180" />
-        </button>
-        <button 
-          onClick={handleNext} 
-          className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/40 hover:bg-white border border-white/50 backdrop-blur-md flex items-center justify-center text-[#001a33] shadow-xl pointer-events-auto transition-all hover:scale-110 active:scale-95"
-        >
-          <ChevronRight size={28} />
-        </button>
-      </div>
+    <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+      {gallery.map((src, i) => (
+        <div key={i} className="relative h-64 w-96 shrink-0 rounded-3xl overflow-hidden shadow-lg border border-slate-100 bg-slate-50">
+          <Image src={src} alt={`Gallery ${i}`} fill className="object-cover" sizes="384px" />
+        </div>
+      ))}
     </div>
   );
 }
@@ -183,10 +106,59 @@ export default function PageShell({
   gallery = [],
   children,
 }) {
-  const normalizedSections = useMemo(() => sections?.filter(Boolean) ?? [], [sections]);
+  const [activeSection, setActiveSection] = useState("");
+  
+  const normalizedSections = useMemo(() => {
+    return (sections?.filter(Boolean) ?? []).map((s, idx) => ({
+      ...s,
+      id: `${(s.title || "section").toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${idx}`,
+    }));
+  }, [sections]);
+
+  // Handle active section tracking on scroll
+  useEffect(() => {
+    if (normalizedSections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { 
+        threshold: 0.1, 
+        rootMargin: "-20% 0px -60% 0px" 
+      }
+    );
+
+    normalizedSections.forEach((s) => {
+      const el = document.getElementById(s.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [normalizedSections]);
+
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 100;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = el.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
-    <div className="bg-transparent">
+    <div className="bg-transparent min-h-screen">
       {/* Hero */}
       <motion.header
         variants={stagger}
@@ -198,19 +170,17 @@ export default function PageShell({
           {/* Background Image with Overlay */}
           {bgImage && (
             <div className="absolute inset-0 z-0">
-              <img 
+               <img 
                 src={bgImage} 
                 alt={title} 
                 className="w-full h-full object-cover opacity-40 select-none pointer-events-none"
               />
-              {/* Very strong dark overlap on the left for text contrast */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#001122] via-[#001122]/90 to-transparent" />
-              {/* Subtle darkening from bottom for depth */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#001122]/80 via-transparent to-transparent" />
             </div>
           )}
 
-          {/* Fallback Sleek Floating Decor if no image */}
+          {/* Decorative Particles / Icons */}
           {!bgImage && patternType && PATTERN_MAP[patternType] && (
             <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
               <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#c9a84c]/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
@@ -219,11 +189,9 @@ export default function PageShell({
                 {(() => {
                   const icons = PATTERN_MAP[patternType];
                    return (
-                    <>
-                      <div className="absolute top-1/2 right-[10%] -translate-y-1/2 opacity-[0.2] blur-[1px] rotate-12 text-white">
-                        {(() => { const Icon = icons[0]; return <Icon size={200} />; })()}
-                      </div>
-                    </>
+                    <div className="absolute top-1/2 right-[10%] -translate-y-1/2 rotate-12 text-white">
+                       {(() => { const Icon = icons[0]; return <Icon size={200} />; })()}
+                    </div>
                   );
                 })()}
               </div>
@@ -270,62 +238,124 @@ export default function PageShell({
         </div>
       </motion.header>
 
-      {/* Sections */}
-      {normalizedSections.map((sec, idx) => (
-        <Section key={`${sec.title}-${idx}`} title={sec.title}>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-            {(sec.cards ?? []).map((card, cIdx) => (
-              <div
-                key={`${card.title}-${cIdx}`}
-                className="rounded-2xl border border-slate-200/70 bg-white/75 backdrop-blur p-6 hover:shadow-lg transition-shadow"
-              >
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#c9a84c] mb-2">
-                  {card.kicker ?? ""}
-                </p>
-                <h3 className="text-base font-bold text-slate-900">{card.title}</h3>
-                {card.text && <p className="text-sm text-slate-500 mt-2 leading-relaxed">{card.text}</p>}
-                {!!card.points?.length && (
-                  <ul className="mt-3 space-y-1.5 text-sm text-slate-600">
-                    {card.points.map((p, pIdx) => (
-                      <li key={`${p}-${pIdx}`} className="flex items-start gap-2">
-                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#c9a84c] shrink-0" />
-                        <span className="leading-snug">{p}</span>
-                      </li>
+      {/* Main Content Area */}
+      <div className="relative bg-white">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+            
+            {/* Sidebar Navigation */}
+            {normalizedSections.length > 0 && (
+              <aside className="lg:w-72 flex-shrink-0 pt-16 lg:sticky lg:top-24 h-fit">
+                <div className="bg-slate-50/50 backdrop-blur-sm p-6 rounded-3xl border border-slate-200/50 shadow-sm">
+                  <div className="flex items-center gap-2 mb-6 px-1">
+                    <div className="w-1 h-3 bg-[#c9a84c] rounded-full" />
+                    <p className="text-[10px] font-black uppercase tracking-[0.25em] text-[#003366]/40">
+                      On This Page
+                    </p>
+                  </div>
+                  
+                  <nav className="flex lg:flex-col gap-1.5 overflow-x-auto lg:overflow-x-visible pb-1 lg:pb-0 scrollbar-hide no-scrollbar relative">
+                    {/* Vertical Connecting Line (Desktop) */}
+                    <div className="hidden lg:block absolute left-[15px] top-2 bottom-2 w-0.5 bg-slate-100 -z-10" />
+                    
+                    {normalizedSections.map((sec) => (
+                      <button
+                        key={sec.id}
+                        onClick={() => scrollTo(sec.id)}
+                        className={`group relative flex items-center gap-4 px-3 py-2.5 rounded-xl transition-all text-left whitespace-nowrap lg:whitespace-normal ${
+                          activeSection === sec.id
+                            ? "bg-white text-[#003366] shadow-sm ring-1 ring-slate-100"
+                            : "text-slate-500 hover:text-[#003366] hover:bg-white/50"
+                        }`}
+                      >
+                        {/* Dot Indicator */}
+                        <div className={`w-2 h-2 rounded-full shrink-0 transition-all duration-300 z-10 ${
+                            activeSection === sec.id ? "bg-[#c9a84c] ring-4 ring-[#c9a84c]/10" : "bg-slate-200"
+                        }`} />
+                        <span className={`text-sm tracking-tight transition-all ${activeSection === sec.id ? "font-bold" : "font-medium"}`}>
+                          {sec.title}
+                        </span>
+
+                        {activeSection === sec.id && (
+                          <motion.div
+                            layoutId="active-nav-glow"
+                            className="absolute inset-0 bg-white rounded-xl -z-10 shadow-sm"
+                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                          />
+                        )}
+                      </button>
                     ))}
-                  </ul>
-                )}
-                {card.href && (
-                  <Link
-                    href={card.href}
-                    className="mt-4 inline-flex items-center gap-1.5 text-[#003366] font-semibold text-sm hover:text-[#c9a84c] transition-colors"
-                  >
-                    Open <ArrowRight size={14} />
-                  </Link>
-                )}
-              </div>
-            ))}
-          </div>
+                  </nav>
 
-          {sec.note && (
-            <div className="mt-5 rounded-2xl bg-white/60 backdrop-blur border border-slate-200/70 p-5 text-sm text-slate-600">
-              {sec.note}
+                  {/* Note for institution */}
+                  <div className="hidden lg:block mt-10 pt-8 border-t border-slate-200/50">
+                     <div className="flex items-center gap-3 mb-2">
+                        <ShieldCheck size={16} className="text-[#c9a84c]" />
+                        <span className="text-[10px] font-bold text-[#003366] uppercase tracking-wide">Verified Resources</span>
+                     </div>
+                     <p className="text-[11px] leading-relaxed text-slate-500">
+                        Content curated based on official departmental academic protocols.
+                     </p>
+                  </div>
+                </div>
+              </aside>
+            )}
+
+            {/* Sections Content */}
+            <div className="flex-1">
+              {normalizedSections.map((sec, idx) => (
+                <Section key={sec.id} id={sec.id} title={sec.title}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+                    {(sec.cards ?? []).map((card, cIdx) => (
+                      <div
+                        key={`${card.title}-${cIdx}`}
+                        className="rounded-2xl border border-slate-200/70 bg-white/75 backdrop-blur p-6 hover:shadow-lg transition-shadow"
+                      >
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#c9a84c] mb-2">
+                          {card.kicker ?? ""}
+                        </p>
+                        <h3 className="text-base font-bold text-slate-900">{card.title}</h3>
+                        {card.text && <p className="text-sm text-slate-500 mt-2 leading-relaxed">{card.text}</p>}
+                        {!!card.points?.length && (
+                          <ul className="mt-3 space-y-1.5 text-sm text-slate-600">
+                            {card.points.map((p, pIdx) => (
+                              <li key={`${p}-${pIdx}`} className="flex items-start gap-2">
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#c9a84c] shrink-0" />
+                                <span className="leading-snug">{p}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                        {card.href && (
+                          <Link
+                            href={card.href}
+                            className="mt-4 inline-flex items-center gap-1.5 text-[#003366] font-semibold text-sm hover:text-[#c9a84c] transition-colors"
+                          >
+                            Open Details <ArrowRight size={14} />
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  {sec.note && (
+                    <div className="mt-5 rounded-2xl bg-white/60 backdrop-blur border border-slate-200/70 p-5 text-sm text-slate-600">
+                      {sec.note}
+                    </div>
+                  )}
+                </Section>
+              ))}
+
+              {gallery.length > 0 && (
+                <Section title="Gallery" id="gallery">
+                  <GalleryCarousel gallery={gallery} />
+                </Section>
+              )}
+              
+              {children}
             </div>
-          )}
-        </Section>
-      ))}
-
-      {/* Gallery Section */}
-      {gallery.length > 0 && (
-        <Section title="Explore Our Environment">
-          <div className="relative -mx-6 px-6 md:-mx-4 md:px-4">
-            <GalleryCarousel gallery={gallery} />
           </div>
-        </Section>
-      )}
-
-      {children}
-
-
+        </div>
+      </div>
     </div>
   );
 }
