@@ -75,8 +75,8 @@ export default function GalleryPage() {
   const [filter, setFilter] = useState("All");
   const [selectedImg, setSelectedImg] = useState(null);
 
-  const filteredImages = filter === "All" 
-    ? GALLERY_IMAGES 
+  const filteredImages = filter === "All"
+    ? GALLERY_IMAGES
     : GALLERY_IMAGES.filter(img => img.category === filter);
 
   return (
@@ -89,18 +89,17 @@ export default function GalleryPage() {
       breadcrumbs={[{ label: "Home", href: "/" }, { label: "Gallery" }]}
     >
       <div className="container mx-auto px-6 py-12">
-        
+
         {/* CATEGORY TABS */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all border ${
-                filter === cat
+              className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all border ${filter === cat
                   ? "bg-[#003366] text-white border-transparent shadow-lg shadow-[#003366]/20 scale-105"
                   : "bg-white text-slate-600 border-slate-200 hover:border-[#c9a84c] hover:text-[#c9a84c]"
-              }`}
+                }`}
             >
               {cat}
             </button>
@@ -128,24 +127,24 @@ export default function GalleryPage() {
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
-                
+
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end">
-                   <div className="flex items-center gap-2 mb-2">
-                      <span className="px-2 py-0.5 rounded-md bg-[#c9a84c] text-white text-[9px] font-black uppercase tracking-widest">
-                        {img.category}
-                      </span>
-                   </div>
-                   <h3 className="text-white font-bold text-lg leading-tight">{img.title}</h3>
-                   <p className="text-white/70 text-xs mt-1 line-clamp-2">{img.desc}</p>
-                   <div className="mt-4 flex items-center justify-between">
-                      <span className="text-white/60 text-[10px] flex items-center gap-1">
-                        <Camera size={12} /> Institutional Archives
-                      </span>
-                      <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white scale-0 group-hover:scale-100 transition-transform duration-300">
-                        <Maximize2 size={16} />
-                      </div>
-                   </div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="px-2 py-0.5 rounded-md bg-[#c9a84c] text-white text-[9px] font-black uppercase tracking-widest">
+                      {img.category}
+                    </span>
+                  </div>
+                  <h3 className="text-white font-bold text-lg leading-tight">{img.title}</h3>
+                  <p className="text-white/70 text-xs mt-1 line-clamp-2">{img.desc}</p>
+                  <div className="mt-4 flex items-center justify-between">
+                    <span className="text-white/60 text-[10px] flex items-center gap-1">
+                      <Camera size={12} /> Institutional Archives
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white scale-0 group-hover:scale-100 transition-transform duration-300">
+                      <Maximize2 size={16} />
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -166,7 +165,7 @@ export default function GalleryPage() {
             <button className="absolute top-10 right-10 text-white/70 hover:text-white p-2 z-[110]">
               <X size={32} />
             </button>
-            
+
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -188,9 +187,9 @@ export default function GalleryPage() {
               {/* Sidebar Info */}
               <div className="w-full md:w-[350px] p-8 md:p-12 flex flex-col justify-center border-t md:border-t-0 md:border-l border-white/10 bg-gradient-to-br from-[#0A1118] to-[#001E36]">
                 <div className="inline-flex self-start items-center gap-2 px-3 py-1 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/20 text-[#c9a84c] text-[10px] font-black uppercase tracking-widest mb-6">
-                   {selectedImg.category} Archives
+                  {selectedImg.category} Archives
                 </div>
-                
+
                 <h2 className="font-playfair text-3xl md:text-4xl font-black text-white leading-tight mb-4">
                   {selectedImg.title}
                 </h2>
@@ -199,33 +198,33 @@ export default function GalleryPage() {
                 </p>
 
                 <div className="space-y-5 border-t border-white/10 pt-8">
-                   <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
-                        <MapPin size={18} className="text-[#c9a84c]" />
-                      </div>
-                      <div>
-                        <p className="text-[10px] text-white/40 font-bold uppercase tracking-wider">Location</p>
-                        <p className="text-sm font-semibold text-white/90 mt-0.5">NCE Chandi Campus, Nalanda</p>
-                      </div>
-                   </div>
-                   <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
-                        <Calendar size={18} className="text-[#c9a84c]" />
-                      </div>
-                      <div>
-                        <p className="text-[10px] text-white/40 font-bold uppercase tracking-wider">Archive Date</p>
-                        <p className="text-sm font-semibold text-white/90 mt-0.5">February 2026</p>
-                      </div>
-                   </div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+                      <MapPin size={18} className="text-[#c9a84c]" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-white/40 font-bold uppercase tracking-wider">Location</p>
+                      <p className="text-sm font-semibold text-white/90 mt-0.5">NCE Chandi Campus, Nalanda</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+                      <Calendar size={18} className="text-[#c9a84c]" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-white/40 font-bold uppercase tracking-wider">Archive Date</p>
+                      <p className="text-sm font-semibold text-white/90 mt-0.5">February 2026</p>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="mt-12">
-                   <button 
-                     onClick={() => setSelectedImg(null)}
-                     className="w-full py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold transition-all"
-                   >
-                     Close View
-                   </button>
+                  <button
+                    onClick={() => setSelectedImg(null)}
+                    className="w-full py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold transition-all"
+                  >
+                    Close View
+                  </button>
                 </div>
               </div>
             </motion.div>

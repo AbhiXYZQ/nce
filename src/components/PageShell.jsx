@@ -67,7 +67,7 @@ function Section({ title, children, id }) {
       animate={inView ? "visible" : "hidden"}
       className="py-12 md:py-16 scroll-mt-24 first:pt-8"
     >
-      <div className="container mx-auto">
+      <div>
         <motion.div variants={fadeUp} className="max-w-3xl mb-12">
           <h2 className="font-playfair text-3xl md:text-4xl font-extrabold text-[#003366]">
             {title}
@@ -170,10 +170,13 @@ export default function PageShell({
           {/* Background Image with Overlay */}
           {bgImage && (
             <div className="absolute inset-0 z-0">
-               <img 
+               <Image 
                 src={bgImage} 
                 alt={title} 
-                className="w-full h-full object-cover opacity-40 select-none pointer-events-none"
+                fill
+                priority
+                className="object-cover opacity-40 select-none pointer-events-none"
+                sizes="100vw"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-[#001122] via-[#001122]/90 to-transparent" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#001122]/80 via-transparent to-transparent" />
@@ -202,7 +205,7 @@ export default function PageShell({
             <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-[#c9a84c]/10 blur-3xl" />
             <div className="absolute -bottom-28 -right-24 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
           </div>
-          <div className="container mx-auto px-6 py-10 md:py-16 relative z-10">
+          <div className="max-w-[1400px] mx-auto px-6 py-10 md:py-16 relative z-10">
             <motion.div variants={fadeUp} className="max-w-3xl">
               <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#c9a84c] mb-3">
                 {accentLabel}
@@ -240,12 +243,12 @@ export default function PageShell({
 
       {/* Main Content Area */}
       <div className="relative bg-white">
-        <div className="container mx-auto px-6">
+        <div className="max-w-[1400px] mx-auto px-6">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
             
             {/* Sidebar Navigation */}
             {normalizedSections.length > 0 && (
-              <aside className="lg:w-72 flex-shrink-0 pt-16 lg:sticky lg:top-24 h-fit">
+              <aside className="lg:w-72 flex-shrink-0 pt-16 lg:pb-32 lg:sticky lg:top-24 h-fit">
                 <div className="bg-slate-50/50 backdrop-blur-sm p-6 rounded-3xl border border-slate-200/50 shadow-sm">
                   <div className="flex items-center gap-2 mb-6 px-1">
                     <div className="w-1 h-3 bg-[#c9a84c] rounded-full" />
@@ -279,7 +282,8 @@ export default function PageShell({
                         {activeSection === sec.id && (
                           <motion.div
                             layoutId="active-nav-glow"
-                            className="absolute inset-0 bg-white rounded-xl -z-10 shadow-sm"
+                            className="absolute inset-0 rounded-xl -z-10 shadow-sm"
+                            style={{ backgroundColor: "rgba(255, 255, 255, 1)" }}
                             transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                           />
                         )}
@@ -302,10 +306,10 @@ export default function PageShell({
             )}
 
             {/* Sections Content */}
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               {normalizedSections.map((sec, idx) => (
                 <Section key={sec.id} id={sec.id} title={sec.title}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     {(sec.cards ?? []).map((card, cIdx) => (
                       <div
                         key={`${card.title}-${cIdx}`}

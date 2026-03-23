@@ -237,7 +237,7 @@ export default function FacultyPeople({ principal, departments }) {
 
       {/* ─── PRINCIPAL SECTION ─── */}
       <section className="py-16 md:py-24 relative z-10">
-        <div className="container mx-auto px-4 sm:px-6">
+        <div className="px-4 sm:px-6">
           <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}>
             <motion.div variants={fadeUp} className="max-w-3xl mb-12">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/20 text-[#7a5a12] text-xs font-black uppercase tracking-widest mb-4">
@@ -255,7 +255,7 @@ export default function FacultyPeople({ principal, departments }) {
 
       {/* ─── DEPARTMENT FACULTIES ─── */}
       <section className="py-16 md:py-24 bg-white relative z-10 border-t border-slate-200/60 shadow-[0_-20px_40px_rgba(0,0,0,0.02)]">
-        <div className="container mx-auto px-4 sm:px-6">
+        <div className="px-4 sm:px-6">
           <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}>
             <motion.div variants={fadeUp} className="max-w-4xl mb-16 mx-auto text-center">
                <div className="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/20 text-[#7a5a12] text-xs font-black uppercase tracking-widest mb-4">

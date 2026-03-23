@@ -65,7 +65,7 @@ export default function AlumniPage() {
       ]}
     >
       {/* Optional additional custom UI inside PageShell */}
-      <div className="container mx-auto px-6 py-12">
+      <div className="px-6 py-12">
         <div className="bg-[#001E36] rounded-[2.5rem] p-10 md:p-14 relative overflow-hidden shadow-2xl border border-white/10">
            {/* Glow Effect */}
            <div className="absolute top-0 right-0 w-96 h-96 bg-[#c9a84c]/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />

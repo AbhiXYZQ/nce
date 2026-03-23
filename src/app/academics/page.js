@@ -44,7 +44,7 @@ export default function AcademicsPage() {
         <div className="absolute top-0 right-[-10%] w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-amber-100/40 rounded-full blur-[100px] pointer-events-none" />
 
-        <div className="container mx-auto px-6 max-w-6xl relative z-10">
+        <div className="px-6 max-w-6xl relative z-10">
           
           {/* B.Tech Section */}
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="mb-24">
