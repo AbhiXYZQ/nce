@@ -325,36 +325,7 @@ export default function PageShell({
 
       {children}
 
-      {/* Footer CTA */}
-      <section className="py-10 md:py-14 bg-transparent border-t border-white/10">
-        <div className="container mx-auto px-6">
-          <div className="rounded-3xl bg-white/75 backdrop-blur border border-slate-200/70 p-7 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <div className="max-w-2xl">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#c9a84c] mb-2">Next Steps</p>
-              <h3 className="font-playfair text-2xl md:text-3xl font-bold text-[#003366]">
-                Want us to fill real content?
-              </h3>
-              <p className="text-slate-500 mt-2 text-sm md:text-base">
-                This page is scaffolded with a modern structure. We can plug in official text, PDFs, faculty data, labs, and photos.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#c9a84c] to-[#e8c86a] text-[#001122] font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 shadow-lg shadow-yellow-900/25"
-              >
-                Contact Office <ArrowRight size={16} />
-              </Link>
-              <Link
-                href="/admission"
-                className="inline-flex items-center gap-2 border border-slate-200 bg-white/80 hover:bg-white text-slate-900 font-bold px-6 py-3 rounded-xl transition-all"
-              >
-                Admission Info <ArrowRight size={16} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+
     </div>
   );
 }

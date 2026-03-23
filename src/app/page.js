@@ -335,7 +335,7 @@ function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[60vh] md:min-h-[85vh] w-full flex flex-col justify-center items-center overflow-hidden bg-slate-900 isolation-isolate">
+    <section className="relative min-h-[45vh] md:min-h-[85vh] w-full flex flex-col justify-center items-center overflow-hidden bg-slate-900 isolation-isolate">
       
       {/* 1. BACKGROUND: Ambient light derived from current slide */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -363,7 +363,7 @@ function HeroSection() {
       </div>
 
       {/* 2. GALLERY CAROUSEL: Left, Center, Right Peeking Slides */}
-      <div className="relative z-10 w-full h-[50vh] sm:h-[70vh] md:h-[75vh] flex justify-center items-center mt-2 md:mt-4 px-0 pb-6 will-change-transform">
+      <div className="relative z-10 w-full h-[32vh] sm:h-[70vh] md:h-[75vh] flex justify-center items-center mt-0 md:mt-4 px-0 pb-0 will-change-transform">
           {heroSlides.map((slide, index) => {
              const style = getSlideStyle(index);
              const isCenter = index === currentSlide;
@@ -374,7 +374,7 @@ function HeroSection() {
                  initial={false}
                  animate={style}
                  transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }} 
-                 className="absolute w-[92%] sm:w-[85%] md:w-[75%] lg:w-[60%] aspect-[4/3] md:aspect-video rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-pointer bg-slate-800/20 backdrop-blur-md border border-white/10 will-change-transform"
+                 className="absolute w-[92%] sm:w-[85%] md:w-[75%] lg:w-[60%] h-full sm:h-auto aspect-[4/3] md:aspect-video rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-pointer bg-slate-800/20 backdrop-blur-md border border-white/10 will-change-transform"
                  onClick={() => !isCenter && setCurrentSlide(index)}
                >
                  <Image src={slide.image} fill quality={85} priority={index === 0} className="object-cover" alt="Gallery View Slide" sizes="(max-width: 768px) 95vw, 60vw" />
@@ -632,7 +632,6 @@ function BentoNotices() {
 
 function DepartmentsSection() {
   const [hoveredIdx, setHoveredIdx] = useState(null);
-
   const btechPrograms = departments.filter((d) => d.tag !== "PG Program");
   const mtechPrograms = departments.filter((d) => d.tag === "PG Program");
 
@@ -738,7 +737,7 @@ function DepartmentsSection() {
             </h3>
             <div className="h-px w-full bg-slate-100" />
           </div>
-          <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {btechPrograms.map((dept, i) => renderCard(dept, i, i))}
           </motion.div>
         </div>
@@ -751,7 +750,7 @@ function DepartmentsSection() {
             </h3>
             <div className="h-px w-full bg-slate-100" />
           </div>
-          <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5">
             {mtechPrograms.map((dept, i) => renderCard(dept, i, btechPrograms.length + i))}
           </motion.div>
         </div>

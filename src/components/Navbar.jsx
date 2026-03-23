@@ -43,14 +43,13 @@ const NAV_ITEMS = [
   {
     label: "Departments",
     children: [
-      { label: "CSE", href: "/departments/cse", icon: Cpu },
-      { label: "AI & ML", href: "/departments/aiml", icon: Brain },
+      { label: "Computer Science & Engineering", href: "/departments/cse", icon: Cpu },
+      { label: "Artificial Intelligence & Machine Learning", href: "/departments/aiml", icon: Brain },
       { label: "Civil Engineering", href: "/departments/ce", icon: Building2 },
       { label: "Mechanical Engineering", href: "/departments/me", icon: Wrench },
       { label: "Aeronautical Engineering", href: "/departments/aero", icon: Plane },
       { label: "Electrical & Electronics Engineering", href: "/departments/eee", icon: Zap },
-      { label: "M.Tech CSE", href: "/departments/mtech-cse", icon: Cpu },
-      { label: "M.Tech Power Systems", href: "/departments/mtech-ps", icon: Zap },
+      { label: "Applied Science & Humanities", href: "/departments/ash", icon: BookOpen },
     ],
   },
   { label: "T&P Cell", href: "/placement", isHighlight: true },

@@ -67,20 +67,29 @@ export default async function DepartmentPage({ params }) {
       ]}
       sections={[
         {
-          title: "Department Overview",
+          title: "Academic Programs",
+          cards: (dept.programs ?? []).map(p => ({
+            title: p.name,
+            kicker: "Duration: " + (p.duration ?? "To be updated"),
+            text: p.desc ?? "",
+            points: [
+              `Intake: ${p.intake ?? "To be updated"} Seats`,
+              `Type: ${p.name.startsWith("M.Tech") ? "Postgraduate" : "Undergraduate"}`
+            ],
+          })),
+        },
+        {
+          title: "Vision & Mission",
           cards: [
             {
-              title: "About the Department",
-              kicker: "Overview",
-              text: dept.about ?? "To be updated.",
+              title: "Vision",
+              kicker: "Perspective",
+              text: dept.vision ?? "To be updated.",
             },
             {
-              title: "Program Snapshot",
-              kicker: dept.program?.name ?? "Program",
-              points: [
-                `Duration: ${dept.program?.duration ?? "To be updated"}`,
-                `Intake: ${dept.program?.intake ?? "To be updated"}`,
-              ],
+              title: "Mission",
+              kicker: "Strategic Goals",
+              points: dept.mission ?? ["To be updated."],
             },
             {
               title: "HOD",
@@ -89,16 +98,6 @@ export default async function DepartmentPage({ params }) {
                 `Name: ${dept.hod?.name ?? "To be updated"}`,
                 `Email: ${dept.hod?.email ?? "To be updated"}`,
               ],
-            },
-            {
-              title: "Vision",
-              kicker: "Vision",
-              text: dept.vision ?? "To be updated.",
-            },
-            {
-              title: "Mission",
-              kicker: "Mission",
-              points: dept.mission ?? ["To be updated."],
             },
           ],
         },

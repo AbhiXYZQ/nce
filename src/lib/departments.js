@@ -12,10 +12,13 @@ export const DEPARTMENTS = {
       "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=2070&auto=format&fit=crop"
     ],
     subtitle: "Outstanding learning environment for excellence in teaching and research.",
-    program: { name: "B.Tech", duration: "4 Years", intake: "60" },
+    programs: [
+      { name: "B.Tech", duration: "4 Years", intake: "60", desc: "Foundational undergraduate program in computer science." },
+      { name: "M.Tech (Advanced Computing)", duration: "2 Years", intake: "30", desc: "Specialized postgraduate research program." }
+    ],
     hod: { name: "Dr. Kumari Priyanka Sinha", email: "hodcse@ncechandi.ac.in" },
     about:
-      "The field of Computer Science and Engineering nowadays has become one of the most demandable branch amongst the aspiring engineers. We have a goal to provide an outstanding learning environment complemented by excellence in teaching. The Department is moving ahead to build technical platform to students by spreading awareness of technologies, transferring of the knowledge, sharpening the obtained knowledge, and exposing students to solve real time problems. Laboratories are fully equipped with latest computers and are supported by high speed Internet connection. Job opportunities are available both in private and public sectors for a graduate of this discipline. Subjects of further research include Artificial Intelligence especially Neural Network and Machine Learning and many more.",
+      "The field of Computer Science and Engineering nowadays has become one of the most demandable branch amongst the aspiring engineers. We have a goal to provide an outstanding learning environment complemented by excellence in teaching. The Department is moving ahead to build technical platform to students by spreading awareness of technologies, transferring of the knowledge, sharpening the obtained knowledge, and exposing students to solve real time problems. Laboratories are fully equipped with latest computers and are supported by high speed Internet connection. Subjects of further research include Artificial Intelligence especially Neural Network and Machine Learning and many more.",
     vision:
       "To become a centre of excellence in computer science and engineering by providing a holistic approach towards research, innovation, entrepreneurship and employability empowered with ethical values.",
     mission: [
@@ -51,9 +54,10 @@ export const DEPARTMENTS = {
     ],
     highlights: [
       "Programming & DSA",
-      "Operating Systems & Networks",
+      "Artificial Intelligence & ML",
       "DBMS & Web Technologies",
       "Cloud & DevOps fundamentals",
+      "Advanced Research & Dissertation",
     ],
     labs: [
       {
@@ -67,9 +71,9 @@ export const DEPARTMENTS = {
         equipment: ["To be updated"],
       },
       {
-        name: "DBMS Lab",
-        desc: "Database modelling, queries, transactions, and application integration.",
-        equipment: ["To be updated"],
+        name: "PG Research Lab",
+        desc: "Dedicated research facility for M.Tech students.",
+        equipment: ["High-end workstations", "Cloud compute access"],
       },
       {
         name: "Computer Networks Lab",
@@ -77,16 +81,16 @@ export const DEPARTMENTS = {
         equipment: ["To be updated"],
       },
     ],
-    activities: ["Technical club events (to be updated)", "Hackathons/Workshops (to be updated)"],
+    activities: ["Research Seminars", "Journal Publications", "Hackathons/Workshops"],
     downloads: [
       { label: "Syllabus", href: "/syllabus" },
       { label: "Academic Calendar", href: "/calendar" },
     ],
     careers: [
       "Software Engineer / Full Stack Developer",
-      "System / Network Engineer",
-      "Cloud / DevOps Associate",
-      "Competitive Programming & Research",
+      "Research Scientist / AI Engineer",
+      "System / Network Architect",
+      "Higher Studies (Ph.D)",
     ],
   },
   aiml: {
@@ -102,10 +106,10 @@ export const DEPARTMENTS = {
       "https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=2070&auto=format&fit=crop"
     ],
     subtitle: "Outstanding learning environment for excellence in AI and Data Science.",
-    program: { name: "B.Tech", duration: "4 Years", intake: "60" },
+    programs: [{ name: "B.Tech", duration: "4 Years", intake: "60" }],
     hod: { name: "Dr. Kumari Priyanka Sinha", email: "hodcse@ncechandi.ac.in" },
     about:
-      "The field of Artificial Intelligence & Machine Learning nowadays has become one of the most demandable branch amongst the aspiring engineers. We have a goal to provide an outstanding learning environment complemented by excellence in teaching. The Department is moving ahead to build technical platform to students by spreading awareness of technologies, transferring of the knowledge, sharpening the obtained knowledge, and exposing students to solve real time problems. Laboratories are fully equipped with latest computers and are supported by high speed Internet connection. Job opportunities are available both in private and public sectors for a graduate of this discipline. Subjects of further research include Artificial Intelligence especially Neural Network and Machine Learning and many more.",
+      "The field of Artificial Intelligence & Machine Learning nowadays has become one of the most demandable branch amongst the aspiring engineers. We have a goal to provide an outstanding learning environment complemented by excellence in teaching. Laboratories are fully equipped with latest computers and are supported by high speed Internet connection. Job opportunities are available both in private and public sectors for a graduate of this discipline. Subjects of further research include Artificial Intelligence especially Neural Network and Machine Learning and many more.",
     vision:
       "To become a centre of excellence in Artificial Intelligence & Machine Learning by providing a holistic approach towards research, innovation, entrepreneurship and employability empowered with ethical values.",
     mission: [
@@ -149,7 +153,6 @@ export const DEPARTMENTS = {
       { name: "AI/ML Lab", desc: "Model building, training workflows, and experimentation.", equipment: ["To be updated"] },
       { name: "Data Science Lab", desc: "Data analysis, visualization, and applied ML pipelines.", equipment: ["To be updated"] },
       { name: "Compute Facility", desc: "GPU/compute resources (as available).", equipment: ["To be updated"] },
-      { name: "Mini Project Lab", desc: "Project development and demos.", equipment: ["To be updated"] },
     ],
     activities: ["Project showcases (to be updated)", "AI workshops (to be updated)"],
     downloads: [
@@ -176,10 +179,10 @@ export const DEPARTMENTS = {
       "https://images.unsplash.com/photo-1509391366360-1f9509ce1573?q=80&w=2070&auto=format&fit=crop"
     ],
     subtitle: "Excellence in structural design, planning, and infrastructure development.",
-    program: { name: "B.Tech", duration: "4 Years", intake: "60" },
+    programs: [{ name: "B.Tech", duration: "4 Years", intake: "60" }],
     hod: { name: "Sudeep Kumar", email: "sudeep.2k7@gmail.com" },
     about:
-      "The field of civil engineering is developing steadily in recent years as we have now realized the importance of infrastructure development. If one has a crave for structural design, planning and construction, then this is the course to be explored. It includes study in the areas of Surveying, Geotechnical Engineering, Structural Engineering, Transportation Engineering, Irrigation & Water Resource Engineering and many more. The department aims to provide better education in the field of Civil Engineering to meet the ever growing construction industry and is dedicated to maintain highest quality in teaching both theoretically and practically and also train the young engineers equipped with latest knowledge in the field of Civil Engineering by providing conductive teaching environment in the classrooms followed by practical training in the relevant laboratory to have hands on experience on the concerned topic.",
+      "The field of civil engineering includes study in the areas of Surveying, Geotechnical Engineering, Structural Engineering, Transportation Engineering, Irrigation & Water Resource Engineering and many more. The department aims to provide better education in the field of Civil Engineering to meet the ever growing construction industry and is dedicated to maintain highest quality in teaching both theoretically and practically.",
     vision:
       "To excel in all streams of civil engineering in technical education, industrial exposure, quality research and innovation.",
     mission: [
@@ -223,7 +226,6 @@ export const DEPARTMENTS = {
       { name: "Survey Lab", desc: "Surveying instruments and field practice.", equipment: ["To be updated"] },
       { name: "Concrete & Material Testing Lab", desc: "Material testing and mix design practices.", equipment: ["To be updated"] },
       { name: "Geotechnical Lab", desc: "Soil testing and foundation engineering experiments.", equipment: ["To be updated"] },
-      { name: "Environmental Engineering Lab", desc: "Water/wastewater basics and environmental studies.", equipment: ["To be updated"] },
     ],
     activities: ["Site visits (to be updated)", "Model making / workshops (to be updated)"],
     downloads: [
@@ -250,10 +252,10 @@ export const DEPARTMENTS = {
       "https://images.unsplash.com/photo-1605272186985-e11f1857c5a0?q=80&w=2070&auto=format&fit=crop"
     ],
     subtitle: "Focus on design, manufacturing, thermal sciences, and robotics.",
-    program: { name: "B.Tech", duration: "4 Years", intake: "60" },
+    programs: [{ name: "B.Tech", duration: "4 Years", intake: "60" }],
     hod: { name: "Dr. Md. Zishanur Rahman", email: "rzishan10@gmail.com" },
     about:
-      "The branch of Mechanical Engineering is considered to be one of the oldest and broadest engineering discipline. The scope of the course varies from material research to machinery development, Nano Technology, Smart materials, Aerospace Technology, FMS, Automation and such other interrelated developments. Ample job opportunities are open for Mechanical Engineers in Aerospace, Automotive and Manufacturing sectors apart from research establishments. The areas of study include Manufacturing processes, Mechatronics, Heat and Mass Transfer, Tool Engineering and Design, Design of machine elements, CIM and Robotic. We aim to bridge the gap between industry and educational institution, and for this we have qualified faculties and labs with modern testing machines and equipment’s to cope up with advanced technologies.",
+      "The branch of Mechanical Engineering scope varies from material research to machinery development, Nano Technology, Smart materials, Aerospace Technology, FMS, Automation and such other interrelated developments. We aim to bridge the gap between industry and educational institution, and for this we have qualified faculties and labs with modern testing machines and equipment’s.",
     vision:
       "To be the centre of excellence in the field of Mechanical Engineering in the state, where, the budding graduates should have sound technical knowledge and entrepreneurship skills to cater the needs of industry and social responsibilities with good moral value and ethics.",
     mission: [
@@ -295,7 +297,6 @@ export const DEPARTMENTS = {
       { name: "Thermal Engineering Lab", desc: "Thermal systems experiments and measurements.", equipment: ["To be updated"] },
       { name: "Manufacturing / Workshop", desc: "Hands-on workshop practice and manufacturing basics.", equipment: ["To be updated"] },
       { name: "CAD Lab", desc: "CAD modelling and engineering drawing tools.", equipment: ["To be updated"] },
-      { name: "Metrology Lab", desc: "Measurements, tolerances, and quality inspection basics.", equipment: ["To be updated"] },
     ],
     activities: ["Workshops (to be updated)", "Industrial visits (to be updated)"],
     downloads: [
@@ -322,10 +323,10 @@ export const DEPARTMENTS = {
       "https://images.unsplash.com/photo-1559685603-91db48d1c7f0?q=80&w=2070&auto=format&fit=crop"
     ],
     subtitle: "Center of excellence in Aeronautics, Propulsion & Aircraft Design.",
-    program: { name: "B.Tech", duration: "4 Years", intake: "60" },
+    programs: [{ name: "B.Tech", duration: "4 Years", intake: "60" }],
     hod: { name: "Dr. Alok Kumar", email: "alokbpsc2018@gmail.com" },
     about:
-      "The Department of Aeronautical Engineering at NCE Chandi focuses on the design, development, and maintenance of aircraft and spacecraft. It covers core areas like Aerodynamics, Propulsion, Aircraft Structures, and Flight Mechanics. The department aims to produce skilled aerospace engineers capable of contributing to the aviation and defense sectors through theoretical excellence and practical lab training.",
+      "The Department of Aeronautical Engineering at NCE Chandi focuses on the design, development, and maintenance of aircraft and spacecraft. It covers core areas like Aerodynamics, Propulsion, Aircraft Structures, and Flight Mechanics.",
     vision:
       "To be a premier center of excellence in Aeronautical Engineering, producing innovators and researchers who lead the aerospace industry with technical expertise and ethical values.",
     mission: [
@@ -367,8 +368,6 @@ export const DEPARTMENTS = {
     labs: [
       { name: "Aerodynamics Lab", desc: "Aerodynamics experiments (as available).", equipment: ["To be updated"] },
       { name: "Structures / Materials Lab", desc: "Material properties and structures basics.", equipment: ["To be updated"] },
-      { name: "CAD / Design Lab", desc: "Design tools for aircraft modelling basics.", equipment: ["To be updated"] },
-      { name: "Project & Model Lab", desc: "Prototype/model building and project showcase.", equipment: ["To be updated"] },
     ],
     activities: ["Model/Aeromodelling activities (to be updated)", "Seminars (to be updated)"],
     downloads: [
@@ -395,22 +394,25 @@ export const DEPARTMENTS = {
       "https://images.unsplash.com/photo-1517420704952-d9f39741e815?q=80&w=2070&auto=format&fit=crop"
     ],
     subtitle: "Innovation in power systems, control, and electronics.",
-    program: { name: "B.Tech", duration: "4 Years", intake: "60" },
+    programs: [
+      { name: "B.Tech", duration: "4 Years", intake: "60", desc: "Core Electrical & Electronics engineering." },
+      { name: "M.Tech (Power Systems)", duration: "2 Years", intake: "30", desc: "Specialized study in modern power grids and systems." }
+    ],
     hod: { name: "Ashish Kumar", email: "ashishashish29@gmail.com" },
     about:
-      "This is a new branch which provides integration of Electrical and Electronics engineering. The major thrust in this course is related to the basic principles and detailed analysis of equipment’s and systems for generation, transmission, distribution and utilization of electrical energy. The department is committed to engage in high quality research and pursuit of excellence in teaching. The faculty members of the department are actively involved in research and development in challenging areas of both theory and experiment. The labs established here have been well equipped with the latest equipment. Instructional laboratories for Basic Electronics, Analog Electronics and Digital Electronics are fully operational.",
+      "This branch provides integration of Electrical and Electronics engineering. The major thrust is related to the generation, transmission, distribution and utilization of electrical energy. The department is committed to engage in high quality research and pursuit of excellence in teaching. Faculty members are actively involved in research in challenging areas of theory and experiment. Laboratories for Power Electronics, Advanced Power Systems, and Control Systems are fully operational.",
     vision:
       "To be recognized as an efficient center of Electrical and Electronics Engineering striving to propel the pace of nation’s socio-economic development through excellence in technological innovation and research.",
     mission: [
       "M1. To provide an opportunity to master engineering and technology through interaction with local environment.",
       "M2. To focus on emerging technologies to fulfill local demands ensuring global standards.",
-      "M3. To meet international industrial standards by integrating emerging technologies in the infancy stage with the existing advanced technologies.",
-      "M4. To create various opportunities for entrepreneurs and business enterprises for new product development by providing innovative solutions to technological problems, thus facilitating socio-economic growth.",
+      "M3. To meet international industrial standards by integrating emerging technologies in the infancy stage.",
+      "M4. To create opportunities for entrepreneurs for new product development facilitating socio-economic growth.",
     ],
     peos: [
       "PEO1: Develop skills and proficiency in core areas of Electrical and Electronics related multidisciplinary Engineering fundamentals.",
-      "PEO2: Demonstrate technical competence to tackle problems in the field of industry using emerging technologies, innovation and entrepreneur skill.",
-      "PEO3: Pursue higher education, research and development in electrical engineering and allied areas of science and technology.",
+      "PEO2: Demonstrate technical competence to tackle problems in the field of industry using emerging technologies.",
+      "PEO3: Pursue higher education, research and development in electrical engineering and allied areas.",
     ],
     pos: [
       "PO1: Engineering knowledge",
@@ -427,103 +429,63 @@ export const DEPARTMENTS = {
       "PO12: Life-long learning",
     ],
     psos: [
-      "PSO1: Develop sustainable solutions for real; time applications.",
+      "PSO1: Develop sustainable solutions for real-time applications.",
       "PSO2: Demonstrate their knowledge in analysis and design for utilizing renewable energy sources.",
-      "PSO3: Analyze, estimate to solve complex problems and meet the challenges in the communication domain.",
+      "PSO3: Analyze and solve complex problems in the communication domain.",
     ],
     highlights: [
       "Electrical Machines",
       "Power Systems & Protection",
-      "Control Systems",
-      "Power Electronics basics",
+      "Smart Grid Technology",
+      "Renewable Energy integration",
     ],
     labs: [
       { name: "Electrical Machines Lab", desc: "DC/AC machines experiments and characteristics.", equipment: ["To be updated"] },
-      { name: "Power Electronics Lab", desc: "Converters, inverters, and drives basics.", equipment: ["To be updated"] },
+      { name: "Advanced Power Systems Lab", desc: "Specialized lab for power system simulation and testing.", equipment: ["Simulation tools", "Relay testing kits"] },
       { name: "Control Systems Lab", desc: "Control experiments and system response studies.", equipment: ["To be updated"] },
       { name: "Measurements & Instrumentation Lab", desc: "Measuring instruments and instrumentation basics.", equipment: ["To be updated"] },
     ],
-    activities: ["Workshops (to be updated)", "Industrial visits (to be updated)"],
+    activities: ["Workshops (to be updated)", "Industrial visits (to be updated)", "Technical seminars"],
     downloads: [
       { label: "Syllabus", href: "/syllabus" },
       { label: "Placement", href: "/placement" },
     ],
     careers: [
-      "Electrical Engineer (entry-level)",
-      "Power Sector / Utilities",
-      "Automation / Control (entry-level)",
-      "Higher Studies / GATE",
+      "Power System Analyst",
+      "Smart Grid Specialist",
+      "Energy Consultant",
+      "Electrical Engineer (Public/Private)",
     ],
   },
-  "mtech-cse": {
-    slug: "mtech-cse",
-    short: "M.Tech CSE",
-    title: "M.Tech in Computer Science & Engineering",
-    bannerImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
+  ash: {
+    slug: "ash",
+    short: "ASH",
+    title: "Applied Science & Humanities",
+    bannerImage: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
     gallery: [
-      "https://images.unsplash.com/photo-1558494949-ef010968d7f4?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1555099962-41decfa6670b?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?q=80&w=2020&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?q=80&w=2070&auto=format&fit=crop",
     ],
-    subtitle: "Advanced study of algorithms, machine learning, and high performance computing.",
-    program: { name: "M.Tech", duration: "2 Years", intake: "30" },
-    hod: { name: "Dr. Kumari Priyanka Sinha", email: "hodcse@ncechandi.ac.in" },
-    about:
-      "The M.Tech in Computer Science & Engineering focuses on advanced research and specialized knowledge in modern computing fields, building upon the department's goal to provide an outstanding learning environment complemented by excellence in teaching.",
-    vision:
-      "To become a centre of excellence in computer science and engineering by providing a holistic approach towards research, innovation, entrepreneurship and employability empowered with ethical values.",
+    subtitle: "Building the foundation of engineering through pure sciences and communication.",
+    programs: [{ name: "Mandatory Foundation", duration: "1 Year", intake: "All B.Tech Freshmen", desc: "First-year general engineering foundation." }],
+    hod: { name: "Dr. To be updated", email: "ash@ncechandi.ac.in" },
+    about: "The Department of Applied Science and Humanities at NCE Chandi plays a vital role in the foundation of engineering education. It encompasses Physics, Chemistry, Mathematics, and Humanities (English & Management). It aims to provide students with a strong base in basic sciences and communication skills essential for their professional growth.",
+    vision: "To create a strong base for future engineers by imparting quality education in basic sciences and humanities with a focus on holistic development.",
     mission: [
-      "M1: Mould the students to become Software Professionals, Researchers and Entrepreneurs by providing advanced laboratories.",
-      "M2: Impart high quality professional training to get expertise in modern software tools and technologies to cater to the real time requirements of the industry.",
-      "M3: Inculcate team work and lifelong learning among students with a sense of societal and ethical responsibilities.",
+      "Deliver excellence in teaching basic sciences and professional communication.",
+      "Cultivate logical thinking and problem-solving abilities through mathematics and physics.",
+      "Bridge the gap between pure science theories and engineering applications.",
     ],
-    peos: [
-      "PEO1: Prepare graduates to have knowledge and skill to compete for career in computer science and engineering.",
-      "PEO2: Well qualified to participate in research and innovation. Also serve the society with new ideas and be a long-life learner.",
-      "PEO3: To train students with good knowledge along with practical efficiency in computer science to create novel products for the benefits of life.",
-      "PEO4: Develop engineering design skill, problem solving skill and aptitude for innovation as they work individually and in multidisciplinary area.",
-      "PEO5: Graduates will possess leadership qualities, work harmoniously as a team member with effective communication skills.",
-    ],
-    pos: ["To be updated."],
-    psos: ["To be updated."],
-    highlights: ["Advanced Algorithms", "Machine Learning Research", "High Performance Computing", "Dissertation & Projects"],
+    highlights: ["Engineering Physics & Chemistry", "Mathematical Foundations", "Professional Communication", "Soft Skills & Management"],
     labs: [
-      { name: "PG Research Lab", desc: "Dedicated research facility for M.Tech students.", equipment: ["High-end workstations", "Cloud compute access"] },
+      { name: "Physics Lab", desc: "Optics, mechanics, and electronics experiments.", equipment: ["Spectrometers", "Oscilloscopes"] },
+      { name: "Chemistry Lab", desc: "Chemical analysis and material science basics.", equipment: ["Titration sets", "Spectrophotometer"] },
+      { name: "Language Lab", desc: "Communication skills and phonetics training.", equipment: ["Multimedia units"] },
     ],
-    activities: ["Research Seminars", "Journal Publications", "Workshops"],
+    activities: ["Induction Programs", "Language Workshops", "Science Quiz Competitions"],
     downloads: [{ label: "Syllabus", href: "/syllabus" }],
-    careers: ["Research Engineer", "Data Scientist", "System Architect", "Higher Studies (Ph.D)"],
-  },
-  "mtech-ps": {
-    slug: "mtech-ps",
-    short: "M.Tech PS",
-    title: "M.Tech in Power Systems",
-    bannerImage: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2070&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1581093259461-1ca04f0952da?q=80&w=2070&auto=format&fit=crop"
-    ],
-    subtitle: "In-depth study of electrical power systems, smart grids, and renewable energy integration.",
-    program: { name: "M.Tech", duration: "2 Years", intake: "30" },
-    hod: { name: "To be updated", email: "hodeee@ncechandi.ac.in" },
-    about: "The M.Tech in Power Systems offers specialized training in modern power grids, protection systems, and energy management, preparing students for leadership roles in the energy sector.",
-    vision: "To be updated.",
-    mission: ["To be updated."],
-    peos: ["To be updated."],
-    pos: ["To be updated."],
-    psos: ["To be updated."],
-    highlights: ["Smart Grid Technology", "Power System Protection", "Renewable Energy integration", "Power Electronics in PS"],
-    labs: [
-      { name: "Advanced Power Systems Lab", desc: "Specialized lab for power system simulation and testing.", equipment: ["Simulation tools", "Relay testing kits"] },
-    ],
-    activities: ["Technical seminars", "Industry collaboration", "Research project work"],
-    downloads: [{ label: "Syllabus", href: "/syllabus" }],
-    careers: ["Power System Analyst", "Smart Grid Specialist", "Energy Consultant", "Academic / Research roles"],
+    careers: ["Foundation for all Engineering Careers", "Higher Research in Sciences"],
   },
 };
 
@@ -563,11 +525,12 @@ export const SLUG_ALIASES = {
   "electrical-engineering": "eee",
   "eee-department": "eee",
 
-  "mtech-cse": "mtech-cse",
-  "m-tech-cse": "mtech-cse",
-  "pg-cse": "mtech-cse",
-  "mtech-power-systems": "mtech-ps",
-  "m-tech-power-systems": "mtech-ps",
-  "pg-power-systems": "mtech-ps",
+  // M.Tech Aliases now point to the main department page
+  "mtech-cse": "cse",
+  "m-tech-cse": "cse",
+  "pg-cse": "cse",
+  "mtech-power-systems": "eee",
+  "m-tech-power-systems": "eee",
+  "pg-power-systems": "eee",
+  "mtech-ps": "eee",
 };
-      
