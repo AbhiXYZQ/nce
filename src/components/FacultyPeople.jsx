@@ -34,7 +34,7 @@ function PremiumAreas({ areas }) {
 }
 
 // ───── ADVANCED HOD / PRINCIPAL CARD (FEATURED SQUARE) ─────
-function FeaturedCard({ person, titleLabal = "Head of Department" }) {
+function FeaturedCard({ person, titleLabal = "Head of Department", priority = false }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -54,12 +54,13 @@ function FeaturedCard({ person, titleLabal = "Head of Department" }) {
               src={person.photo}
               alt={person.name}
               fill
+              priority={priority}
               className="object-cover object-center filter grayscale-[15%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
               sizes="(max-width: 768px) 100vw, 400px"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center p-12 opacity-30">
-              <Image src={DEFAULT_LOGO_SRC} alt="NCE" width={120} height={120} className="object-contain" />
+              <Image src={DEFAULT_LOGO_SRC} alt="NCE" width={120} height={120} className="object-contain" sizes="120px" />
             </div>
           )}
           
@@ -174,7 +175,7 @@ function PortraitCard({ person, tag }) {
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center opacity-20">
-              <Image src={DEFAULT_LOGO_SRC} alt="NCE" width={60} height={60} className="object-contain md:w-20 md:h-20" />
+              <Image src={DEFAULT_LOGO_SRC} alt="NCE" width={60} height={60} className="object-contain md:w-20 md:h-20" sizes="80px" />
             </div>
           )}
           
@@ -247,7 +248,7 @@ export default function FacultyPeople({ principal, departments }) {
               </h2>
             </motion.div>
 
-            <FeaturedCard person={principal} titleLabal="Principal" />
+            <FeaturedCard person={principal} titleLabal="Principal" priority={true} />
           </motion.div>
         </div>
       </section>
@@ -269,7 +270,7 @@ export default function FacultyPeople({ principal, departments }) {
             </motion.div>
 
             <div className="space-y-24 md:space-y-32">
-              {(departments ?? []).map((dept) => (
+              {(departments ?? []).map((dept, index) => (
                 <motion.div
                   key={dept.key}
                   variants={stagger}
@@ -292,7 +293,7 @@ export default function FacultyPeople({ principal, departments }) {
                   </motion.div>
 
                   <div className="mt-16 relative z-20">
-                    <FeaturedCard person={dept.head} titleLabal="Head of Department" />
+                    <FeaturedCard person={dept.head} titleLabal="Head of Department" priority={index === 0} />
                   </div>
 
                   {!!dept.assistants?.length && (

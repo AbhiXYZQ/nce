@@ -353,7 +353,7 @@ function HeroSection() {
               alt="Ambient Background"
               fill
               priority
-              quality={1} 
+              quality={75} 
               className="object-cover blur-[40px] scale-110 opacity-60 brightness-[0.5]"
               sizes="10vw"
             />
@@ -377,7 +377,7 @@ function HeroSection() {
                  className="absolute w-[92%] sm:w-[85%] md:w-[75%] lg:w-[60%] h-full sm:h-auto aspect-[4/3] md:aspect-video rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-pointer bg-slate-800/20 backdrop-blur-md border border-white/10 will-change-transform"
                  onClick={() => !isCenter && setCurrentSlide(index)}
                >
-                 <Image src={slide.image} fill quality={85} priority={index === 0} className="object-cover" alt="Gallery View Slide" sizes="(max-width: 768px) 95vw, 60vw" />
+                 <Image src={slide.image} fill quality={75} priority={index === 0} className="object-cover" alt="Gallery View Slide" sizes="(max-width: 768px) 95vw, 60vw" />
                  
                  {/* Inner Drop Shadow for Text Readability */}
                  <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none transition-opacity duration-500" style={{ opacity: isCenter ? 1 : 0 }} />
@@ -990,14 +990,14 @@ function PrincipalMessage() {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   className="relative rounded-[2.5rem] overflow-hidden aspect-[4/5] shadow-2xl shadow-[#003366]/20 border-[6px] border-white bg-slate-100 group"
                 >
-                  <Image
-                    src="/images/faculties/principal.JPG"
-                    alt="Dr. Gopal Nandan"
-                    fill
-                    quality={100}
-                    className="object-cover object-top group-hover:scale-105 transition-transform duration-1000"
-                    sizes="(max-width: 1024px) 100vw, 500px"
-                  />
+                    <Image
+                      src="/images/faculties/principal.JPG"
+                      alt="Dr. Gopal Nandan"
+                      fill
+                      quality={75}
+                      className="object-cover object-top group-hover:scale-105 transition-transform duration-1000"
+                      sizes="(max-width: 1024px) 100vw, 500px"
+                    />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#001122]/90 via-[#001122]/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute bottom-0 left-0 w-full p-8 md:p-10 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                     <p className="font-playfair text-2xl md:text-3xl font-bold leading-tight drop-shadow-md">Dr. Gopal Nandan</p>
