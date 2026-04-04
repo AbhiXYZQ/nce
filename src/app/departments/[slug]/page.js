@@ -74,7 +74,7 @@ export default async function DepartmentPage({ params }) {
             text: p.desc ?? "",
             points: [
               `Intake: ${p.intake ?? "To be updated"} Seats`,
-              `Type: ${p.name.startsWith("M.Tech") ? "Postgraduate" : "Undergraduate"}`
+              `Type: ${p.name.startsWith("M.Tech.") ? "Postgraduate" : "Undergraduate"}`
             ],
           })),
         },
@@ -113,26 +113,26 @@ export default async function DepartmentPage({ params }) {
           title: "Faculty",
           cards: facultyDept
             ? [
-                {
-                  title: facultyDept.head.name,
-                  kicker: "Head of Department",
-                  text: `${facultyDept.head.qualification} | ${facultyDept.head.email}`,
-                  points: facultyDept.head.areas || [],
-                },
-                ...facultyDept.assistants.map((f) => ({
-                  title: f.name,
-                  kicker: "Assistant Professor",
-                  text: `${f.qualification} | ${f.email}`,
-                  points: f.areas || [],
-                })),
-              ]
+              {
+                title: facultyDept.head.name,
+                kicker: "Head of Department",
+                text: `${facultyDept.head.qualification} | ${facultyDept.head.email}`,
+                points: facultyDept.head.areas || [],
+              },
+              ...facultyDept.assistants.map((f) => ({
+                title: f.name,
+                kicker: "Assistant Professor",
+                text: `${f.qualification} | ${f.email}`,
+                points: f.areas || [],
+              })),
+            ]
             : [
-                {
-                  title: "Faculty Profiles",
-                  kicker: "People",
-                  text: "Information to be updated soon.",
-                },
-              ],
+              {
+                title: "Faculty Profiles",
+                kicker: "People",
+                text: "Information to be updated soon.",
+              },
+            ],
         },
         {
           title: "Key Strengths",
@@ -183,19 +183,19 @@ export default async function DepartmentPage({ params }) {
           cards:
             downloads.length > 0
               ? downloads.map((d) => ({
-                  title: d.label,
-                  kicker: "Download",
-                  text: "Open the related page.",
-                  href: d.href,
-                }))
+                title: d.label,
+                kicker: "Download",
+                text: "Open the related page.",
+                href: d.href,
+              }))
               : [
-                  {
-                    title: "Department Documents",
-                    kicker: "Docs",
-                    text: "To be updated.",
-                    href: "/syllabus",
-                  },
-                ],
+                {
+                  title: "Department Documents",
+                  kicker: "Docs",
+                  text: "To be updated.",
+                  href: "/syllabus",
+                },
+              ],
         },
         {
           title: "Careers & Opportunities",

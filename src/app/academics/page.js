@@ -40,7 +40,7 @@ export default function AcademicsPage() {
       ]}
       sections={[
         {
-          title: "B.Tech Programs",
+          title: "B.Tech. Programs",
           cards: BTECH_PROGRAMS.map(prog => ({
             title: prog.name,
             kicker: "Bachelor of Technology",
@@ -50,7 +50,7 @@ export default function AcademicsPage() {
           }))
         },
         {
-          title: "M.Tech Programs",
+          title: "M.Tech. Programs",
           cards: MTECH_PROGRAMS.map(prog => ({
             title: prog.name,
             kicker: "Master of Technology",

@@ -12,9 +12,9 @@ export default function FeePage() {
       breadcrumbs={[{ label: "Home", href: "/" }, { label: "Fee Structure" }]}
       sections={[
         {
-          title: "B.Tech Programs (General)",
+          title: "B.Tech. Programs (General)",
           cards: [
-            { title: "Admission Fee (One-time)", kicker: "B.Tech", text: "As per Govt. rules at the time of entry.", points: ["Approx. ₹2,500 - ₹5,000"] },
+            { title: "Admission Fee (One-time)", kicker: "B.Tech.", text: "As per Govt. rules at the time of entry.", points: ["Approx. ₹2,500 - ₹5,000"] },
             { title: "Semester Tuition", kicker: "Academic", text: "Regular semester fees including lab and library access.", points: ["General/OBC: ₹1,500 - 2,200", "SC/ST: As per scholarships"] },
             { title: "Development Fee", kicker: "Building", text: "Contribution for campus upkeep.", points: ["₹2,500 per year"] },
           ]
@@ -37,11 +37,11 @@ export default function FeePage() {
     >
       <div className="container mx-auto px-6 py-10">
         <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 text-amber-800 flex items-start gap-4">
-           <Banknote size={24} className="shrink-0 mt-1" />
-           <div>
-             <p className="font-bold text-lg mb-1">Important Note</p>
-             <p className="text-sm">Fees are subject to change as per the directives from the Department of Science & Technology, Government of Bihar. Fees once paid are typically non-refundable.</p>
-           </div>
+          <Banknote size={24} className="shrink-0 mt-1" />
+          <div>
+            <p className="font-bold text-lg mb-1">Important Note</p>
+            <p className="text-sm">Fees are subject to change as per the directives from the Department of Science & Technology, Government of Bihar. Fees once paid are typically non-refundable.</p>
+          </div>
         </div>
       </div>
     </PageShell>

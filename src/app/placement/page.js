@@ -138,8 +138,8 @@ export default function PlacementPage() {
                 return (
                   <motion.div
                     key={i}
-                    whileHover={{ y: -5, shadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
-                    className="group bg-white rounded-2xl border border-slate-200/60 p-6 flex flex-col items-center justify-between text-center transition-all duration-300 h-48 md:h-56 relative overflow-hidden"
+                    whileHover={{ y: -5 }}
+                    className="group bg-white rounded-2xl border border-slate-200/60 p-6 flex flex-col items-center justify-between text-center transition-all duration-300 hover:shadow-2xl h-48 md:h-56 relative overflow-hidden"
                   >
                     <div className={`absolute top-0 left-0 w-full h-1 transition-transform duration-500 scale-x-0 group-hover:scale-x-100 ${
                       isIT ? "bg-blue-500" : isPSU ? "bg-red-500" : "bg-emerald-500"

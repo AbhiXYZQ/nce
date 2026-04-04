@@ -177,8 +177,8 @@ const departments = [
   },
   {
     icon: Cpu,
-    name: "M.Tech in Computer Science & Engineering",
-    short: "M.Tech CSE",
+    name: "M.Tech. in Computer Science & Engineering",
+    short: "M.Tech. CSE",
     slug: "mtech-cse",
     seats: 30,
     accent: "#3b82f6",
@@ -188,8 +188,8 @@ const departments = [
   },
   {
     icon: Zap,
-    name: "M.Tech in Power Systems",
-    short: "M.Tech PS",
+    name: "M.Tech. in Power Systems",
+    short: "M.Tech. PS",
     slug: "mtech-ps",
     seats: 30,
     accent: "#f59e0b",
@@ -335,7 +335,7 @@ function HeroSection() {
 
   return (
     <section className="relative min-h-[45vh] md:min-h-[85vh] w-full flex flex-col justify-center items-center overflow-hidden bg-slate-900 isolation-isolate">
-      
+
       {/* 1. BACKGROUND: Ambient light derived from current slide */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <AnimatePresence mode="wait">
@@ -347,12 +347,12 @@ function HeroSection() {
             transition={{ duration: 1.2, ease: "linear" }}
             className="absolute inset-0 will-change-opacity"
           >
-            <Image 
+            <Image
               src={heroSlides[currentSlide].image}
               alt="Ambient Background"
               fill
               priority
-              quality={75} 
+              quality={75}
               className="object-cover blur-[40px] scale-110 opacity-60 brightness-[0.5]"
               sizes="10vw"
             />
@@ -363,68 +363,68 @@ function HeroSection() {
 
       {/* 2. GALLERY CAROUSEL: Left, Center, Right Peeking Slides */}
       <div className="relative z-10 w-full h-[32vh] sm:h-[70vh] md:h-[75vh] flex justify-center items-center mt-0 md:mt-4 px-0 pb-0 will-change-transform">
-          {heroSlides.map((slide, index) => {
-             const style = getSlideStyle(index);
-             const isCenter = index === currentSlide;
+        {heroSlides.map((slide, index) => {
+          const style = getSlideStyle(index);
+          const isCenter = index === currentSlide;
 
-             return (
-               <motion.div
-                 key={index}
-                 initial={false}
-                 animate={style}
-                 transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }} 
-                 className="absolute w-[92%] sm:w-[85%] md:w-[75%] lg:w-[60%] h-full sm:h-auto aspect-[4/3] md:aspect-video rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-pointer bg-slate-800/20 backdrop-blur-md border border-white/10 will-change-transform"
-                 onClick={() => !isCenter && setCurrentSlide(index)}
-               >
-                 <Image src={slide.image} fill quality={75} priority={index === 0} className="object-cover" alt="Gallery View Slide" sizes="(max-width: 768px) 95vw, 60vw" />
-                 
-                 {/* Inner Drop Shadow for Text Readability */}
-                 <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none transition-opacity duration-500" style={{ opacity: isCenter ? 1 : 0 }} />
+          return (
+            <motion.div
+              key={index}
+              initial={false}
+              animate={style}
+              transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
+              className="absolute w-[92%] sm:w-[85%] md:w-[75%] lg:w-[60%] h-full sm:h-auto aspect-[4/3] md:aspect-video rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-pointer bg-slate-800/20 backdrop-blur-md border border-white/10 will-change-transform"
+              onClick={() => !isCenter && setCurrentSlide(index)}
+            >
+              <Image src={slide.image} fill quality={75} priority={index === 0} className="object-cover" alt="Gallery View Slide" sizes="(max-width: 768px) 95vw, 60vw" />
 
-                 <AnimatePresence>
-                   {isCenter && (
-                     <motion.div 
-                       initial={{ opacity: 0, y: 15 }}
-                       animate={{ opacity: 1, y: 0 }}
-                       transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
-                       className="absolute inset-x-0 bottom-0 p-6 sm:p-8 md:p-12 flex flex-col items-center text-center"
-                     >
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 text-[#c9a84c] border border-[#c9a84c]/30 font-bold tracking-widest text-[9px] md:text-sm uppercase mb-3 backdrop-blur-md">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#c9a84c]" />
-                          {slide.eyebrow}
-                        </div>
-                        
-                        <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-black font-playfair leading-[1.1] drop-shadow-lg mb-3">
-                          {slide.headline.join(" ")}
-                        </h1>
-                        
-                        <p className="text-slate-200 text-sm md:text-lg font-medium max-w-xl drop-shadow mb-6 md:mb-8 opacity-90">
-                          {slide.sub}
-                        </p>
+              {/* Inner Drop Shadow for Text Readability */}
+              <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none transition-opacity duration-500" style={{ opacity: isCenter ? 1 : 0 }} />
 
-                        <div className="flex flex-wrap justify-center gap-4">
-                           {slide.buttons.map((btn, i) => (
-                              <button 
-                                key={i}
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  window.location.href = btn.href;
-                                }}
-                                className="group relative px-6 md:px-8 py-3.5 flex items-center justify-center overflow-hidden rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:border-white transition-all duration-300"
-                              >
-                                 <span className="relative z-10 flex items-center gap-3 text-white font-bold text-xs uppercase tracking-widest transition-colors duration-300 group-hover:text-black">
-                                    {btn.label} <ArrowRight size={15} className="group-hover:translate-x-1.5 transition-transform duration-300" />
-                                 </span>
-                                 <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] rounded-full" />
-                              </button>
-                           ))}
-                        </div>
-                     </motion.div>
-                   )}
-                 </AnimatePresence>
-               </motion.div>
-             )
-          })}
+              <AnimatePresence>
+                {isCenter && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
+                    className="absolute inset-x-0 bottom-0 p-6 sm:p-8 md:p-12 flex flex-col items-center text-center"
+                  >
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 text-[#c9a84c] border border-[#c9a84c]/30 font-bold tracking-widest text-[9px] md:text-sm uppercase mb-3 backdrop-blur-md">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#c9a84c]" />
+                      {slide.eyebrow}
+                    </div>
+
+                    <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-black font-playfair leading-[1.1] drop-shadow-lg mb-3">
+                      {slide.headline.join(" ")}
+                    </h1>
+
+                    <p className="text-slate-200 text-sm md:text-lg font-medium max-w-xl drop-shadow mb-6 md:mb-8 opacity-90">
+                      {slide.sub}
+                    </p>
+
+                    <div className="flex flex-wrap justify-center gap-4">
+                      {slide.buttons.map((btn, i) => (
+                        <button
+                          key={i}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.location.href = btn.href;
+                          }}
+                          className="group relative px-6 md:px-8 py-3.5 flex items-center justify-center overflow-hidden rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:border-white transition-all duration-300"
+                        >
+                          <span className="relative z-10 flex items-center gap-3 text-white font-bold text-xs uppercase tracking-widest transition-colors duration-300 group-hover:text-black">
+                            {btn.label} <ArrowRight size={15} className="group-hover:translate-x-1.5 transition-transform duration-300" />
+                          </span>
+                          <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] rounded-full" />
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          )
+        })}
       </div>
 
       <style>{`
@@ -460,43 +460,43 @@ function StatsRow() {
   return (
     <div ref={ref} className="py-12 md:py-24 bg-white border-y border-slate-100">
       <div className="container mx-auto px-6 max-w-6xl">
-         <div className="flex flex-col md:flex-row gap-16 lg:gap-24 items-center">
-            
-            {/* Left Title Area */}
-            <div className="md:w-1/3 shrink-0 text-center md:text-left">
-               <h2 className="text-3xl lg:text-5xl font-playfair font-black text-[#001122] mb-5 leading-[1.1]">
-                 Excellence<br />in Numbers
-               </h2>
-               <div className="w-16 h-1 bg-[#c9a84c] mb-6 mx-auto md:mx-0" />
-               <p className="text-slate-500 font-medium text-sm lg:text-base leading-relaxed">
-                 A celebrated legacy of delivering world-class engineering education and shaping the state's brightest future leaders.
-               </p>
-            </div>
+        <div className="flex flex-col md:flex-row gap-16 lg:gap-24 items-center">
 
-            {/* Right Grid Area */}
-            <div className="md:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-12 w-full">
-               {customStats.map((stat, i) => (
-                 <motion.div
-                   key={i}
-                   variants={{
-                     hidden: { opacity: 0, y: 20 },
-                     visible: { opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.6, ease: "easeOut" } }
-                   }}
-                   initial="hidden"
-                   animate={inView ? "visible" : "hidden"}
-                   className="flex flex-col border-l-2 border-[#003366]/10 pl-5"
-                 >
-                   <span className="font-playfair text-4xl lg:text-5xl font-black text-[#003366] mb-1 tracking-tight">
-                     {inView ? <Counter target={stat.value} suffix={stat.suffix} prefix={stat.prefix} /> : "0"}
-                   </span>
-                   <span className="text-[10px] lg:text-xs font-bold text-slate-400 uppercase tracking-[0.15em] leading-snug mt-1">
-                     {stat.label}
-                   </span>
-                 </motion.div>
-               ))}
-            </div>
+          {/* Left Title Area */}
+          <div className="md:w-1/3 shrink-0 text-center md:text-left">
+            <h2 className="text-3xl lg:text-5xl font-playfair font-black text-[#001122] mb-5 leading-[1.1]">
+              Excellence<br />in Numbers
+            </h2>
+            <div className="w-16 h-1 bg-[#c9a84c] mb-6 mx-auto md:mx-0" />
+            <p className="text-slate-500 font-medium text-sm lg:text-base leading-relaxed">
+              A celebrated legacy of delivering world-class engineering education and shaping the state's brightest future leaders.
+            </p>
+          </div>
 
-         </div>
+          {/* Right Grid Area */}
+          <div className="md:w-2/3 grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-12 w-full">
+            {customStats.map((stat, i) => (
+              <motion.div
+                key={i}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.6, ease: "easeOut" } }
+                }}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                className="flex flex-col border-l-2 border-[#003366]/10 pl-5"
+              >
+                <span className="font-playfair text-4xl lg:text-5xl font-black text-[#003366] mb-1 tracking-tight">
+                  {inView ? <Counter target={stat.value} suffix={stat.suffix} prefix={stat.prefix} /> : "0"}
+                </span>
+                <span className="text-[10px] lg:text-xs font-bold text-slate-400 uppercase tracking-[0.15em] leading-snug mt-1">
+                  {stat.label}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+
+        </div>
       </div>
     </div>
   );
@@ -537,11 +537,10 @@ function BentoNotices() {
                   key={key}
                   variants={fadeUp}
                   onClick={() => setActiveTab(key)}
-                  className={`flex items-center gap-2.5 px-4 py-3 rounded-xl text-sm font-semibold transition-all text-left ${
-                    activeTab === key
-                      ? "bg-[#003366] text-white shadow-md"
-                      : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
-                  }`}
+                  className={`flex items-center gap-2.5 px-4 py-3 rounded-xl text-sm font-semibold transition-all text-left ${activeTab === key
+                    ? "bg-[#003366] text-white shadow-md"
+                    : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
+                    }`}
                 >
                   <Icon size={15} />
                   {label}
@@ -647,22 +646,21 @@ function DepartmentsSection() {
       >
         <Link
           href={`/departments/${dept.slug}`}
-          className={`group relative h-full flex flex-col rounded-2xl border-2 overflow-hidden transition-all duration-300 ${
-            dept.highlight
-              ? "border-violet-300 bg-gradient-to-br from-violet-50 to-purple-50"
-              : "border-slate-100 bg-white hover:border-slate-200"
-          } hover:-translate-y-1.5 hover:shadow-xl`}
+          className={`group relative h-full flex flex-col rounded-2xl border-2 overflow-hidden transition-all duration-300 ${dept.highlight
+            ? "border-violet-300 bg-gradient-to-br from-violet-50 to-purple-50"
+            : "border-slate-100 bg-white hover:border-slate-200"
+            } hover:-translate-y-1.5 hover:shadow-xl`}
           style={{ boxShadow: isHovered ? `0 20px 40px -10px ${dept.accent}30` : undefined }}
         >
           {/* Background Image / Giant Watermark Icon */}
           {dept.bgImage ? (
             <div className="absolute inset-0 z-0 overflow-hidden mix-blend-multiply">
-              <Image 
-                src={dept.bgImage} 
-                alt={dept.name} 
+              <Image
+                src={dept.bgImage}
+                alt={dept.name}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover opacity-[0.08] grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-[0.15] transition-all duration-[0.8s] ease-out" 
+                className="object-cover opacity-[0.08] grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-[0.15] transition-all duration-[0.8s] ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
             </div>
@@ -682,7 +680,7 @@ function DepartmentsSection() {
               {dept.tag}
             </div>
           )}
-          
+
           <div className="p-6 relative z-10 flex flex-col flex-1">
             <div
               className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 bg-white"
@@ -700,7 +698,7 @@ function DepartmentsSection() {
               <h3 className="text-[15px] font-bold text-slate-800 leading-snug mt-1 mb-2 drop-shadow-sm group-hover:text-[#003366] transition-colors">{dept.name}</h3>
               <p className="text-xs text-slate-500 font-medium leading-relaxed mb-4 flex-1 drop-shadow-sm">{dept.desc}</p>
             </div>
-            
+
             <div className="mt-auto flex items-center justify-between text-xs font-semibold pt-3 border-t" style={{ borderColor: `${dept.accent}20` }}>
               <span className="text-slate-500">
                 Intake: <span className="font-bold" style={{ color: dept.accent }}>{dept.seats}</span>
@@ -732,7 +730,7 @@ function DepartmentsSection() {
         <div className="mb-16">
           <div className="flex items-center gap-4 mb-10 overflow-hidden">
             <h3 className="flex-shrink-0 font-playfair text-xl font-bold text-slate-400 uppercase tracking-widest">
-              Undergraduate <span className="text-[#003366] block sm:inline">(B.Tech)</span>
+              Undergraduate <span className="text-[#003366] block sm:inline">(B.Tech.)</span>
             </h3>
             <div className="h-px w-full bg-slate-100" />
           </div>
@@ -745,7 +743,7 @@ function DepartmentsSection() {
         <div>
           <div className="flex items-center gap-4 mb-10 overflow-hidden">
             <h3 className="flex-shrink-0 font-playfair text-xl font-bold text-slate-400 uppercase tracking-widest">
-              Postgraduate <span className="text-[#003366] block sm:inline">(M.Tech)</span>
+              Postgraduate <span className="text-[#003366] block sm:inline">(M.Tech.)</span>
             </h3>
             <div className="h-px w-full bg-slate-100" />
           </div>
@@ -795,12 +793,12 @@ function CampusGrid() {
                 {/* Background Image / Giant Watermark Icon */}
                 {item.bgImage ? (
                   <div className="absolute inset-0 z-0 overflow-hidden bg-white">
-                    <Image 
-                      src={item.bgImage} 
-                      alt={item.label} 
+                    <Image
+                      src={item.bgImage}
+                      alt={item.label}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover opacity-15 grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-25 transition-all duration-[0.8s] ease-out" 
+                      className="object-cover opacity-15 grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-25 transition-all duration-[0.8s] ease-out"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
                   </div>
@@ -839,7 +837,7 @@ function CampusGrid() {
                   <p className="text-slate-600 font-medium text-[13px] md:text-sm leading-relaxed max-h-full overflow-hidden flex-1 drop-shadow-sm">
                     {item.desc}
                   </p>
-                  
+
                   {/* Read more arrow (unclamps or just looks nice) */}
                   <div className="mt-auto pt-3 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ color: item.accent }}>
                     Learn more <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
@@ -947,11 +945,10 @@ function QuickLinksBar() {
           <Link
             key={q.label}
             href={q.href}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg transition-colors ${
-              q.hot
-                ? "bg-[#d32f2f] text-white hover:bg-red-700 font-bold"
-                : "text-slate-400 hover:text-white hover:bg-white/10"
-            }`}
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg transition-colors ${q.hot
+              ? "bg-[#d32f2f] text-white hover:bg-red-700 font-bold"
+              : "text-slate-400 hover:text-white hover:bg-white/10"
+              }`}
           >
             {q.hot && <span className="w-1.5 h-1.5 rounded-full bg-yellow-300 animate-pulse" />}
             {q.label}
@@ -976,44 +973,44 @@ function PrincipalMessage() {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, x: -40, filter: "blur(10px)" }}
               animate={inView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
               transition={{ duration: 0.9, ease: "easeOut" }}
               className="lg:col-span-5 relative"
             >
               <div className="relative z-10 mx-auto max-w-sm lg:max-w-none">
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.02, rotate: 1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   className="relative rounded-[2.5rem] overflow-hidden aspect-[4/5] shadow-2xl shadow-[#003366]/20 border-[6px] border-white bg-slate-100 group"
                 >
-                    <Image
-                      src="/images/faculties/principal.JPG"
-                      alt="Dr. Gopal Nandan"
-                      fill
-                      quality={75}
-                      className="object-cover object-top group-hover:scale-105 transition-transform duration-1000"
-                      sizes="(max-width: 1024px) 100vw, 500px"
-                    />
+                  <Image
+                    src="/images/faculties/principal.JPG"
+                    alt="Dr Gopal Nandan"
+                    fill
+                    quality={75}
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-1000"
+                    sizes="(max-width: 1024px) 100vw, 500px"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#001122]/90 via-[#001122]/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute bottom-0 left-0 w-full p-8 md:p-10 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                    <p className="font-playfair text-2xl md:text-3xl font-bold leading-tight drop-shadow-md">Dr. Gopal Nandan</p>
+                    <p className="font-playfair text-2xl md:text-3xl font-bold leading-tight drop-shadow-md">Dr Gopal Nandan</p>
                     <p className="text-[#c9a84c] text-xs font-bold tracking-[0.2em] uppercase mt-2 drop-shadow-sm">Principal, NCE</p>
                   </div>
                 </motion.div>
-                
-                <motion.div 
-                   animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
-                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                   className="absolute -bottom-6 -right-6 w-32 h-32 rounded-3xl bg-gradient-to-br from-[#c9a84c] to-[#e8c86a] -z-10 shadow-xl opacity-80"
+
+                <motion.div
+                  animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute -bottom-6 -right-6 w-32 h-32 rounded-3xl bg-gradient-to-br from-[#c9a84c] to-[#e8c86a] -z-10 shadow-xl opacity-80"
                 />
                 <div className="absolute -top-6 -left-6 w-full h-full rounded-[2.5rem] border border-[#003366]/10 -z-20" />
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
               animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
               transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
@@ -1021,16 +1018,16 @@ function PrincipalMessage() {
             >
               <div className="relative">
                 <Quote className="absolute -top-10 -left-6 md:-left-10 text-[#c9a84c]/20 w-24 h-24 md:w-32 md:h-32 rotate-180 -z-10 transition-transform hover:scale-110 duration-500" />
-                
+
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#c9a84c] mb-4">Leadership Vision</p>
                 <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold text-[#003366] leading-[1.15] mb-8">
-                  Empowering minds to <br className="hidden md:block"/>
+                  Empowering minds to <br className="hidden md:block" />
                   <span className="relative inline-block mt-2 md:mt-0">
                     <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-[#c9a84c] to-[#b8963d]">redefine the future.</span>
                     <span className="absolute bottom-2 left-0 w-full h-3 bg-[#c9a84c]/10 -z-10 rounded-sm"></span>
                   </span>
                 </h2>
-                
+
                 <div className="space-y-5 text-slate-500 font-sans text-[15px] md:text-base lg:text-[17px] leading-relaxed">
                   <p>
                     "Rooted in the historic land of Nalanda—a beacon of global learning—Nalanda College of Engineering proudly carries forward this monumental legacy. Our mission extends far beyond imparting technical education; we are here to forge brilliant innovators equipped with unshakable ethical values and a profound sense of social responsibility."
@@ -1042,10 +1039,10 @@ function PrincipalMessage() {
 
                 <div className="mt-10 pt-8 border-t border-slate-100 flex items-center justify-between">
                   <div>
-                    <p className="font-playfair italic font-bold text-xl md:text-2xl text-slate-800">Dr. Gopal Nandan</p>
+                    <p className="font-playfair italic font-bold text-xl md:text-2xl text-slate-800">Dr Gopal Nandan</p>
                     <p className="text-[10px] md:text-xs font-bold tracking-[0.15em] uppercase text-slate-400 mt-1.5">Ph.D. / Principal</p>
                   </div>
-                  
+
                   <Link href="/principal" className="flex items-center gap-3 group">
                     <span className="text-sm font-bold text-[#003366] uppercase tracking-wider opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300">Read Message</span>
                     <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-slate-200 flex items-center justify-center text-[#c9a84c] group-hover:bg-[#003366] group-hover:text-white group-hover:scale-110 group-hover:border-transparent transition-all duration-300 shadow-sm">

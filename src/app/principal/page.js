@@ -22,9 +22,9 @@ export default function PrincipalDeskPage() {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
-              
+
               {/* Left Column: Photo & Details Card */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
@@ -35,19 +35,19 @@ export default function PrincipalDeskPage() {
                     {/* Placeholder for Principal Photo (Professional Portrait) */}
                     <Image
                       src="/images/faculties/principal.png"
-                      alt="Dr. Gopal Nandan"
+                      alt="Dr Gopal Nandan"
                       fill
                       className="object-cover object-[center_top] filter grayscale-[10%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#001a33]/90 via-[#001a33]/20 to-transparent pointer-events-none" />
-                    
+
                     <div className="absolute bottom-6 left-6 right-6">
-                      <p className="text-2xl font-playfair font-bold text-white mb-1">Dr. Gopal Nandan</p>
+                      <p className="text-2xl font-playfair font-bold text-white mb-1">Dr Gopal Nandan</p>
                       <p className="text-sm font-medium text-blue-200">Principal</p>
                       <p className="text-xs text-slate-300 mt-0.5">Nalanda College of Engineering</p>
                     </div>
                   </div>
-                  
+
                   <div className="p-6 bg-white shrink-0">
                     <div className="flex flex-col gap-4">
                       <div className="flex items-center gap-3">
@@ -74,7 +74,7 @@ export default function PrincipalDeskPage() {
               </motion.div>
 
               {/* Right Column: Message */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
@@ -82,7 +82,7 @@ export default function PrincipalDeskPage() {
               >
                 <div className="relative">
                   <Quote size={80} className="absolute -top-6 -left-8 text-slate-200/50 -rotate-12" />
-                  
+
                   <div className="relative z-10 pt-4">
                     <h2 className="text-3xl lg:text-4xl font-playfair font-extrabold text-[#003366] mb-8 leading-tight">
                       Message from the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c9a84c] to-yellow-600">Principal</span>
@@ -96,7 +96,7 @@ export default function PrincipalDeskPage() {
                         Welcome to Nalanda College of Engineering (NCE). Our aim is to provide you the best quality education. In fact, the education is hidden in the student itself, we just encourage them to explore and enjoy the learning.
                       </p>
                       <p>
-                        Increasing diversity in needs and globalization have generated and enhanced the demand for competitive skills. So, the main purpose of Nalanda College of Engineering (NCE) is to provide such a platform where the needs can be fulfilled. 
+                        Increasing diversity in needs and globalization have generated and enhanced the demand for competitive skills. So, the main purpose of Nalanda College of Engineering (NCE) is to provide such a platform where the needs can be fulfilled.
                       </p>
                       <p>
                         Nalanda College of Engineering (NCE) motivates the students to develop leadership skills. We encourage them to trust in themselves and achieve great heights. In-fact, they can do everything if they believe in their abilities.
@@ -106,7 +106,7 @@ export default function PrincipalDeskPage() {
                     <div className="mt-12 flex items-end gap-6 border-t border-slate-200 pt-8">
                       <div>
                         <p className="text-sm text-slate-500 font-medium mb-1">With Regards,</p>
-                        <p className="text-2xl font-playfair font-extrabold text-[#003366]">Dr. Gopal Nandan</p>
+                        <p className="text-2xl font-playfair font-extrabold text-[#003366]">Dr Gopal Nandan</p>
                         <p className="text-sm text-[#c9a84c] font-bold tracking-wide uppercase mt-1">Principal, Nce</p>
                       </div>
                     </div>
@@ -115,20 +115,20 @@ export default function PrincipalDeskPage() {
 
                 {/* Highlight Cards */}
                 <div className="grid sm:grid-cols-2 gap-4 mt-16">
-                   <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
-                     <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
-                       <BookOpen size={20} />
-                     </div>
-                     <h3 className="font-bold text-slate-800 mb-2">Quality Education</h3>
-                     <p className="text-sm text-slate-500 leading-relaxed">Encouraging an environment where students explore, enjoy learning, and uncover their hidden potential.</p>
-                   </div>
-                   <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
-                     <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
-                       <Award size={20} />
-                     </div>
-                     <h3 className="font-bold text-slate-800 mb-2">Leadership & Skills</h3>
-                     <p className="text-sm text-slate-500 leading-relaxed">Providing a platform to develop competitive skills, self-belief, and leadership capabilities.</p>
-                   </div>
+                  <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
+                    <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
+                      <BookOpen size={20} />
+                    </div>
+                    <h3 className="font-bold text-slate-800 mb-2">Quality Education</h3>
+                    <p className="text-sm text-slate-500 leading-relaxed">Encouraging an environment where students explore, enjoy learning, and uncover their hidden potential.</p>
+                  </div>
+                  <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
+                    <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
+                      <Award size={20} />
+                    </div>
+                    <h3 className="font-bold text-slate-800 mb-2">Leadership & Skills</h3>
+                    <p className="text-sm text-slate-500 leading-relaxed">Providing a platform to develop competitive skills, self-belief, and leadership capabilities.</p>
+                  </div>
                 </div>
 
               </motion.div>

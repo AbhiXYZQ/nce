@@ -106,14 +106,14 @@ export default function Footer() {
             </p>
 
             <div className="mt-8 grid grid-cols-2 gap-3">
-              <motion.div whileHover={{ y: -4, backgroundColor: "rgba(255,255,255,0.08)" }} className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-lg transition-all duration-300">
+              <motion.div whileHover={{ y: -4 }} className="rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 p-4 shadow-lg transition-all duration-300">
                 <p className="text-xs font-bold text-white flex items-center gap-1.5"><GraduationCap size={14} className="text-[#c9a84c]" /> Academic</p>
                 <p className="text-xs text-white/50 mt-1.5 leading-snug">Calendar, syllabus & exams</p>
                 <Link className="mt-4 w-fit inline-flex items-center gap-1.5 text-xs font-semibold text-[#c9a84c] hover:text-white transition-colors group" href="/academics">
                   Explore <ArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
                 </Link>
               </motion.div>
-              <motion.div whileHover={{ y: -4, backgroundColor: "rgba(255,255,255,0.08)" }} className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-lg transition-all duration-300">
+              <motion.div whileHover={{ y: -4 }} className="rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 p-4 shadow-lg transition-all duration-300">
                 <p className="text-xs font-bold text-white flex items-center gap-1.5"><Briefcase size={14} className="text-[#c9a84c]" /> Placement</p>
                 <p className="text-xs text-white/50 mt-1.5 leading-snug">T&P cell and recruiters</p>
                 <Link className="mt-4 w-fit inline-flex items-center gap-1.5 text-xs font-semibold text-[#c9a84c] hover:text-white transition-colors group" href="/placement">

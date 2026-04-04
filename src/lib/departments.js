@@ -13,10 +13,10 @@ export const DEPARTMENTS = {
     ],
     subtitle: "Outstanding learning environment for excellence in teaching and research.",
     programs: [
-      { name: "B.Tech", duration: "4 Years", intake: "60", desc: "Foundational undergraduate program in computer science." },
-      { name: "M.Tech (Advanced Computing)", duration: "2 Years", intake: "30", desc: "Specialized postgraduate research program." }
+      { name: "B.Tech.", duration: "4 Years", intake: "60", desc: "Foundational undergraduate program in computer science." },
+      { name: "M.Tech.", duration: "2 Years", intake: "30", desc: "Specialized postgraduate research program." }
     ],
-    hod: { name: "Dr. Kumari Priyanka Sinha", email: "hodcse@ncechandi.ac.in" },
+    hod: { name: "Dr Kumari Priyanka Sinha", email: "hodcse@ncechandi.ac.in" },
     about:
       "The field of Computer Science and Engineering nowadays has become one of the most demandable branch amongst the aspiring engineers. We have a goal to provide an outstanding learning environment complemented by excellence in teaching. The Department is moving ahead to build technical platform to students by spreading awareness of technologies, transferring of the knowledge, sharpening the obtained knowledge, and exposing students to solve real time problems. Laboratories are fully equipped with latest computers and are supported by high speed Internet connection. Subjects of further research include Artificial Intelligence especially Neural Network and Machine Learning and many more.",
     vision:
@@ -72,7 +72,7 @@ export const DEPARTMENTS = {
       },
       {
         name: "PG Research Lab",
-        desc: "Dedicated research facility for M.Tech students.",
+        desc: "Dedicated research facility for M.Tech. students.",
         equipment: ["High-end workstations", "Cloud compute access"],
       },
       {
@@ -106,8 +106,8 @@ export const DEPARTMENTS = {
       "https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=2070&auto=format&fit=crop"
     ],
     subtitle: "Outstanding learning environment for excellence in AI and Data Science.",
-    programs: [{ name: "B.Tech", duration: "4 Years", intake: "60" }],
-    hod: { name: "Dr. Kumari Priyanka Sinha", email: "hodcse@ncechandi.ac.in" },
+    programs: [{ name: "B.Tech.", duration: "4 Years", intake: "60" }],
+    hod: { name: "Dr Kumari Priyanka Sinha", email: "hodcse@ncechandi.ac.in" },
     about:
       "The field of Artificial Intelligence & Machine Learning nowadays has become one of the most demandable branch amongst the aspiring engineers. We have a goal to provide an outstanding learning environment complemented by excellence in teaching. Laboratories are fully equipped with latest computers and are supported by high speed Internet connection. Job opportunities are available both in private and public sectors for a graduate of this discipline. Subjects of further research include Artificial Intelligence especially Neural Network and Machine Learning and many more.",
     vision:
@@ -163,7 +163,7 @@ export const DEPARTMENTS = {
       "ML Engineer (entry-level)",
       "Data Analyst / Junior Data Scientist",
       "AI Research Intern",
-      "M.Tech / Higher Studies",
+      "M.Tech. / Higher Studies",
     ],
   },
   ce: {
@@ -179,7 +179,7 @@ export const DEPARTMENTS = {
       "https://images.unsplash.com/photo-1509391366360-1f9509ce1573?q=80&w=2070&auto=format&fit=crop"
     ],
     subtitle: "Excellence in structural design, planning, and infrastructure development.",
-    programs: [{ name: "B.Tech", duration: "4 Years", intake: "60" }],
+    programs: [{ name: "B.Tech.", duration: "4 Years", intake: "60" }],
     hod: { name: "Sudeep Kumar", email: "sudeep.2k7@gmail.com" },
     about:
       "The field of civil engineering includes study in the areas of Surveying, Geotechnical Engineering, Structural Engineering, Transportation Engineering, Irrigation & Water Resource Engineering and many more. The department aims to provide better education in the field of Civil Engineering to meet the ever growing construction industry and is dedicated to maintain highest quality in teaching both theoretically and practically.",
@@ -252,8 +252,8 @@ export const DEPARTMENTS = {
       "https://images.unsplash.com/photo-1605272186985-e11f1857c5a0?q=80&w=2070&auto=format&fit=crop"
     ],
     subtitle: "Focus on design, manufacturing, thermal sciences, and robotics.",
-    programs: [{ name: "B.Tech", duration: "4 Years", intake: "60" }],
-    hod: { name: "Dr. Md. Zishanur Rahman", email: "rzishan10@gmail.com" },
+    programs: [{ name: "B.Tech.", duration: "4 Years", intake: "60" }],
+    hod: { name: "Dr Md. Zishanur Rahman", email: "rzishan10@gmail.com" },
     about:
       "The branch of Mechanical Engineering scope varies from material research to machinery development, Nano Technology, Smart materials, Aerospace Technology, FMS, Automation and such other interrelated developments. We aim to bridge the gap between industry and educational institution, and for this we have qualified faculties and labs with modern testing machines and equipment’s.",
     vision:
@@ -323,8 +323,8 @@ export const DEPARTMENTS = {
       "https://images.unsplash.com/photo-1559685603-91db48d1c7f0?q=80&w=2070&auto=format&fit=crop"
     ],
     subtitle: "Center of excellence in Aeronautics, Propulsion & Aircraft Design.",
-    programs: [{ name: "B.Tech", duration: "4 Years", intake: "60" }],
-    hod: { name: "Dr. Alok Kumar", email: "alokbpsc2018@gmail.com" },
+    programs: [{ name: "B.Tech.", duration: "4 Years", intake: "60" }],
+    hod: { name: "Dr Alok Kumar", email: "alokbpsc2018@gmail.com" },
     about:
       "The Department of Aeronautical Engineering at NCE Chandi focuses on the design, development, and maintenance of aircraft and spacecraft. It covers core areas like Aerodynamics, Propulsion, Aircraft Structures, and Flight Mechanics.",
     vision:
@@ -395,8 +395,8 @@ export const DEPARTMENTS = {
     ],
     subtitle: "Innovation in power systems, control, and electronics.",
     programs: [
-      { name: "B.Tech", duration: "4 Years", intake: "60", desc: "Core Electrical & Electronics engineering." },
-      { name: "M.Tech (Power Systems)", duration: "2 Years", intake: "30", desc: "Specialized study in modern power grids and systems." }
+      { name: "B.Tech.", duration: "4 Years", intake: "60", desc: "Core Electrical & Electronics engineering." },
+      { name: "M.Tech. (Power Systems)", duration: "2 Years", intake: "30", desc: "Specialized study in modern power grids and systems." }
     ],
     hod: { name: "Ashish Kumar", email: "ashishashish29@gmail.com" },
     about:
@@ -468,8 +468,8 @@ export const DEPARTMENTS = {
       "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?q=80&w=2070&auto=format&fit=crop",
     ],
     subtitle: "Building the foundation of engineering through pure sciences and communication.",
-    programs: [{ name: "Mandatory Foundation", duration: "1 Year", intake: "All B.Tech Freshmen", desc: "First-year general engineering foundation." }],
-    hod: { name: "Dr. To be updated", email: "ash@ncechandi.ac.in" },
+    programs: [{ name: "Mandatory Foundation", duration: "1 Year", intake: "All B.Tech. Freshmen", desc: "First-year general engineering foundation." }],
+    hod: { name: "Dr To be updated", email: "ash@ncechandi.ac.in" },
     about: "The Department of Applied Science and Humanities at NCE Chandi plays a vital role in the foundation of engineering education. It encompasses Physics, Chemistry, Mathematics, and Humanities (English & Management). It aims to provide students with a strong base in basic sciences and communication skills essential for their professional growth.",
     vision: "To create a strong base for future engineers by imparting quality education in basic sciences and humanities with a focus on holistic development.",
     mission: [
@@ -525,7 +525,7 @@ export const SLUG_ALIASES = {
   "electrical-engineering": "eee",
   "eee-department": "eee",
 
-  // M.Tech Aliases now point to the main department page
+  // M.Tech. Aliases now point to the main department page
   "mtech-cse": "cse",
   "m-tech-cse": "cse",
   "pg-cse": "cse",
