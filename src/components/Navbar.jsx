@@ -22,10 +22,10 @@ const NAV_ITEMS = [
     label: "Institute",
     children: [
       { label: "About NCE", href: "/about", icon: Info },
+      { label: "Principal's Desk", href: "/principal", icon: UserCircle },
       { label: "Vision & Mission", href: "/vision", icon: Award },
       { label: "Administration", href: "/administration", icon: Users },
       { label: "Faculty", href: "/faculty", icon: Users },
-      { label: "Principal's Desk", href: "/principal", icon: UserCircle },
       { label: "Gallery", href: "/gallery", icon: ImageIcon },
     ],
   },

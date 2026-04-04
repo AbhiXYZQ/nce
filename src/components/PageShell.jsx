@@ -248,41 +248,56 @@ export default function PageShell({
             
             {/* Sidebar Navigation */}
             {normalizedSections.length > 0 && (
-              <aside className="lg:w-72 flex-shrink-0 pt-16 lg:pb-32 lg:sticky lg:top-24 h-fit">
-                <div className="bg-slate-50/50 backdrop-blur-sm p-6 rounded-3xl border border-slate-200/50 shadow-sm">
-                  <div className="flex items-center gap-2 mb-6 px-1">
+              <aside className="sticky top-12 md:top-14 lg:top-24 z-30 lg:w-72 flex-shrink-0 lg:pt-16 lg:pb-32 h-fit -mx-6 lg:mx-0">
+                <div className="bg-white/80 lg:bg-slate-50/50 backdrop-blur-md lg:backdrop-blur-sm px-6 py-3 lg:p-6 lg:rounded-3xl border-y lg:border border-slate-200/50 shadow-sm lg:shadow-none">
+                  <div className="hidden lg:flex items-center gap-2 mb-6 px-1">
                     <div className="w-1 h-3 bg-[#c9a84c] rounded-full" />
                     <p className="text-[10px] font-black uppercase tracking-[0.25em] text-[#003366]/40">
                       On This Page
                     </p>
                   </div>
                   
-                  <nav className="flex lg:flex-col gap-1.5 overflow-x-auto lg:overflow-x-visible pb-1 lg:pb-0 scrollbar-hide no-scrollbar relative">
+                  <nav 
+                    className="flex lg:flex-col gap-2 lg:gap-1.5 overflow-x-auto lg:overflow-x-visible pb-0.5 lg:pb-0 no-scrollbar relative"
+                    id="mobile-nav-container"
+                  >
                     {/* Vertical Connecting Line (Desktop) */}
                     <div className="hidden lg:block absolute left-[15px] top-2 bottom-2 w-0.5 bg-slate-100 -z-10" />
                     
                     {normalizedSections.map((sec) => (
                       <button
                         key={sec.id}
-                        onClick={() => scrollTo(sec.id)}
-                        className={`group relative flex items-center gap-4 px-3 py-2.5 rounded-xl transition-all text-left whitespace-nowrap lg:whitespace-normal ${
+                        id={`nav-link-${sec.id}`}
+                        onClick={() => {
+                          scrollTo(sec.id);
+                          // Centering logic for mobile
+                          const el = document.getElementById(`nav-link-${sec.id}`);
+                          const container = document.getElementById('mobile-nav-container');
+                          if (el && container && window.innerWidth < 1024) {
+                            container.scrollTo({
+                              left: el.offsetLeft - (container.offsetWidth / 2) + (el.offsetWidth / 2),
+                              behavior: 'smooth'
+                            });
+                          }
+                        }}
+                        className={`group relative flex items-center gap-2.5 lg:gap-4 px-4 py-2 lg:px-3 lg:py-2.5 rounded-full lg:rounded-xl transition-all text-left whitespace-nowrap lg:whitespace-normal border lg:border-none ${
                           activeSection === sec.id
-                            ? "bg-white text-[#003366] shadow-sm ring-1 ring-slate-100"
-                            : "text-slate-500 hover:text-[#003366] hover:bg-white/50"
+                            ? "bg-[#003366] lg:bg-white text-white lg:text-[#003366] shadow-sm border-[#003366]"
+                            : "text-slate-500 hover:text-[#003366] hover:bg-white/50 border-slate-200/60"
                         }`}
                       >
-                        {/* Dot Indicator */}
-                        <div className={`w-2 h-2 rounded-full shrink-0 transition-all duration-300 z-10 ${
+                        {/* Dot Indicator (Desktop) */}
+                        <div className={`hidden lg:block w-2 h-2 rounded-full shrink-0 transition-all duration-300 z-10 ${
                             activeSection === sec.id ? "bg-[#c9a84c] ring-4 ring-[#c9a84c]/10" : "bg-slate-200"
                         }`} />
-                        <span className={`text-sm tracking-tight transition-all ${activeSection === sec.id ? "font-bold" : "font-medium"}`}>
+                        <span className={`text-[11px] lg:text-sm tracking-tight transition-all ${activeSection === sec.id ? "font-bold" : "font-medium"}`}>
                           {sec.title}
                         </span>
 
                         {activeSection === sec.id && (
                           <motion.div
                             layoutId="active-nav-glow"
-                            className="absolute inset-0 rounded-xl -z-10 shadow-sm"
+                            className="hidden lg:block absolute inset-0 rounded-xl -z-10 shadow-sm"
                             style={{ backgroundColor: "rgba(255, 255, 255, 1)" }}
                             transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                           />
@@ -309,38 +324,42 @@ export default function PageShell({
             <div className="flex-1 min-w-0">
               {normalizedSections.map((sec, idx) => (
                 <Section key={sec.id} id={sec.id} title={sec.title}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    {(sec.cards ?? []).map((card, cIdx) => (
-                      <div
-                        key={`${card.title}-${cIdx}`}
-                        className="rounded-2xl border border-slate-200/70 bg-white/75 backdrop-blur p-6 hover:shadow-lg transition-shadow"
-                      >
-                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#c9a84c] mb-2">
-                          {card.kicker ?? ""}
-                        </p>
-                        <h3 className="text-base font-bold text-slate-900">{card.title}</h3>
-                        {card.text && <p className="text-sm text-slate-500 mt-2 leading-relaxed">{card.text}</p>}
-                        {!!card.points?.length && (
-                          <ul className="mt-3 space-y-1.5 text-sm text-slate-600">
-                            {card.points.map((p, pIdx) => (
-                              <li key={`${p}-${pIdx}`} className="flex items-start gap-2">
-                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#c9a84c] shrink-0" />
-                                <span className="leading-snug">{p}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                        {card.href && (
-                          <Link
-                            href={card.href}
-                            className="mt-4 inline-flex items-center gap-1.5 text-[#003366] font-semibold text-sm hover:text-[#c9a84c] transition-colors"
-                          >
-                            Open Details <ArrowRight size={14} />
-                          </Link>
-                        )}
-                      </div>
-                    ))}
-                  </div>
+                  {sec.customContent ? (
+                    sec.customContent
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      {(sec.cards ?? []).map((card, cIdx) => (
+                        <div
+                          key={`${card.title}-${cIdx}`}
+                          className="rounded-2xl border border-slate-200/70 bg-white/75 backdrop-blur p-6 hover:shadow-lg transition-shadow"
+                        >
+                          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#c9a84c] mb-2">
+                            {card.kicker ?? ""}
+                          </p>
+                          <h3 className="text-base font-bold text-slate-900">{card.title}</h3>
+                          {card.text && <p className="text-sm text-slate-500 mt-2 leading-relaxed">{card.text}</p>}
+                          {!!card.points?.length && (
+                            <ul className="mt-3 space-y-1.5 text-sm text-slate-600">
+                              {card.points.map((p, pIdx) => (
+                                <li key={`${p}-${pIdx}`} className="flex items-start gap-2">
+                                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#c9a84c] shrink-0" />
+                                  <span className="leading-snug">{p}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                          {card.href && (
+                            <Link
+                              href={card.href}
+                              className="mt-4 inline-flex items-center gap-1.5 text-[#003366] font-semibold text-sm hover:text-[#c9a84c] transition-colors"
+                            >
+                              Open Details <ArrowRight size={14} />
+                            </Link>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                   {sec.note && (
                     <div className="mt-5 rounded-2xl bg-white/60 backdrop-blur border border-slate-200/70 p-5 text-sm text-slate-600">
                       {sec.note}
